@@ -1,5 +1,13 @@
 # Validation evidence
 
+## GitHub publication follow-up (2026-09-27 UTC)
+
+The user supplied `https://github.com/kaimouren/analysis_tool.git`; it had no remote refs. GitHub credentials were available at this follow-up. The reviewed 80-file source archive was committed without the old local history and pushed as `6c6c5d24610cbc0830c0819eba5eb7ca137315f1` on `main`. No existing repository content was overwritten.
+
+**Remote GitHub Actions: verified successful.** [Run 36290414830](https://github.com/kaimouren/analysis_tool/actions/runs/36290414830) completed with conclusion `success`. Observed successful steps include dependency installation, `pip check`, pytest, Ruff, synthetic evaluation, behavioral evaluation and scoring stress. This is actual GitHub-hosted Ubuntu/Python 3.11 execution, not an inference from local checks. Later documentation commits have their own runs shown in the repository Actions tab.
+
+**Public Streamlit deployment: Not verified.** No hosted app URL is claimed. The earlier no-GitHub-auth / unverified-remote entries below describe the original local acceptance session and are superseded by this follow-up for GitHub only. Live-provider limitations remain unchanged.
+
 ## V1.2 release acceptance (2026-09-26 local / 2026-09-27 UTC)
 
 Baseline `0f84ad2`: 81 tests passed in 10.25s and Ruff passed before changes. Application 1.2.0, profile schema 1.4, default score policy 1.0 unchanged. Current-source acceptance follows; older sections are historical evidence.

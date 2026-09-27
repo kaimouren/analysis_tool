@@ -1,6 +1,6 @@
 # Deployment readiness and limits
 
-Status: locally runnable and tested; no public deployment or remote GitHub Actions execution is claimed. See `VALIDATION.md` for exact local commands and environments.
+Status: source is published at [kaimouren/analysis_tool](https://github.com/kaimouren/analysis_tool), and [remote GitHub Actions passed](https://github.com/kaimouren/analysis_tool/actions/runs/36290414830) for `6c6c5d2`. Public Streamlit deployment remains **Not verified**. See `VALIDATION.md` for evidence. The original publication-status notes below are historical; the repository creation/upload steps have now been completed.
 
 ## Local setup
 
@@ -34,7 +34,7 @@ Install into a clean virtual environment; run `python -m pip check`, `python -m 
 CI is configured for dependency consistency, tests, lint, synthetic regression, behavioral coverage and score stress. Local execution of those commands is evidence about this environment. It is not a substitute for an actual remote workflow or host smoke test. No Docker, authentication, database or distributed infrastructure was added to imply readiness beyond these checks.
 
 
-## V1.2 publication status and exact manual steps
+## Original V1.2 publication status and manual procedure (historical)
 
 **GitHub repository/remote Actions: Not verified.** There is no configured remote, GitHub CLI, GitHub token environment variable or usable noninteractive GitHub credential in this environment. No remote repository was created or overwritten. **Public Streamlit deployment: Not verified.** No deployment connector or authenticated Community Cloud deployment session was available. There is no tested public URL.
 
@@ -54,3 +54,7 @@ After authenticating on your own machine, these steps publish the reviewed sourc
 If enabling a provider, place supported settings in Advanced settings / Secrets; never commit the secret file. A public server key permits unmetered visitor spending in this app, so prefer no server key for a portfolio demo. Source examples remain on the hosting server/session, not on the client alone.
 
 The Community Cloud procedure and secret placement were checked against the [official deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [secrets documentation](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management). These instructions do not claim remote execution.
+
+## Deploy the published repository
+
+In Streamlit Community Cloud, select `kaimouren/analysis_tool`, branch `main`, entrypoint `app.py`, and Python 3.11 in Advanced settings. Leave provider secrets empty for the first deployment. Then perform the public-URL acceptance checks above before claiming deployment success. GitHub publication does not itself deploy Streamlit.

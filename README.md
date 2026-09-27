@@ -14,9 +14,11 @@ A new CSV often needs a quick first review before deeper analysis: which observa
 
 ## Quickstart
 
-Download or clone your published copy, open its root directory, then use Python 3.11:
+Clone the repository and use Python 3.11:
 
 ```bash
+git clone https://github.com/kaimouren/analysis_tool.git
+cd analysis_tool
 python -m venv .venv
 ```
 
@@ -115,7 +117,7 @@ Browser-selected provider endpoints must match the administrator allowlist (defa
 
 Input guards: **10 MiB, 200,000 rows, 200 columns, 2 million cells, 256 MiB deep frame memory, 65,536 characters per text cell**. These are conservative per-input limits, not measured hosted capacity or a process-memory ceiling. Native finite magnitudes over 1e150 are rejected with rescaling guidance. Data is analyzed in memory; oversized input is rejected rather than silently sampled.
 
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for exact GitHub publication, remote Actions verification, Community Cloud setup, secrets and post-deployment checks. Current remote GitHub Actions and public Streamlit deployment: **Not verified**.
+See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for exact GitHub publication, remote Actions verification, Community Cloud setup, secrets and post-deployment checks. Remote GitHub Actions: **verified successful** for published source `6c6c5d2` ([run evidence](https://github.com/kaimouren/analysis_tool/actions/runs/36290414830)). Public Streamlit deployment: **Not verified**.
 
 ## Performance
 
