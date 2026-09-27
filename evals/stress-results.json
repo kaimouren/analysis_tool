@@ -1,0 +1,3984 @@
+{
+  "cases": [
+    {
+      "case": "one_critical_column",
+      "shape": [
+        100,
+        2
+      ],
+      "score": 91.0,
+      "expected_score": 91.0,
+      "penalties": {
+        "missingness": 9.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "missingness",
+          "column": "partial",
+          "severity": "critical",
+          "value": 60.0
+        }
+      ],
+      "interpretation": "A critical local coverage problem averages to a high aggregate score.",
+      "passed": true
+    },
+    {
+      "case": "hundreds_of_advisory_findings",
+      "shape": [
+        100,
+        200
+      ],
+      "score": 100.0,
+      "expected_score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "blank_strings",
+          "column": "text_0",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_1",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_10",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_100",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_101",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_102",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_103",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_104",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_105",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_106",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_107",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_108",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_109",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_11",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_110",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_111",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_112",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_113",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_114",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_115",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_116",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_117",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_118",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_119",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_12",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_120",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_121",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_122",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_123",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_124",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_125",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_126",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_127",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_128",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_129",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_13",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_130",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_131",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_132",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_133",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_134",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_135",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_136",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_137",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_138",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_139",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_14",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_140",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_141",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_142",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_143",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_144",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_145",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_146",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_147",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_148",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_149",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_15",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_150",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_151",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_152",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_153",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_154",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_155",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_156",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_157",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_158",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_159",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_16",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_160",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_161",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_162",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_163",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_164",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_165",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_166",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_167",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_168",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_169",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_17",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_170",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_171",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_172",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_173",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_174",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_175",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_176",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_177",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_178",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_179",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_18",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_180",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_181",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_182",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_183",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_184",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_185",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_186",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_187",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_188",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_189",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_19",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_190",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_191",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_192",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_193",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_194",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_195",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_196",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_197",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_198",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_2",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_20",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_21",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_22",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_23",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_24",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_25",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_26",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_27",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_28",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_29",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_3",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_30",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_31",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_32",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_33",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_34",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_35",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_36",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_37",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_38",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_39",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_4",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_40",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_41",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_42",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_43",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_44",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_45",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_46",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_47",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_48",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_49",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_5",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_50",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_51",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_52",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_53",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_54",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_55",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_56",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_57",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_58",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_59",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_6",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_60",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_61",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_62",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_63",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_64",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_65",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_66",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_67",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_68",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_69",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_7",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_70",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_71",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_72",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_73",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_74",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_75",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_76",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_77",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_78",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_79",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_8",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_80",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_81",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_82",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_83",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_84",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_85",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_86",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_87",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_88",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_89",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_9",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_90",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_91",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_92",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_93",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_94",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_95",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_96",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_97",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_98",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "text_99",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_0",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_1",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_10",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_100",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_101",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_102",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_103",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_104",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_105",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_106",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_107",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_108",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_109",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_11",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_110",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_111",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_112",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_113",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_114",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_115",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_116",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_117",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_118",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_119",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_12",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_120",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_121",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_122",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_123",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_124",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_125",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_126",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_127",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_128",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_129",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_13",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_130",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_131",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_132",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_133",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_134",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_135",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_136",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_137",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_138",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_139",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_14",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_140",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_141",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_142",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_143",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_144",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_145",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_146",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_147",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_148",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_149",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_15",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_150",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_151",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_152",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_153",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_154",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_155",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_156",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_157",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_158",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_159",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_16",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_160",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_161",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_162",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_163",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_164",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_165",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_166",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_167",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_168",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_169",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_17",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_170",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_171",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_172",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_173",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_174",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_175",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_176",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_177",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_178",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_179",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_18",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_180",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_181",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_182",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_183",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_184",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_185",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_186",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_187",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_188",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_189",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_19",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_190",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_191",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_192",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_193",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_194",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_195",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_196",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_197",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_198",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_2",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_20",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_21",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_22",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_23",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_24",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_25",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_26",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_27",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_28",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_29",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_3",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_30",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_31",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_32",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_33",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_34",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_35",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_36",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_37",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_38",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_39",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_4",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_40",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_41",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_42",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_43",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_44",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_45",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_46",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_47",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_48",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_49",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_5",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_50",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_51",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_52",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_53",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_54",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_55",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_56",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_57",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_58",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_59",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_6",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_60",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_61",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_62",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_63",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_64",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_65",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_66",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_67",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_68",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_69",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_7",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_70",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_71",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_72",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_73",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_74",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_75",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_76",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_77",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_78",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_79",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_8",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_80",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_81",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_82",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_83",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_84",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_85",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_86",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_87",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_88",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_89",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_9",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_90",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_91",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_92",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_93",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_94",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_95",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_96",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_97",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_98",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "text_99",
+          "severity": "low",
+          "value": 75.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_0",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_1",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_10",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_100",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_101",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_102",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_103",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_104",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_105",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_106",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_107",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_108",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_109",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_11",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_110",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_111",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_112",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_113",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_114",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_115",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_116",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_117",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_118",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_119",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_12",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_120",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_121",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_122",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_123",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_124",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_125",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_126",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_127",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_128",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_129",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_13",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_130",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_131",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_132",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_133",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_134",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_135",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_136",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_137",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_138",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_139",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_14",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_140",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_141",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_142",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_143",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_144",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_145",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_146",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_147",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_148",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_149",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_15",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_150",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_151",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_152",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_153",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_154",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_155",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_156",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_157",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_158",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_159",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_16",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_160",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_161",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_162",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_163",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_164",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_165",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_166",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_167",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_168",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_169",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_17",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_170",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_171",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_172",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_173",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_174",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_175",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_176",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_177",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_178",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_179",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_18",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_180",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_181",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_182",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_183",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_184",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_185",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_186",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_187",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_188",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_189",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_19",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_190",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_191",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_192",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_193",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_194",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_195",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_196",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_197",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_198",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_2",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_20",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_21",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_22",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_23",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_24",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_25",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_26",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_27",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_28",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_29",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_3",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_30",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_31",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_32",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_33",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_34",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_35",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_36",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_37",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_38",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_39",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_4",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_40",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_41",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_42",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_43",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_44",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_45",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_46",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_47",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_48",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_49",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_5",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_50",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_51",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_52",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_53",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_54",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_55",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_56",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_57",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_58",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_59",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_6",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_60",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_61",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_62",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_63",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_64",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_65",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_66",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_67",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_68",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_69",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_7",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_70",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_71",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_72",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_73",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_74",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_75",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_76",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_77",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_78",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_79",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_8",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_80",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_81",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_82",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_83",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_84",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_85",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_86",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_87",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_88",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_89",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_9",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_90",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_91",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_92",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_93",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_94",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_95",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_96",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_97",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_98",
+          "severity": "low",
+          "value": 25.0
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "text_99",
+          "severity": "low",
+          "value": 25.0
+        }
+      ],
+      "interpretation": "597 formatting warnings are intentionally unscored, not evidence of clean data.",
+      "passed": true
+    },
+    {
+      "case": "overlapping_cells",
+      "shape": [
+        100,
+        2
+      ],
+      "score": 89.5,
+      "expected_score": 89.5,
+      "penalties": {
+        "missingness": 7.5,
+        "duplicates": 0.0,
+        "outliers": 0.5,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "missingness",
+          "column": "overlap",
+          "severity": "critical",
+          "value": 50.0
+        },
+        {
+          "issue_type": "near_constant",
+          "column": "overlap",
+          "severity": "medium",
+          "value": 98.0
+        },
+        {
+          "issue_type": "outliers",
+          "column": "overlap",
+          "severity": "medium",
+          "value": 2.0
+        }
+      ],
+      "interpretation": "Missingness, concentration and IQR penalties overlap in one feature.",
+      "passed": true
+    },
+    {
+      "case": "one_unusable_of_200",
+      "shape": [
+        100,
+        200
+      ],
+      "score": 99.85,
+      "expected_score": 99.85,
+      "penalties": {
+        "missingness": 0.15,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "missingness",
+          "column": "unusable",
+          "severity": "critical",
+          "value": 100.0
+        }
+      ],
+      "interpretation": "A completely empty feature is diluted by 199 clean columns.",
+      "passed": true
+    },
+    {
+      "case": "widespread_moderate_missingness",
+      "shape": [
+        100,
+        10
+      ],
+      "score": 94.6,
+      "expected_score": 94.6,
+      "penalties": {
+        "missingness": 5.4,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "missingness",
+          "column": "feature_0",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_1",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_2",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_3",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_4",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_5",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_6",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_7",
+          "severity": "high",
+          "value": 20.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_8",
+          "severity": "high",
+          "value": 20.0
+        }
+      ],
+      "interpretation": "Nine columns at 20% missingness still lose only 5.4 points.",
+      "passed": true
+    },
+    {
+      "case": "severe_duplicates",
+      "shape": [
+        100,
+        1
+      ],
+      "score": 74.7,
+      "expected_score": 74.7,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 17.8,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "duplicates",
+          "column": null,
+          "severity": "critical",
+          "value": 89.0
+        },
+        {
+          "issue_type": "outliers",
+          "column": "x",
+          "severity": "high",
+          "value": 10.0
+        }
+      ],
+      "interpretation": "89 exact repeats and ten IQR flags overlap; repeated weighting drives both.",
+      "passed": true
+    },
+    {
+      "case": "single_row",
+      "shape": [
+        1,
+        1
+      ],
+      "score": 82.0,
+      "expected_score": 82.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 15.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "constant",
+          "column": "x",
+          "severity": "high",
+          "value": 1
+        },
+        {
+          "issue_type": "possible_id",
+          "column": "x",
+          "severity": "low",
+          "value": 1.0
+        }
+      ],
+      "interpretation": "One observed value is both constant and ID-like; inference is unstable.",
+      "passed": true
+    },
+    {
+      "case": "very_wide_clean",
+      "shape": [
+        100,
+        199
+      ],
+      "score": 100.0,
+      "expected_score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [],
+      "interpretation": "Width alone is unpenalized; no implemented findings does not certify correctness.",
+      "passed": true
+    },
+    {
+      "case": "highly_sparse",
+      "shape": [
+        100,
+        10
+      ],
+      "score": 75.7,
+      "expected_score": 75.7,
+      "penalties": {
+        "missingness": 24.3,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "missingness",
+          "column": "feature_0",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_1",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_2",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_3",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_4",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_5",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_6",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_7",
+          "severity": "critical",
+          "value": 90.0
+        },
+        {
+          "issue_type": "missingness",
+          "column": "feature_8",
+          "severity": "critical",
+          "value": 90.0
+        }
+      ],
+      "interpretation": "Ninety-percent missingness in nine columns still leaves a score in the seventies.",
+      "passed": true
+    },
+    {
+      "case": "legitimate_constant_metadata",
+      "shape": [
+        100,
+        2
+      ],
+      "score": 92.5,
+      "expected_score": 92.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 7.5,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        {
+          "issue_type": "constant",
+          "column": "source",
+          "severity": "high",
+          "value": 1
+        }
+      ],
+      "interpretation": "Valid metadata attracts a constant penalty without a feature-role contract.",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

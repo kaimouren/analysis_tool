@@ -1,0 +1,23 @@
+customer_id,name,email,joined
+123,Avery,,2024-01-01
+C-0001,avery,user1@example.invalid,2024-02-01
+C-0002, Avery ,,2024-02-30
+C-0003,Jordan,user3@example.invalid,unknown
+127,Avery,,2024-01-01
+C-0005,avery,user5@example.invalid,2024-02-01
+C-0006, Avery ,,2024-02-30
+C-0007,Jordan,user7@example.invalid,unknown
+131,Avery,,2024-01-01
+C-0009,avery,user9@example.invalid,2024-02-01
+C-0010, Avery ,,2024-02-30
+C-0011,Jordan,user11@example.invalid,unknown
+135,Avery,,2024-01-01
+C-0013,avery,user13@example.invalid,2024-02-01
+C-0014, Avery ,,2024-02-30
+C-0015,Jordan,user15@example.invalid,unknown
+139,Avery,,2024-01-01
+C-0017,avery,user17@example.invalid,2024-02-01
+C-0018, Avery ,,2024-02-30
+C-0019,Jordan,user19@example.invalid,unknown
+123,Avery,,2024-01-01
+C-0001,avery,user1@example.invalid,2024-02-01

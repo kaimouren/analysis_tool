@@ -1,0 +1,489 @@
+{
+  "description": "Behavioral coverage using fictional local export-like fixtures; not real-world accuracy.",
+  "scenarios": [
+    {
+      "scenario": "crm",
+      "required": [
+        [
+          "case_variants",
+          "name"
+        ],
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "email"
+        ],
+        [
+          "mixed_type",
+          "customer_id"
+        ],
+        [
+          "mixed_type",
+          "joined"
+        ],
+        [
+          "surrounding_whitespace",
+          "name"
+        ]
+      ],
+      "expected_detections": [
+        [
+          "case_variants",
+          "name"
+        ],
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "email"
+        ],
+        [
+          "mixed_type",
+          "customer_id"
+        ],
+        [
+          "mixed_type",
+          "joined"
+        ],
+        [
+          "surrounding_whitespace",
+          "name"
+        ]
+      ],
+      "unexpected_detections": [],
+      "missed_detections": [],
+      "ambiguous_warnings": [],
+      "findings": [
+        {
+          "issue_type": "missingness",
+          "column": "email",
+          "severity": "critical",
+          "value": 50.0,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "customer_id",
+          "severity": "high",
+          "value": 27.27272727272727,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "joined",
+          "severity": "high",
+          "value": 45.45454545454545,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "duplicates",
+          "column": null,
+          "severity": "medium",
+          "value": 9.090909090909092,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "name",
+          "severity": "low",
+          "value": 77.27272727272727,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "name",
+          "severity": "low",
+          "value": 22.727272727272727,
+          "category": "heuristic_warning"
+        }
+      ],
+      "score": 88.43,
+      "interpretation": "Repeated customer export records are observable; customer identity, missing-email acceptability and ID equivalence are not established.",
+      "runtime_seconds": 0.095372,
+      "passed": true
+    },
+    {
+      "scenario": "orders",
+      "required": [
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "customer_id"
+        ],
+        [
+          "mixed_type",
+          "currency_amount"
+        ],
+        [
+          "mixed_type",
+          "timestamp"
+        ],
+        [
+          "outliers",
+          "amount"
+        ]
+      ],
+      "expected_detections": [
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "customer_id"
+        ],
+        [
+          "mixed_type",
+          "currency_amount"
+        ],
+        [
+          "mixed_type",
+          "timestamp"
+        ],
+        [
+          "outliers",
+          "amount"
+        ]
+      ],
+      "unexpected_detections": [],
+      "missed_detections": [],
+      "ambiguous_warnings": [],
+      "findings": [
+        {
+          "issue_type": "missingness",
+          "column": "customer_id",
+          "severity": "high",
+          "value": 27.27272727272727,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "currency_amount",
+          "severity": "high",
+          "value": 40.909090909090914,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "timestamp",
+          "severity": "high",
+          "value": 36.36363636363637,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "duplicates",
+          "column": null,
+          "severity": "medium",
+          "value": 9.090909090909092,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "outliers",
+          "column": "amount",
+          "severity": "medium",
+          "value": 9.090909090909092,
+          "category": "statistical_anomaly"
+        }
+      ],
+      "score": 84.93,
+      "interpretation": "Negative amounts may be refunds; currency formatting and timezone conventions need source context.",
+      "runtime_seconds": 0.095848,
+      "passed": true
+    },
+    {
+      "scenario": "survey",
+      "required": [
+        [
+          "blank_strings",
+          "comment"
+        ],
+        [
+          "case_variants",
+          "category"
+        ],
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "optional"
+        ],
+        [
+          "surrounding_whitespace",
+          "category"
+        ]
+      ],
+      "expected_detections": [
+        [
+          "blank_strings",
+          "comment"
+        ],
+        [
+          "case_variants",
+          "category"
+        ],
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "optional"
+        ],
+        [
+          "surrounding_whitespace",
+          "category"
+        ]
+      ],
+      "unexpected_detections": [],
+      "missed_detections": [],
+      "ambiguous_warnings": [
+        [
+          "constant",
+          "cohort"
+        ]
+      ],
+      "findings": [
+        {
+          "issue_type": "missingness",
+          "column": "optional",
+          "severity": "critical",
+          "value": 72.72727272727273,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "constant",
+          "column": "cohort",
+          "severity": "high",
+          "value": 1,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "duplicates",
+          "column": null,
+          "severity": "medium",
+          "value": 9.090909090909092,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "blank_strings",
+          "column": "comment",
+          "severity": "low",
+          "value": 27.27272727272727,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "case_variants",
+          "column": "category",
+          "severity": "low",
+          "value": 77.27272727272727,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "surrounding_whitespace",
+          "column": "category",
+          "severity": "low",
+          "value": 22.727272727272727,
+          "category": "heuristic_warning"
+        }
+      ],
+      "score": 92.05,
+      "interpretation": "Constant cohort labels and optional missing fields can be valid; no Likert range is inferred.",
+      "runtime_seconds": 0.083256,
+      "passed": true
+    },
+    {
+      "scenario": "events",
+      "required": [
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "property"
+        ],
+        [
+          "mixed_type",
+          "duration"
+        ],
+        [
+          "possible_id",
+          "event_id"
+        ]
+      ],
+      "expected_detections": [
+        [
+          "duplicates",
+          null
+        ],
+        [
+          "missingness",
+          "property"
+        ],
+        [
+          "mixed_type",
+          "duration"
+        ],
+        [
+          "possible_id",
+          "event_id"
+        ]
+      ],
+      "unexpected_detections": [],
+      "missed_detections": [],
+      "ambiguous_warnings": [
+        [
+          "constant",
+          "environment"
+        ],
+        [
+          "constant",
+          "property"
+        ]
+      ],
+      "findings": [
+        {
+          "issue_type": "missingness",
+          "column": "property",
+          "severity": "critical",
+          "value": 65.68627450980392,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "constant",
+          "column": "environment",
+          "severity": "high",
+          "value": 1,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "constant",
+          "column": "property",
+          "severity": "high",
+          "value": 1,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "duration",
+          "severity": "high",
+          "value": 25.49019607843137,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "duplicates",
+          "column": null,
+          "severity": "low",
+          "value": 1.9607843137254901,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "possible_id",
+          "column": "event_id",
+          "severity": "low",
+          "value": 0.9803921568627451,
+          "category": "heuristic_warning"
+        }
+      ],
+      "score": 86.67,
+      "interpretation": "Exact repeated events and future test timestamps can be legitimate; high cardinality does not establish an invalid key.",
+      "runtime_seconds": 0.074456,
+      "passed": true
+    },
+    {
+      "scenario": "financial",
+      "required": [
+        [
+          "missingness",
+          "formatted"
+        ],
+        [
+          "mixed_type",
+          "formatted"
+        ],
+        [
+          "outliers",
+          "numeric_amount"
+        ]
+      ],
+      "expected_detections": [
+        [
+          "missingness",
+          "formatted"
+        ],
+        [
+          "mixed_type",
+          "formatted"
+        ],
+        [
+          "outliers",
+          "numeric_amount"
+        ]
+      ],
+      "unexpected_detections": [],
+      "missed_detections": [],
+      "ambiguous_warnings": [
+        [
+          "constant",
+          "currency"
+        ],
+        [
+          "possible_id",
+          "reference"
+        ]
+      ],
+      "findings": [
+        {
+          "issue_type": "constant",
+          "column": "currency",
+          "severity": "high",
+          "value": 1,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "missingness",
+          "column": "formatted",
+          "severity": "high",
+          "value": 20.0,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "mixed_type",
+          "column": "formatted",
+          "severity": "high",
+          "value": 50.0,
+          "category": "heuristic_warning"
+        },
+        {
+          "issue_type": "outliers",
+          "column": "numeric_amount",
+          "severity": "high",
+          "value": 10.0,
+          "category": "statistical_anomaly"
+        },
+        {
+          "issue_type": "possible_id",
+          "column": "reference",
+          "severity": "low",
+          "value": 1.0,
+          "category": "heuristic_warning"
+        }
+      ],
+      "score": 83.5,
+      "interpretation": "Commas, parentheses and negative adjustments are export conventions, not automatic accounting errors.",
+      "runtime_seconds": 0.046257,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

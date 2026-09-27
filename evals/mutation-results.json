@@ -1,0 +1,40 @@
+{
+  "mutations": [
+    {
+      "mutation": "boundary",
+      "target_test": "tests/test_v1.py::test_every_percentage_severity_boundary",
+      "exit_code": 1,
+      "killed_by_assertion": true,
+      "summary": "2 failed, 2 passed in 13.87s"
+    },
+    {
+      "mutation": "penalty",
+      "target_test": "tests/test_qa.py::CoreTests::test_hand_calculated_statistics",
+      "exit_code": 1,
+      "killed_by_assertion": true,
+      "summary": "1 failed in 17.06s"
+    },
+    {
+      "mutation": "duplicates_disabled",
+      "target_test": "tests/test_qa.py::CoreTests::test_duplicate_denominator",
+      "exit_code": 1,
+      "killed_by_assertion": true,
+      "summary": "1 failed in 9.94s"
+    },
+    {
+      "mutation": "severity_swapped",
+      "target_test": "tests/test_qa.py::CoreTests::test_semantics_and_boundaries",
+      "exit_code": 1,
+      "killed_by_assertion": true,
+      "summary": "1 failed in 11.19s"
+    },
+    {
+      "mutation": "report_evidence_removed",
+      "target_test": "tests/test_v1_1.py::test_export_has_structured_evidence_for_every_finding",
+      "exit_code": 1,
+      "killed_by_assertion": true,
+      "summary": "1 failed in 4.45s"
+    }
+  ],
+  "passed": true
+}

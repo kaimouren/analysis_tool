@@ -1,0 +1,154 @@
+[
+  {
+    "case": "leading_zeros",
+    "source_tokens": [
+      "00123",
+      "00456"
+    ],
+    "parsed_values": [
+      123,
+      456
+    ],
+    "dtype": "int64",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "scientific",
+    "source_tokens": [
+      "1e3",
+      "2.5e-2"
+    ],
+    "parsed_values": [
+      1000.0,
+      0.025
+    ],
+    "dtype": "float64",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "large_int64",
+    "source_tokens": [
+      "9007199254740993",
+      "9007199254740995"
+    ],
+    "parsed_values": [
+      9007199254740993,
+      9007199254740995
+    ],
+    "dtype": "int64",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "beyond_uint64",
+    "source_tokens": [
+      "18446744073709551616",
+      "18446744073709551617"
+    ],
+    "parsed_values": [
+      "18446744073709551616",
+      "18446744073709551617"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "missing_tokens",
+    "source_tokens": [
+      "NA",
+      "null",
+      "ordinary"
+    ],
+    "parsed_values": [
+      null,
+      null,
+      "ordinary"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "boolean_text",
+    "source_tokens": [
+      "TRUE",
+      "FALSE"
+    ],
+    "parsed_values": [
+      true,
+      false
+    ],
+    "dtype": "bool",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "locale",
+    "source_tokens": [
+      "1.234,56",
+      "1,234.56",
+      "1,5",
+      "1.5"
+    ],
+    "parsed_values": [
+      "1.234,56",
+      "1,234.56",
+      "1,5",
+      "1.5"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "date_like",
+    "source_tokens": [
+      "01/02/2024",
+      "2099-12-31",
+      "2024-02-30"
+    ],
+    "parsed_values": [
+      "01/02/2024",
+      "2099-12-31",
+      "2024-02-30"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "quoted_comma_and_newline",
+    "source_tokens": [
+      "hello, world",
+      "first\nsecond"
+    ],
+    "parsed_values": [
+      "hello, world",
+      "first\nsecond"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "unicode",
+    "source_tokens": [
+      "東京",
+      "café",
+      "🙂",
+      "Straße"
+    ],
+    "parsed_values": [
+      "東京",
+      "café",
+      "🙂",
+      "Straße"
+    ],
+    "dtype": "object",
+    "encoding": "utf-8"
+  },
+  {
+    "case": "BOM",
+    "columns": [
+      "value"
+    ],
+    "parsed_values": [
+      123
+    ],
+    "encoding": "utf-8"
+  }
+]

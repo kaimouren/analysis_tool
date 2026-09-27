@@ -1,0 +1,2378 @@
+{
+  "percentage_band_probes": [
+    {
+      "check": "missingness",
+      "boundary_level": "medium",
+      "boundary": 5,
+      "position": "below",
+      "value": 4.999,
+      "severity": "low"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "medium",
+      "boundary": 5,
+      "position": "equal",
+      "value": 5,
+      "severity": "medium"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "medium",
+      "boundary": 5,
+      "position": "above",
+      "value": 5.001,
+      "severity": "medium"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "medium",
+      "boundary": 5,
+      "position": "substantially_above",
+      "value": 25,
+      "severity": "high"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "high",
+      "boundary": 20,
+      "position": "below",
+      "value": 19.999,
+      "severity": "medium"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "high",
+      "boundary": 20,
+      "position": "equal",
+      "value": 20,
+      "severity": "high"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "high",
+      "boundary": 20,
+      "position": "above",
+      "value": 20.001,
+      "severity": "high"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "high",
+      "boundary": 20,
+      "position": "substantially_above",
+      "value": 40,
+      "severity": "high"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "critical",
+      "boundary": 50,
+      "position": "below",
+      "value": 49.999,
+      "severity": "high"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "critical",
+      "boundary": 50,
+      "position": "equal",
+      "value": 50,
+      "severity": "critical"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "critical",
+      "boundary": 50,
+      "position": "above",
+      "value": 50.001,
+      "severity": "critical"
+    },
+    {
+      "check": "missingness",
+      "boundary_level": "critical",
+      "boundary": 50,
+      "position": "substantially_above",
+      "value": 70,
+      "severity": "critical"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "medium",
+      "boundary": 2,
+      "position": "below",
+      "value": 1.999,
+      "severity": "low"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "medium",
+      "boundary": 2,
+      "position": "equal",
+      "value": 2,
+      "severity": "medium"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "medium",
+      "boundary": 2,
+      "position": "above",
+      "value": 2.001,
+      "severity": "medium"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "medium",
+      "boundary": 2,
+      "position": "substantially_above",
+      "value": 22,
+      "severity": "high"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "below",
+      "value": 9.999,
+      "severity": "medium"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "equal",
+      "value": 10,
+      "severity": "high"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "above",
+      "value": 10.001,
+      "severity": "high"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "substantially_above",
+      "value": 30,
+      "severity": "critical"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "critical",
+      "boundary": 30,
+      "position": "below",
+      "value": 29.999,
+      "severity": "high"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "critical",
+      "boundary": 30,
+      "position": "equal",
+      "value": 30,
+      "severity": "critical"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "critical",
+      "boundary": 30,
+      "position": "above",
+      "value": 30.001,
+      "severity": "critical"
+    },
+    {
+      "check": "duplicates",
+      "boundary_level": "critical",
+      "boundary": 30,
+      "position": "substantially_above",
+      "value": 50,
+      "severity": "critical"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "medium",
+      "boundary": 1,
+      "position": "below",
+      "value": 0.999,
+      "severity": "low"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "medium",
+      "boundary": 1,
+      "position": "equal",
+      "value": 1,
+      "severity": "medium"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "medium",
+      "boundary": 1,
+      "position": "above",
+      "value": 1.001,
+      "severity": "medium"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "medium",
+      "boundary": 1,
+      "position": "substantially_above",
+      "value": 21,
+      "severity": "high"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "below",
+      "value": 9.999,
+      "severity": "medium"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "equal",
+      "value": 10,
+      "severity": "high"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "above",
+      "value": 10.001,
+      "severity": "high"
+    },
+    {
+      "check": "outliers",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "substantially_above",
+      "value": 30,
+      "severity": "high"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "medium",
+      "boundary": 0,
+      "position": "below",
+      "value": 0,
+      "severity": "not detected"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "medium",
+      "boundary": 0,
+      "position": "equal",
+      "value": 0,
+      "severity": "not detected"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "medium",
+      "boundary": 0,
+      "position": "above",
+      "value": 0.001,
+      "severity": "medium"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "medium",
+      "boundary": 0,
+      "position": "substantially_above",
+      "value": 20,
+      "severity": "high"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "below",
+      "value": 9.999,
+      "severity": "medium"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "equal",
+      "value": 10,
+      "severity": "high"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "above",
+      "value": 10.001,
+      "severity": "high"
+    },
+    {
+      "check": "mixed_type",
+      "boundary_level": "high",
+      "boundary": 10,
+      "position": "substantially_above",
+      "value": 30,
+      "severity": "high"
+    }
+  ],
+  "real_frame_curves": [
+    {
+      "case": "missingness_pct",
+      "setting": 4.9,
+      "score": 99.27,
+      "penalties": {
+        "missingness": 0.735,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 5,
+      "score": 99.25,
+      "penalties": {
+        "missingness": 0.75,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 5.1,
+      "score": 99.23,
+      "penalties": {
+        "missingness": 0.765,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 8,
+      "score": 98.8,
+      "penalties": {
+        "missingness": 1.2,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 9,
+      "score": 98.65,
+      "penalties": {
+        "missingness": 1.35,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 10,
+      "score": 98.5,
+      "penalties": {
+        "missingness": 1.5,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 11,
+      "score": 98.35,
+      "penalties": {
+        "missingness": 1.65,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 12,
+      "score": 98.2,
+      "penalties": {
+        "missingness": 1.8,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 15,
+      "score": 97.75,
+      "penalties": {
+        "missingness": 2.25,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 19.9,
+      "score": 97.02,
+      "penalties": {
+        "missingness": 2.985,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 20,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 3.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "high",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 20.1,
+      "score": 96.98,
+      "penalties": {
+        "missingness": 3.015,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "high",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 49.9,
+      "score": 92.52,
+      "penalties": {
+        "missingness": 7.485,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "high",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 50,
+      "score": 92.5,
+      "penalties": {
+        "missingness": 7.5,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "critical",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 50.1,
+      "score": 92.48,
+      "penalties": {
+        "missingness": 7.515,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "critical",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "missingness_pct",
+      "setting": 80,
+      "score": 88.0,
+      "penalties": {
+        "missingness": 12.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "missingness",
+          "x",
+          "critical",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "concentration_pct",
+      "setting": 94,
+      "score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 1.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "uniqueness_pct",
+      "setting": 94,
+      "score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 5.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "date_parseability_pct",
+      "setting": 94,
+      "score": 94.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 6.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "mixed_type",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "mixed",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 10.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 94.0
+      }
+    },
+    {
+      "case": "concentration_pct",
+      "setting": 95,
+      "score": 97.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "near_constant",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 1.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "uniqueness_pct",
+      "setting": 95,
+      "score": 98.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 5.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "date_parseability_pct",
+      "setting": 95,
+      "score": 91.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 6.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "mixed_type",
+          "x",
+          "medium",
+          1
+        ],
+        [
+          "near_constant",
+          "x",
+          "medium",
+          2
+        ]
+      ],
+      "semantic_type": "datetime-like",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 10.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 95.0
+      }
+    },
+    {
+      "case": "concentration_pct",
+      "setting": 96,
+      "score": 97.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "near_constant",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 1.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "uniqueness_pct",
+      "setting": 96,
+      "score": 98.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 5.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "date_parseability_pct",
+      "setting": 96,
+      "score": 91.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 6.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "mixed_type",
+          "x",
+          "medium",
+          1
+        ],
+        [
+          "near_constant",
+          "x",
+          "medium",
+          2
+        ]
+      ],
+      "semantic_type": "datetime-like",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 10.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 96.0
+      }
+    },
+    {
+      "case": "concentration_pct",
+      "setting": 99,
+      "score": 97.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "near_constant",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 1.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "uniqueness_pct",
+      "setting": 99,
+      "score": 98.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 5.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "date_parseability_pct",
+      "setting": 99,
+      "score": 91.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 2.5,
+        "possible_id": 0.0,
+        "mixed_type": 6.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "mixed_type",
+          "x",
+          "medium",
+          1
+        ],
+        [
+          "near_constant",
+          "x",
+          "medium",
+          2
+        ]
+      ],
+      "semantic_type": "datetime-like",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": true,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 10.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 99.0
+      }
+    },
+    {
+      "case": "median_text_length",
+      "setting": 79,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 79.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "median_text_length",
+      "setting": 80,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "categorical",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 80.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "median_text_length",
+      "setting": 81,
+      "score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [],
+      "semantic_type": "long text",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 81.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "median_text_length",
+      "setting": 160,
+      "score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [],
+      "semantic_type": "long text",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": 160.0,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_gate_pct",
+      "setting": 0.99,
+      "score": 100.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 99,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_gate_pct",
+      "setting": 1.0,
+      "score": 99.62,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.375,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 100,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_gate_pct",
+      "setting": 1.01,
+      "score": 99.62,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.37875,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 101,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_gate_pct",
+      "setting": 2.0,
+      "score": 99.25,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.75,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "medium",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 200,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "upper_iqr_fence_4_5",
+      "setting": 4.4999,
+      "score": 81.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 19.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "duplicates",
+          null,
+          "critical",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "upper_iqr_fence_4_5",
+      "setting": 4.5,
+      "score": 81.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 19.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "duplicates",
+          null,
+          "critical",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "upper_iqr_fence_4_5",
+      "setting": 4.5001,
+      "score": 80.25,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 19.0,
+        "outliers": 0.75,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "duplicates",
+          null,
+          "critical",
+          1
+        ],
+        [
+          "outliers",
+          "x",
+          "medium",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "upper_iqr_fence_4_5",
+      "setting": 40,
+      "score": 80.25,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 19.0,
+        "outliers": 0.75,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 0.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "duplicates",
+          null,
+          "critical",
+          1
+        ],
+        [
+          "outliers",
+          "x",
+          "medium",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": false,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "iqr_multiplier",
+      "setting": 1.49,
+      "score": 91.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "iqr_multiplier",
+      "setting": 1.5,
+      "score": 91.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "iqr_multiplier",
+      "setting": 1.51,
+      "score": 91.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "iqr_multiplier",
+      "setting": 3,
+      "score": 91.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_score_scale",
+      "setting": 4.99,
+      "score": 91.02,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.485,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_score_scale",
+      "setting": 5,
+      "score": 91.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.5,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_score_scale",
+      "setting": 5.01,
+      "score": 90.98,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 7.515,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "outlier_score_scale",
+      "setting": 10,
+      "score": 83.5,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 15.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 1.5,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "outliers",
+          "x",
+          "high",
+          1
+        ],
+        [
+          "possible_id",
+          "x",
+          "low",
+          2
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 1,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "small_sample_and_sequence_rows",
+      "setting": 19,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [
+        "Fewer than 20 rows: concentration, uniqueness, and IQR flags describe this small sample only; they do not establish population properties."
+      ],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": false,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "small_sample_and_sequence_rows",
+      "setting": 20,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": true,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "small_sample_and_sequence_rows",
+      "setting": 21,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": true,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    },
+    {
+      "case": "small_sample_and_sequence_rows",
+      "setting": 40,
+      "score": 97.0,
+      "penalties": {
+        "missingness": 0.0,
+        "duplicates": 0.0,
+        "outliers": 0.0,
+        "constant": 0.0,
+        "near_constant": 0.0,
+        "possible_id": 3.0,
+        "mixed_type": 0.0,
+        "non_finite": 0.0
+      },
+      "issues": [
+        [
+          "possible_id",
+          "x",
+          "low",
+          1
+        ]
+      ],
+      "semantic_type": "numeric",
+      "context_notes": [],
+      "column_observations": {
+        "constant": false,
+        "near_constant": false,
+        "possible_id": true,
+        "id_evidence": {
+          "name_hint": false,
+          "unit_step_integer_sequence": true,
+          "median_text_length": null,
+          "role_established": false
+        },
+        "outlier_count": 0,
+        "datetime_parseability_pct": 0.0
+      }
+    }
+  ]
+}

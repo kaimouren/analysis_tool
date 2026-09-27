@@ -1,0 +1,164 @@
+{
+  "datasets": [
+    {
+      "dataset": "clean",
+      "expected_issues": [],
+      "expected_issues_detected": 0,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 100.0,
+      "expected_score": 100,
+      "runtime_seconds": 0.008627,
+      "passed": true
+    },
+    {
+      "dataset": "missingness",
+      "expected_issues": [
+        [
+          "missingness",
+          "partial",
+          "critical"
+        ]
+      ],
+      "expected_issues_detected": 1,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 91.0,
+      "expected_score": 91,
+      "runtime_seconds": 0.009631,
+      "passed": true
+    },
+    {
+      "dataset": "duplicates",
+      "expected_issues": [
+        [
+          "duplicates",
+          null,
+          "high"
+        ]
+      ],
+      "expected_issues_detected": 1,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 96.0,
+      "expected_score": 96,
+      "runtime_seconds": 0.005882,
+      "passed": true
+    },
+    {
+      "dataset": "outliers",
+      "expected_issues": [
+        [
+          "outliers",
+          "extremes",
+          "high"
+        ]
+      ],
+      "expected_issues_detected": 1,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 92.5,
+      "expected_score": 92.5,
+      "runtime_seconds": 0.008629,
+      "passed": true
+    },
+    {
+      "dataset": "mixed_type",
+      "expected_issues": [
+        [
+          "mixed_type",
+          "mixed",
+          "high"
+        ]
+      ],
+      "expected_issues_detected": 1,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 94.0,
+      "expected_score": 94,
+      "runtime_seconds": 0.014507,
+      "passed": true
+    },
+    {
+      "dataset": "messy_strings",
+      "expected_issues": [
+        [
+          "blank_strings",
+          "label",
+          "low"
+        ],
+        [
+          "case_variants",
+          "label",
+          "low"
+        ],
+        [
+          "surrounding_whitespace",
+          "label",
+          "low"
+        ]
+      ],
+      "expected_issues_detected": 3,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 100.0,
+      "expected_score": 100,
+      "runtime_seconds": 0.014142,
+      "passed": true
+    },
+    {
+      "dataset": "combined",
+      "expected_issues": [
+        [
+          "constant",
+          "constant",
+          "high"
+        ],
+        [
+          "missingness",
+          "partial",
+          "critical"
+        ],
+        [
+          "mixed_type",
+          "mixed",
+          "high"
+        ]
+      ],
+      "expected_issues_detected": 3,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 88.75,
+      "expected_score": 88.75,
+      "runtime_seconds": 0.022331,
+      "passed": true
+    },
+    {
+      "dataset": "edge_case",
+      "expected_issues": [
+        [
+          "empty_dataset",
+          null,
+          "critical"
+        ]
+      ],
+      "expected_issues_detected": 1,
+      "unexpected_issues": [],
+      "missed_issues": [],
+      "false_positive_count": 0,
+      "score": 0.0,
+      "expected_score": 0,
+      "runtime_seconds": 0.00692,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "note": "False positives are mismatches against these authored synthetic expectations, not a population error-rate estimate."
+}

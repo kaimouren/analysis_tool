@@ -1,0 +1,22 @@
+# Check policy and false-positive risks
+
+Defaults live in `policy.py`; effective thresholds are serialized into each profile/report. All percentages are observed proportions, not confidence estimates. Confidence is descriptive: exact rule counts can support an uncertain interpretation. Ingestion rejects structurally unsupported files; the only in-profile hard validation failure is an empty dataset. IQR findings are statistical anomalies; other findings are heuristic warnings, including exactly observed repeats and infinities whose acceptability depends on use.
+
+| Check | Definition / default severity | Rationale | Limitations / false-positive risk |
+|---|---|---|---|
+| Missingness | pandas-null cells; any missing flags column; low below 5%, medium >=5%, high >=20%, critical >=50% of rows | Escalate increasing coverage loss; all-null columns included | Optional fields and structural missingness can be legitimate; default NA tokens may be meaningful codes |
+| Exact duplicates | Repeated full rows after first; low below 2%, medium >=2%, high >=10%, critical >=30% of rows | Repetition can distort weighting and splits | Repeated observations may be legitimate; no entity key is inferred or validated |
+| Mixed parser results | Text has some but not all numeric or date parses; larger minority share; medium below 10%, high >=10% | Expose potential conversion inconsistencies | Valid codes, localized formats, currency/percent strings can trigger; parsing success does not imply meaning |
+| IQR | Finite native numeric values strictly outside Q1-1.5 IQR / Q3+1.5 IQR; low below 1%, medium >=1%, high >=10% | Robust central spread is an inspectable screening reference | Legitimate skew, discrete distributions and zero IQR produce flags; no multiple-testing calibration |
+| Constant | Exactly one distinct non-null value; high | No observed variation | May be valid metadata; missing values can still carry information |
+| Near-constant | Most frequent non-null value >=95%, excluding constants; medium | Highlight concentration | Rare classes can be important; only observed sample, no population claim |
+| Possible ID | Non-null uniqueness >=95%, eligible short text or all-finite integral native numeric; median text length <=80; low | Weak signal for role review | Useful names, dates and codes trigger; no primary key, leakage or duplicate-ID validation |
+| Infinite values | Any parsed numeric infinity; high | Common numerical consumers reject infinity | Sentinel infinities can be intentional; this is not proof of domain invalidity |
+| Blank strings | Non-null text becomes empty after trimming; any count => low | Expose empty representations pandas did not mark null | Empty categories may be intentional; unscored, no coercion |
+| Surrounding whitespace | Nonblank text differs from trimmed text; any => low | Joins/category grouping can fragment | Whitespace can be meaningful; excludes blank-only strings, unscored |
+| Case variants | Among nonblank trimmed text, a casefold group contains more than one distinct spelling; all rows in such groups count; any => low | Find potentially inconsistent category spelling | Case-sensitive codes and language distinctions can be valid; Unicode casefold is not semantic equivalence; unscored |
+| Empty dataset | No rows or no columns; critical, score zero | There is no dataset to assess | Header-only input is accepted for a useful report; an empty file cannot supply a schema and is rejected |
+
+Date parseability is descriptive, not a separate business-validity check. Candidates require a four-digit year and exclude bare numbers; pandas mixed-format parsing uses UTC and month-first defaults. >=95% success yields a datetime-like label. A mixture of successful and failed parses produces a mixed-parser finding. All unparseable strings with no declared date contract cannot safely be called malformed dates; implausible date ranges and ages are deliberately not inferred. Native datetimes are recognized directly.
+
+Default thresholds are review policies, not learned or validated business cutoffs. Severity uses affected prevalence and issue class; confidence is displayed separately and does not secretly multiply the score. Exact ranking is severity, issue type, column name. Tests cover below/at/above boundaries; eval expectations compare type, column and severity, not just score. See `profiling.md` for denominators and `README.md` for the complete score formula and overlap/dilution caveats.

@@ -1,0 +1,376 @@
+{
+  "method": "Fresh subprocess per case, 5ms RSS sampling; includes ingestion/profiling, excludes input construction. Concurrent cases use threads, a start barrier, distinct 10,000-row four-column CSVs, and sequential fingerprint oracles. This does not emulate Streamlit browsers, tenant security or production load.",
+  "cases": [
+    {
+      "case": "too_wide",
+      "users": 1,
+      "bytes_per_input": 1296,
+      "wall_seconds": 0.0043,
+      "baseline_rss_mib": 74.09,
+      "sampled_peak_rss_mib": 74.29,
+      "incremental_peak_mib": 0.19,
+      "results": [
+        {
+          "status": "rejected",
+          "safe_reason": "CSV has too many columns (limit 200). Select fewer columns.",
+          "seconds": 0.0011
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "huge_cell",
+      "users": 1,
+      "bytes_per_input": 300005,
+      "wall_seconds": 0.0086,
+      "baseline_rss_mib": 74.76,
+      "sampled_peak_rss_mib": 74.96,
+      "incremental_peak_mib": 0.2,
+      "results": [
+        {
+          "status": "rejected",
+          "safe_reason": "Could not parse CSV. Check commas, quotes, header width and oversized text fields, then export again.",
+          "seconds": 0.0058
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "huge_strings",
+      "users": 1,
+      "bytes_per_input": 6000396,
+      "wall_seconds": 0.39,
+      "baseline_rss_mib": 80.32,
+      "sampled_peak_rss_mib": 147.0,
+      "incremental_peak_mib": 66.68,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 100,
+          "issues": 0,
+          "fingerprint": "1b7fe6801a1328f2a32d8169a9f2d48b2c26d3899f89dcbb1352e0ad49c3918a",
+          "own_column_only": true,
+          "seconds": 0.3862
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "many_columns",
+      "users": 1,
+      "bytes_per_input": 161191,
+      "wall_seconds": 0.8638,
+      "baseline_rss_mib": 76.63,
+      "sampled_peak_rss_mib": 79.88,
+      "incremental_peak_mib": 3.25,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 100,
+          "issues": 0,
+          "fingerprint": "1971f53059f99f417b0d127b123cbaa99e031214fa681de476873c6760c08f21",
+          "own_column_only": true,
+          "seconds": 0.8604
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "unique",
+      "users": 1,
+      "bytes_per_input": 3400083,
+      "wall_seconds": 0.9577,
+      "baseline_rss_mib": 81.32,
+      "sampled_peak_rss_mib": 126.15,
+      "incremental_peak_mib": 44.83,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 100000,
+          "issues": 1,
+          "fingerprint": "7da95bb57f9d9d5c12245ee5ff7409376c96fc7e3bec80714cb73fd627a2e47b",
+          "own_column_only": true,
+          "seconds": 0.9542
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "mixed",
+      "users": 1,
+      "bytes_per_input": 3700022,
+      "wall_seconds": 2.8799,
+      "baseline_rss_mib": 80.48,
+      "sampled_peak_rss_mib": 129.36,
+      "incremental_peak_mib": 48.88,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 100000,
+          "issues": 6,
+          "fingerprint": "e5b18e26f1d0e852585f7782cedffdbdf2849e0b39e0556c1fc9351784613d9e",
+          "own_column_only": true,
+          "seconds": 2.8739
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "duplicates",
+      "users": 1,
+      "bytes_per_input": 1089013,
+      "wall_seconds": 1.0868,
+      "baseline_rss_mib": 77.37,
+      "sampled_peak_rss_mib": 98.79,
+      "incremental_peak_mib": 21.42,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 100000,
+          "issues": 2,
+          "fingerprint": "347505bf6cfc15b455f44c1b0f88c262af9320dceeca576e6ee7318c1c2e01a0",
+          "own_column_only": true,
+          "seconds": 1.0737
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "strings",
+      "users": 1,
+      "bytes_per_input": 1850022,
+      "wall_seconds": 1.4039,
+      "baseline_rss_mib": 79.64,
+      "sampled_peak_rss_mib": 107.73,
+      "incremental_peak_mib": 28.09,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 50000,
+          "issues": 6,
+          "fingerprint": "d8396889d67fbe5734acbcfbb4f71e2c34238c51715316146ea1c07d608aea0f",
+          "own_column_only": true,
+          "seconds": 1.3997
+        }
+      ],
+      "matches_sequential_profiles": null,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "concurrency_2",
+      "users": 2,
+      "bytes_per_input": 370022,
+      "wall_seconds": 0.6374,
+      "baseline_rss_mib": 82.54,
+      "sampled_peak_rss_mib": 86.17,
+      "incremental_peak_mib": 3.63,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "d9be4ab8c0a02f0b5e71472319fa557e3a3b53c8e9dee643886e93c7b92d02ff",
+          "own_column_only": true,
+          "seconds": 0.6269
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "45f1f9a392acd580061912f6be86a63fcf500899c05a537399ccf1141f935c1c",
+          "own_column_only": true,
+          "seconds": 0.3525
+        }
+      ],
+      "matches_sequential_profiles": true,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "concurrency_5",
+      "users": 5,
+      "bytes_per_input": 370022,
+      "wall_seconds": 1.4846,
+      "baseline_rss_mib": 82.62,
+      "sampled_peak_rss_mib": 95.41,
+      "incremental_peak_mib": 12.79,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "d9be4ab8c0a02f0b5e71472319fa557e3a3b53c8e9dee643886e93c7b92d02ff",
+          "own_column_only": true,
+          "seconds": 0.9345
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "45f1f9a392acd580061912f6be86a63fcf500899c05a537399ccf1141f935c1c",
+          "own_column_only": true,
+          "seconds": 1.2016
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "2491d69cb1abb0abb9c4ebb5a2d029d48ad3c59cc7826d032ea93db89b9c4906",
+          "own_column_only": true,
+          "seconds": 1.4731
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "7f69fd63d4db5456fcb4d0ff118a6943f3f372e91d774a4cc6e85ed91c1f1bca",
+          "own_column_only": true,
+          "seconds": 0.62
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "6e98c02721b62585b8977bb4232b18cfe8511874dd75f17631eec2389608f0d3",
+          "own_column_only": true,
+          "seconds": 0.278
+        }
+      ],
+      "matches_sequential_profiles": true,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    },
+    {
+      "case": "concurrency_10",
+      "users": 10,
+      "bytes_per_input": 370022,
+      "wall_seconds": 3.2652,
+      "baseline_rss_mib": 88.41,
+      "sampled_peak_rss_mib": 98.55,
+      "incremental_peak_mib": 10.14,
+      "results": [
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "d9be4ab8c0a02f0b5e71472319fa557e3a3b53c8e9dee643886e93c7b92d02ff",
+          "own_column_only": true,
+          "seconds": 1.5487
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "45f1f9a392acd580061912f6be86a63fcf500899c05a537399ccf1141f935c1c",
+          "own_column_only": true,
+          "seconds": 0.8061
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "2491d69cb1abb0abb9c4ebb5a2d029d48ad3c59cc7826d032ea93db89b9c4906",
+          "own_column_only": true,
+          "seconds": 3.2392
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "7f69fd63d4db5456fcb4d0ff118a6943f3f372e91d774a4cc6e85ed91c1f1bca",
+          "own_column_only": true,
+          "seconds": 1.8146
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "6e98c02721b62585b8977bb4232b18cfe8511874dd75f17631eec2389608f0d3",
+          "own_column_only": true,
+          "seconds": 0.5318
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "8f4454a0e14a1ba09ccee84a6e55ad776037f5ba9a6e5267ed52473d4ec8e647",
+          "own_column_only": true,
+          "seconds": 1.045
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "8fbe8386a45f42577a5c0b72ba9ea5b1041105ac9407daca24b89b4c004b6029",
+          "own_column_only": true,
+          "seconds": 2.509
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "8eb0d2bf62c70ea3eab3e0d3a2f0e1f47ae87ce61faafa8f2566c7440b2196a9",
+          "own_column_only": true,
+          "seconds": 1.2963
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "1f7430fc2d8781142778bb6a58c05c8ce396158f0ec9bbb45aa0cc83d67671f5",
+          "own_column_only": true,
+          "seconds": 2.0439
+        },
+        {
+          "status": "accepted",
+          "rows": 10000,
+          "issues": 6,
+          "fingerprint": "1ebb2c4b223a53acd55d493bb5a920eb9109cca2ba4f045ac185092b93576ce6",
+          "own_column_only": true,
+          "seconds": 0.2742
+        }
+      ],
+      "matches_sequential_profiles": true,
+      "warning_filters_restored": true,
+      "created_files": [],
+      "provider_calls": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

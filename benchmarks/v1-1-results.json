@@ -1,0 +1,41 @@
+{
+  "measured_utc": "2026-09-27T01:59:43.946134+00:00",
+  "environment": {
+    "os": "Windows",
+    "release": "10",
+    "python": "3.11.3",
+    "logical_cpus": 8,
+    "pandas": "2.3.3",
+    "numpy": "2.4.6"
+  },
+  "method": "One fresh process per size, fixed seed, 8 columns, input generation excluded; RSS sampled every 5 ms. Above default limits, only this benchmark explicitly raises row/cell guards. No ingestion, UI, concurrent sessions, report, or LLM timing.",
+  "results": [
+    {
+      "rows": 500,
+      "columns": 8,
+      "runtime_seconds": 0.0624,
+      "baseline_rss_mib": 74.66,
+      "sampled_peak_rss_mib": 76.43,
+      "incremental_peak_mib": 1.77,
+      "issues": 8
+    },
+    {
+      "rows": 10000,
+      "columns": 8,
+      "runtime_seconds": 0.1938,
+      "baseline_rss_mib": 77.0,
+      "sampled_peak_rss_mib": 82.11,
+      "incremental_peak_mib": 5.1,
+      "issues": 8
+    },
+    {
+      "rows": 100000,
+      "columns": 8,
+      "runtime_seconds": 1.6488,
+      "baseline_rss_mib": 99.86,
+      "sampled_peak_rss_mib": 128.06,
+      "incremental_peak_mib": 28.2,
+      "issues": 8
+    }
+  ]
+}
