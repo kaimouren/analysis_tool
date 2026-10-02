@@ -28,6 +28,7 @@ htmlcov/
 .validation-v1-1/
 .linux-runtime/
 .release/
+benchmark-results/
 .qa-history/
 *.sqlite3
 *.sqlite3-*
