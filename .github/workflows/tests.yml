@@ -23,3 +23,4 @@ jobs:
       - run: python evals/stress.py
       - run: python evals/comparison.py
       - run: python evals/investigation.py
+      - run: python -m evals.benchmark_ci

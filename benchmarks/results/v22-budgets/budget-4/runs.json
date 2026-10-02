@@ -1,0 +1,2927 @@
+{
+  "schema_version": "agent-benchmark-2.2.1",
+  "benchmark_id": "91743dcff6c64c11bcd119612c83ed10",
+  "started_at": "2026-10-02T11:04:19.736881+00:00",
+  "config": {
+    "model": "gpt-4o-mini",
+    "provider": "api.openai.com",
+    "prompt_version": "planner-v2.1",
+    "temperature": null,
+    "runs_per_scenario": 3,
+    "workers": 3,
+    "max_steps": 4,
+    "max_tool_calls": 4,
+    "scenario_ids": [
+      "device_country",
+      "count_vs_aov"
+    ],
+    "python": "3.11.3",
+    "execution": "real_model"
+  },
+  "versions": {
+    "planner_prompt_version": "planner-v2.1",
+    "planner_prompt_hash": "d20115c5cb161cc74a76b325c50c3a481a20f1d882a52c77644d2545562776b2",
+    "tool_schema_version": "tools-v2.1.1",
+    "tool_schema_hash": "b58292ff48e9324b913b9a76f818fc7edc92bc1239d9e7a08b3ba182c3a94d82",
+    "validator_version": "validator-v2.1.1",
+    "evaluator_version": "trajectory-2.2.1",
+    "scenario_version": "scenarios-v2.2.1"
+  },
+  "scenario_contracts": [
+    {
+      "id": "device_country",
+      "category": "multi-step",
+      "question": "Why did binary conversion rate decline in March 2024 versus February 2024? Compare overall, device, then device and country jointly.",
+      "dataset_fixture": "base",
+      "expected_findings": [
+        {
+          "id": "conversion_rate_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_conversion",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_country_conversion",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device",
+              "country"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "conversion_rate_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_conversion",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_country_conversion",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "conversion",
+            "aggregation": "rate",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device",
+              "country"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -0.125,
+          "check_value": true,
+          "eligible": null
+        }
+      ],
+      "acceptable_tool_classes": [
+        "profile",
+        "schema",
+        "segment",
+        "time"
+      ],
+      "forbidden_claims": [
+        "causal_effect",
+        "significance"
+      ],
+      "max_tool_calls": 6,
+      "expected_status": "completed",
+      "critical": false,
+      "golden": true,
+      "premise_false": false,
+      "injected_call": null
+    },
+    {
+      "id": "count_vs_aov",
+      "category": "multi-step",
+      "question": "Why did sum of revenue decline in March 2024 versus February 2024? Compare non-null revenue count, mean revenue, and sum contributions by device.",
+      "dataset_fixture": "base",
+      "expected_findings": [
+        {
+          "id": "revenue_sum_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "sum",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -200,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "revenue_count_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "count",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": 0,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "revenue_mean_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "mean",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -1.25,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_revenue",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "sum",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -200,
+          "check_value": true,
+          "eligible": null
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "revenue_sum_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "sum",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -200,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "revenue_count_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "count",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": 0,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "revenue_mean_time",
+          "classes": [
+            "time",
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "mean",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "filters": []
+          },
+          "path": [
+            "change",
+            "absolute_change"
+          ],
+          "expected": -1.25,
+          "check_value": true,
+          "eligible": null
+        },
+        {
+          "id": "segment_device_revenue",
+          "classes": [
+            "segment"
+          ],
+          "arguments": {
+            "metric_column": "revenue",
+            "aggregation": "sum",
+            "periods": {
+              "time_column": "date",
+              "baseline_start": "2024-02-01",
+              "baseline_end": "2024-03-01",
+              "current_start": "2024-03-01",
+              "current_end": "2024-04-01"
+            },
+            "segment_columns": [
+              "device"
+            ]
+          },
+          "path": [
+            "contribution_sum"
+          ],
+          "expected": -200,
+          "check_value": true,
+          "eligible": null
+        }
+      ],
+      "acceptable_tool_classes": [
+        "profile",
+        "schema",
+        "segment",
+        "time"
+      ],
+      "forbidden_claims": [
+        "causal_effect",
+        "significance"
+      ],
+      "max_tool_calls": 7,
+      "expected_status": "completed",
+      "critical": false,
+      "golden": true,
+      "premise_false": false,
+      "injected_call": null
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:device_country:1",
+      "scenario_id": "device_country",
+      "repetition": 1,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did binary conversion rate decline in March 2024 versus February 2024? Compare overall, device, then device and country jointly.",
+        "status": "partial",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "check_quality",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": []
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_03"
+          },
+          {
+            "step": 4,
+            "action": "rejected_finish",
+            "error_type": "insufficient_evidence"
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "check_quality",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": []
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_03"
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [
+          {
+            "status": "ok",
+            "tool": "check_quality",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": []
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metrics": {
+                "rows": {
+                  "baseline": 160,
+                  "current": 160,
+                  "absolute_change": 0,
+                  "relative_change_pct": 0.0,
+                  "unit": "count"
+                },
+                "columns": {
+                  "baseline": 5,
+                  "current": 5,
+                  "absolute_change": 0,
+                  "relative_change_pct": 0.0,
+                  "unit": "count"
+                },
+                "duplicate_pct": {
+                  "baseline": 95.0,
+                  "current": 95.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": 0.0,
+                  "unit": "percentage_points"
+                },
+                "missing_pct": {
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                }
+              },
+              "missingness": [
+                {
+                  "column": "conversion",
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                },
+                {
+                  "column": "country",
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                },
+                {
+                  "column": "date",
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                },
+                {
+                  "column": "device",
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                },
+                {
+                  "column": "revenue",
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points"
+                }
+              ]
+            },
+            "claims": [
+              {
+                "claim_type": "quality_change",
+                "text": "missing_pct: 0% \u2192 0%; change 0 percentage points. Directional premise: contradicted.",
+                "values": {
+                  "baseline": 0.0,
+                  "current": 0.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": null,
+                  "unit": "percentage_points",
+                  "premise": "contradicted"
+                }
+              },
+              {
+                "claim_type": "quality_change",
+                "text": "duplicate_pct: 95% \u2192 95%; change 0 percentage points. Directional premise: contradicted.",
+                "values": {
+                  "baseline": 95.0,
+                  "current": 95.0,
+                  "absolute_change": 0.0,
+                  "relative_change_pct": 0.0,
+                  "unit": "percentage_points",
+                  "premise": "contradicted"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported",
+              "segments": [
+                {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                },
+                {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              ],
+              "total_groups": 2,
+              "contribution_sum": -0.125,
+              "method": "group current sum / current valid total minus group baseline sum / baseline valid total for mean/rate; raw group total difference for sum/count"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_03"
+          }
+        ],
+        "answer": "Investigation partial: step limit reached. Findings below are incomplete.\n\n[ev_01] missing_pct: 0% \u2192 0%; change 0 percentage points. Directional premise: contradicted.\n\n[ev_01] duplicate_pct: 95% \u2192 95%; change 0 percentage points. Directional premise: contradicted.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_03] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_03] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_03] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [
+          {
+            "claim_id": "ev_01:c1",
+            "evidence_id": "ev_01",
+            "claim_type": "quality_change",
+            "text": "missing_pct: 0% \u2192 0%; change 0 percentage points. Directional premise: contradicted.",
+            "values": {
+              "baseline": 0.0,
+              "current": 0.0,
+              "absolute_change": 0.0,
+              "relative_change_pct": null,
+              "unit": "percentage_points",
+              "premise": "contradicted"
+            }
+          },
+          {
+            "claim_id": "ev_01:c2",
+            "evidence_id": "ev_01",
+            "claim_type": "quality_change",
+            "text": "duplicate_pct: 95% \u2192 95%; change 0 percentage points. Directional premise: contradicted.",
+            "values": {
+              "baseline": 95.0,
+              "current": 95.0,
+              "absolute_change": 0.0,
+              "relative_change_pct": 0.0,
+              "unit": "percentage_points",
+              "premise": "contradicted"
+            }
+          },
+          {
+            "claim_id": "ev_02:c1",
+            "evidence_id": "ev_02",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_03:c1",
+            "evidence_id": "ev_03",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_03:c2",
+            "evidence_id": "ev_03",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "mobile"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.5,
+              "contribution": -0.125,
+              "contribution_pp": -12.5,
+              "share_of_net_change_pct": 100.0
+            }
+          },
+          {
+            "claim_id": "ev_03:c3",
+            "evidence_id": "ev_03",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "desktop"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.75,
+              "contribution": 0.0,
+              "contribution_pp": 0.0,
+              "share_of_net_change_pct": -0.0
+            }
+          }
+        ],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 4,
+          "tool_calls": 4,
+          "tool_errors": 1,
+          "valid_tool_arguments": 4,
+          "executed_tools": 4,
+          "model_seconds": 23.653199300169945,
+          "tool_seconds": 0.058282499900087714,
+          "elapsed_seconds": 23.735
+        },
+        "stop_reason": "step limit reached"
+      },
+      "telemetry": {
+        "input_tokens": 18250,
+        "output_tokens": 306,
+        "estimated_cost": null,
+        "provider_error": null
+      },
+      "injected_step": null
+    },
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:device_country:2",
+      "scenario_id": "device_country",
+      "repetition": 2,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did binary conversion rate decline in March 2024 versus February 2024? Compare overall, device, then device and country jointly.",
+        "status": "completed",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "finish",
+            "status": "completed",
+            "evidence_ids": [
+              "ev_01",
+              "ev_02"
+            ]
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [
+          {
+            "status": "ok",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported",
+              "segments": [
+                {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                },
+                {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              ],
+              "total_groups": 2,
+              "contribution_sum": -0.125,
+              "method": "group current sum / current valid total minus group baseline sum / baseline valid total for mean/rate; raw group total difference for sum/count"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "answer": "[ev_01] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [
+          {
+            "claim_id": "ev_01:c1",
+            "evidence_id": "ev_01",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c1",
+            "evidence_id": "ev_02",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c2",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "mobile"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.5,
+              "contribution": -0.125,
+              "contribution_pp": -12.5,
+              "share_of_net_change_pct": 100.0
+            }
+          },
+          {
+            "claim_id": "ev_02:c3",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "desktop"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.75,
+              "contribution": 0.0,
+              "contribution_pp": 0.0,
+              "share_of_net_change_pct": -0.0
+            }
+          }
+        ],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 3,
+          "tool_calls": 3,
+          "tool_errors": 0,
+          "valid_tool_arguments": 3,
+          "executed_tools": 3,
+          "model_seconds": 18.876425199909136,
+          "tool_seconds": 0.0874321002047509,
+          "elapsed_seconds": 18.985
+        },
+        "stop_reason": "evidence selected"
+      },
+      "telemetry": {
+        "input_tokens": 12243,
+        "output_tokens": 223,
+        "estimated_cost": null,
+        "provider_error": null
+      },
+      "injected_step": null
+    },
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:device_country:3",
+      "scenario_id": "device_country",
+      "repetition": 3,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did binary conversion rate decline in March 2024 versus February 2024? Compare overall, device, then device and country jointly.",
+        "status": "completed",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "finish",
+            "status": "completed",
+            "evidence_ids": [
+              "ev_01",
+              "ev_02"
+            ]
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [
+          {
+            "status": "ok",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate"
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "conversion",
+              "aggregation": "rate",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "conversion",
+              "aggregation": "rate",
+              "baseline": {
+                "value": 0.75,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 120
+              },
+              "current": {
+                "value": 0.625,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 100
+              },
+              "change": {
+                "baseline": 0.75,
+                "current": 0.625,
+                "absolute_change": -0.125,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "proportion",
+                "change_pp": -12.5
+              },
+              "premise": "supported",
+              "segments": [
+                {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                },
+                {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              ],
+              "total_groups": 2,
+              "contribution_sum": -0.125,
+              "method": "group current sum / current valid total minus group baseline sum / baseline valid total for mean/rate; raw group total difference for sum/count"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 0.75,
+                  "current": 0.625,
+                  "absolute_change": -0.125,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "proportion",
+                  "change_pp": -12.5,
+                  "premise": "supported"
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.5,
+                  "contribution": -0.125,
+                  "contribution_pp": -12.5,
+                  "share_of_net_change_pct": 100.0
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 0.75,
+                  "current_value": 0.75,
+                  "contribution": 0.0,
+                  "contribution_pp": 0.0,
+                  "share_of_net_change_pct": -0.0
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "answer": "[ev_01] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [
+          {
+            "claim_id": "ev_01:c1",
+            "evidence_id": "ev_01",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c1",
+            "evidence_id": "ev_02",
+            "claim_type": "metric_change",
+            "text": "rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 0.75,
+              "current": 0.625,
+              "absolute_change": -0.125,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "proportion",
+              "change_pp": -12.5,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c2",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "mobile"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.5,
+              "contribution": -0.125,
+              "contribution_pp": -12.5,
+              "share_of_net_change_pct": 100.0
+            }
+          },
+          {
+            "claim_id": "ev_02:c3",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "desktop"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 0.75,
+              "current_value": 0.75,
+              "contribution": 0.0,
+              "contribution_pp": 0.0,
+              "share_of_net_change_pct": -0.0
+            }
+          }
+        ],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 3,
+          "tool_calls": 3,
+          "tool_errors": 0,
+          "valid_tool_arguments": 3,
+          "executed_tools": 3,
+          "model_seconds": 18.65651319990866,
+          "tool_seconds": 0.0578795000910759,
+          "elapsed_seconds": 18.735
+        },
+        "stop_reason": "evidence selected"
+      },
+      "telemetry": {
+        "input_tokens": 12243,
+        "output_tokens": 220,
+        "estimated_cost": null,
+        "provider_error": null
+      },
+      "injected_step": null
+    },
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:count_vs_aov:1",
+      "scenario_id": "count_vs_aov",
+      "repetition": 1,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did sum of revenue decline in March 2024 versus February 2024? Compare non-null revenue count, mean revenue, and sum contributions by device.",
+        "status": "partial",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "count",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "rejected_finish",
+            "error_type": "insufficient_evidence"
+          },
+          {
+            "step": 4,
+            "action": "rejected_finish",
+            "error_type": "insufficient_evidence"
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "count",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [
+          {
+            "status": "ok",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "revenue",
+              "aggregation": "sum",
+              "baseline": {
+                "value": 1200.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1200.0
+              },
+              "current": {
+                "value": 1000.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1000.0
+              },
+              "change": {
+                "baseline": 1200.0,
+                "current": 1000.0,
+                "absolute_change": -200.0,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "metric units",
+                "change_pp": null
+              },
+              "premise": "supported"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 1200.0,
+                  "current": 1000.0,
+                  "absolute_change": -200.0,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "metric units",
+                  "change_pp": null,
+                  "premise": "supported"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-02-29",
+                "current_start": "2024-03-01",
+                "current_end": "2024-03-31"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "count",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-02-29T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-31T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "revenue",
+              "aggregation": "count",
+              "baseline": {
+                "value": 160,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 160
+              },
+              "current": {
+                "value": 160,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 160
+              },
+              "change": {
+                "baseline": 160,
+                "current": 160,
+                "absolute_change": 0,
+                "relative_change_pct": 0.0,
+                "unit": "count",
+                "change_pp": null
+              },
+              "premise": "contradicted",
+              "segments": [
+                {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 80,
+                  "current_value": 80,
+                  "contribution": 0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": null
+                },
+                {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 80,
+                  "current_value": 80,
+                  "contribution": 0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": null
+                }
+              ],
+              "total_groups": 2,
+              "contribution_sum": 0.0,
+              "method": "group current sum / current valid total minus group baseline sum / baseline valid total for mean/rate; raw group total difference for sum/count"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "count of \"revenue\": 160 \u2192 160; change 0. Valid counts 160 \u2192 160. Directional premise: contradicted. The observed data do not support the stated directional premise.",
+                "values": {
+                  "baseline": 160,
+                  "current": 160,
+                  "absolute_change": 0,
+                  "relative_change_pct": 0.0,
+                  "unit": "count",
+                  "change_pp": null,
+                  "premise": "contradicted"
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 80,
+                  "current_value": 80,
+                  "contribution": 0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": null
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"mobile\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 80,
+                  "current_value": 80,
+                  "contribution": 0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": null
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "answer": "Investigation partial: step limit reached. Findings below are incomplete.\n\n[ev_01] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] count of \"revenue\": 160 \u2192 160; change 0. Valid counts 160 \u2192 160. Directional premise: contradicted. The observed data do not support the stated directional premise.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"mobile\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [
+          {
+            "claim_id": "ev_01:c1",
+            "evidence_id": "ev_01",
+            "claim_type": "metric_change",
+            "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 1200.0,
+              "current": 1000.0,
+              "absolute_change": -200.0,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "metric units",
+              "change_pp": null,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c1",
+            "evidence_id": "ev_02",
+            "claim_type": "metric_change",
+            "text": "count of \"revenue\": 160 \u2192 160; change 0. Valid counts 160 \u2192 160. Directional premise: contradicted. The observed data do not support the stated directional premise.",
+            "values": {
+              "baseline": 160,
+              "current": 160,
+              "absolute_change": 0,
+              "relative_change_pct": 0.0,
+              "unit": "count",
+              "change_pp": null,
+              "premise": "contradicted"
+            }
+          },
+          {
+            "claim_id": "ev_02:c2",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "desktop"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 80,
+              "current_value": 80,
+              "contribution": 0,
+              "contribution_pp": null,
+              "share_of_net_change_pct": null
+            }
+          },
+          {
+            "claim_id": "ev_02:c3",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"mobile\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "mobile"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 80,
+              "current_value": 80,
+              "contribution": 0,
+              "contribution_pp": null,
+              "share_of_net_change_pct": null
+            }
+          }
+        ],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 4,
+          "tool_calls": 3,
+          "tool_errors": 2,
+          "valid_tool_arguments": 3,
+          "executed_tools": 3,
+          "model_seconds": 19.945161500014365,
+          "tool_seconds": 0.031002599745988846,
+          "elapsed_seconds": 20.0
+        },
+        "stop_reason": "step limit reached"
+      },
+      "telemetry": {
+        "input_tokens": 17129,
+        "output_tokens": 254,
+        "estimated_cost": null,
+        "provider_error": null
+      },
+      "injected_step": null
+    },
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:count_vs_aov:2",
+      "scenario_id": "count_vs_aov",
+      "repetition": 2,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did sum of revenue decline in March 2024 versus February 2024? Compare non-null revenue count, mean revenue, and sum contributions by device.",
+        "status": "completed",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          },
+          {
+            "step": 3,
+            "action": "finish",
+            "status": "completed",
+            "evidence_ids": [
+              "ev_01",
+              "ev_02"
+            ]
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          },
+          {
+            "step": 1,
+            "action": "tool_call",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "step": 2,
+            "action": "tool_call",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "status": "ok",
+            "executed": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [
+          {
+            "status": "ok",
+            "tool": "compare_time_periods",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum"
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-04-01T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "revenue",
+              "aggregation": "sum",
+              "baseline": {
+                "value": 1200.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1200.0
+              },
+              "current": {
+                "value": 1000.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1000.0
+              },
+              "change": {
+                "baseline": 1200.0,
+                "current": 1000.0,
+                "absolute_change": -200.0,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "metric units",
+                "change_pp": null
+              },
+              "premise": "supported"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 1200.0,
+                  "current": 1000.0,
+                  "absolute_change": -200.0,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "metric units",
+                  "change_pp": null,
+                  "premise": "supported"
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_01"
+          },
+          {
+            "status": "ok",
+            "tool": "compare_segments",
+            "args": {
+              "periods": {
+                "time_column": "date",
+                "baseline_start": "2024-02-01",
+                "baseline_end": "2024-03-01",
+                "current_start": "2024-03-01",
+                "current_end": "2024-04-01"
+              },
+              "filters": [],
+              "metric_column": "revenue",
+              "aggregation": "sum",
+              "segment_columns": [
+                "device"
+              ]
+            },
+            "values": {
+              "scope": {
+                "scope_rows": 320,
+                "invalid_dates": 0,
+                "baseline_rows": 160,
+                "current_rows": 160,
+                "boundaries_utc": [
+                  "2024-02-01T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-03-01T00:00:00+00:00",
+                  "2024-04-01T00:00:00+00:00"
+                ],
+                "boundary_rule": "[start, end)"
+              },
+              "metric": "revenue",
+              "aggregation": "sum",
+              "baseline": {
+                "value": 1200.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1200.0
+              },
+              "current": {
+                "value": 1000.0,
+                "valid_count": 160,
+                "rows": 160,
+                "excluded_count": 0,
+                "sum": 1000.0
+              },
+              "change": {
+                "baseline": 1200.0,
+                "current": 1000.0,
+                "absolute_change": -200.0,
+                "relative_change_pct": -16.666666666666668,
+                "unit": "metric units",
+                "change_pp": null
+              },
+              "premise": "supported",
+              "segments": [
+                {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 600.0,
+                  "current_value": 400.0,
+                  "contribution": -200.0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": 100.0
+                },
+                {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 600.0,
+                  "current_value": 600.0,
+                  "contribution": 0.0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": -0.0
+                }
+              ],
+              "total_groups": 2,
+              "contribution_sum": -200.0,
+              "method": "group current sum / current valid total minus group baseline sum / baseline valid total for mean/rate; raw group total difference for sum/count"
+            },
+            "claims": [
+              {
+                "claim_type": "metric_change",
+                "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+                "values": {
+                  "baseline": 1200.0,
+                  "current": 1000.0,
+                  "absolute_change": -200.0,
+                  "relative_change_pct": -16.666666666666668,
+                  "unit": "metric units",
+                  "change_pp": null,
+                  "premise": "supported"
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"mobile\"] contributes -200 to the observed aggregate change. Group sum: 600 \u2192 400. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "mobile"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 600.0,
+                  "current_value": 400.0,
+                  "contribution": -200.0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": 100.0
+                }
+              },
+              {
+                "claim_type": "segment_contribution",
+                "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group sum: 600 \u2192 600. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+                "values": {
+                  "segment": [
+                    "desktop"
+                  ],
+                  "is_tail": false,
+                  "baseline_count": 80,
+                  "current_count": 80,
+                  "baseline_value": 600.0,
+                  "current_value": 600.0,
+                  "contribution": 0.0,
+                  "contribution_pp": null,
+                  "share_of_net_change_pct": -0.0
+                }
+              }
+            ],
+            "eligible": true,
+            "evidence_id": "ev_02"
+          }
+        ],
+        "answer": "[ev_01] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -200 to the observed aggregate change. Group sum: 600 \u2192 400. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group sum: 600 \u2192 600. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [
+          {
+            "claim_id": "ev_01:c1",
+            "evidence_id": "ev_01",
+            "claim_type": "metric_change",
+            "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 1200.0,
+              "current": 1000.0,
+              "absolute_change": -200.0,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "metric units",
+              "change_pp": null,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c1",
+            "evidence_id": "ev_02",
+            "claim_type": "metric_change",
+            "text": "sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.",
+            "values": {
+              "baseline": 1200.0,
+              "current": 1000.0,
+              "absolute_change": -200.0,
+              "relative_change_pct": -16.666666666666668,
+              "unit": "metric units",
+              "change_pp": null,
+              "premise": "supported"
+            }
+          },
+          {
+            "claim_id": "ev_02:c2",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"mobile\"] contributes -200 to the observed aggregate change. Group sum: 600 \u2192 400. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "mobile"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 600.0,
+              "current_value": 400.0,
+              "contribution": -200.0,
+              "contribution_pp": null,
+              "share_of_net_change_pct": 100.0
+            }
+          },
+          {
+            "claim_id": "ev_02:c3",
+            "evidence_id": "ev_02",
+            "claim_type": "segment_contribution",
+            "text": "Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group sum: 600 \u2192 600. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.",
+            "values": {
+              "segment": [
+                "desktop"
+              ],
+              "is_tail": false,
+              "baseline_count": 80,
+              "current_count": 80,
+              "baseline_value": 600.0,
+              "current_value": 600.0,
+              "contribution": 0.0,
+              "contribution_pp": null,
+              "share_of_net_change_pct": -0.0
+            }
+          }
+        ],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 3,
+          "tool_calls": 3,
+          "tool_errors": 0,
+          "valid_tool_arguments": 3,
+          "executed_tools": 3,
+          "model_seconds": 14.895779799902812,
+          "tool_seconds": 0.026319699827581644,
+          "elapsed_seconds": 14.937
+        },
+        "stop_reason": "evidence selected"
+      },
+      "telemetry": {
+        "input_tokens": 12214,
+        "output_tokens": 224,
+        "estimated_cost": null,
+        "provider_error": null
+      },
+      "injected_step": null
+    },
+    {
+      "run_id": "91743dcff6c64c11bcd119612c83ed10:count_vs_aov:3",
+      "scenario_id": "count_vs_aov",
+      "repetition": 3,
+      "dataset_hash": "f37132cdc3db9220b5cb50d67ef07ba1840c245a6f70a952b6b9b5613c5ca8c7",
+      "result": {
+        "question": "Why did sum of revenue decline in March 2024 versus February 2024? Compare non-null revenue count, mean revenue, and sum contributions by device.",
+        "status": "failed",
+        "steps": [
+          {
+            "step": 0,
+            "action": "tool_call",
+            "tool": "inspect_schema",
+            "status": "ok"
+          }
+        ],
+        "tool_calls": [
+          {
+            "tool": "inspect_schema",
+            "args": {},
+            "status": "ok",
+            "executed": true
+          }
+        ],
+        "limits": {
+          "max_steps": 4,
+          "max_tool_calls": 4,
+          "max_tool_errors": 3,
+          "max_result_chars": 16000,
+          "max_context_chars": 64000,
+          "max_groups": 100,
+          "top_groups": 10,
+          "min_sample": 20,
+          "max_seconds": 120
+        },
+        "investigation_version": "2.1",
+        "evidence": [],
+        "answer": "Investigation failed: model unavailable or timed out. Findings below are incomplete.\n\nInsufficient evidence to answer this question.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+        "claims": [],
+        "limitations": [
+          "No causal or significance inference; no raw-row tools.",
+          "Question interpretation and metric semantics may be incomplete. Inspect exact tool arguments.",
+          "Periods exclude malformed/missing dates; metrics exclude null/non-finite observations.",
+          "Minimum sample size is a heuristic guard, not statistical power or representativeness."
+        ],
+        "metrics": {
+          "steps_used": 1,
+          "tool_calls": 1,
+          "tool_errors": 0,
+          "valid_tool_arguments": 1,
+          "executed_tools": 1,
+          "model_seconds": 19.03621630021371,
+          "tool_seconds": 0.022279399912804365,
+          "elapsed_seconds": 19.062
+        },
+        "stop_reason": "model unavailable or timed out"
+      },
+      "telemetry": {
+        "input_tokens": null,
+        "output_tokens": null,
+        "estimated_cost": null,
+        "provider_error": "timeout"
+      },
+      "injected_step": null
+    }
+  ]
+}

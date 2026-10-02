@@ -1,0 +1,70 @@
+name: Optional real-model agent benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Configured provider model
+        default: gpt-4o-mini
+        required: true
+        type: string
+      runs:
+        description: Repeats per scenario
+        default: '3'
+        type: choice
+        options: ['1', '3', '5']
+      suite:
+        description: Synthetic scenario suite
+        default: golden
+        type: choice
+        options: [golden, full, safety, recovery, premise]
+      prompt:
+        description: Versioned planner prompt
+        default: planner-v2.1
+        type: choice
+        options: [planner-v2.1, planner-v2.2]
+      scenario_subset:
+        description: Optional comma-separated IDs within the suite
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Run bounded synthetic benchmark
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          BENCH_MODEL: ${{ inputs.model }}
+          BENCH_RUNS: ${{ inputs.runs }}
+          BENCH_SUITE: ${{ inputs.suite }}
+          BENCH_PROMPT: ${{ inputs.prompt }}
+          BENCH_SUBSET: ${{ inputs.scenario_subset }}
+        shell: python
+        run: |
+          import os, subprocess, sys
+          args = [sys.executable, '-m', 'evals.agent_benchmark', '--model', os.environ['BENCH_MODEL'],
+                  '--runs', os.environ['BENCH_RUNS'], '--suite', os.environ['BENCH_SUITE'],
+                  '--prompt-version', os.environ['BENCH_PROMPT'], '--output', 'benchmark-results/manual']
+          for scenario in filter(None, (s.strip() for s in os.environ['BENCH_SUBSET'].split(','))):
+              args.extend(['--scenario', scenario])
+          subprocess.run(args, check=True)
+      - name: Store synthetic results, including partial captures
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: agent-benchmark-${{ github.run_id }}
+          path: benchmark-results/
+          retention-days: 14
+          if-no-files-found: warn

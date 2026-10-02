@@ -1,0 +1,859 @@
+[
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:device_country:1",
+    "scenario_id": "device_country",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-03-01T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-04-01T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-03-01T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-04-01T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "finish",
+        "status": "completed",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "completed",
+    "answer": "[ev_01] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "segment_device_country_conversion"
+    ],
+    "metrics": {
+      "tool_relevance": 1.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.6666666666666666,
+      "answer_coverage": 0.6666666666666666,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 1,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 15.64,
+      "tool_seconds": 0.04480660008266568,
+      "model_seconds": 15.497741999803111,
+      "input_tokens": 12411,
+      "output_tokens": 275,
+      "estimated_cost": null
+    }
+  },
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:device_country:2",
+    "scenario_id": "device_country",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop",
+      "unexpected_status"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "rejected_finish",
+        "error_type": "insufficient_evidence"
+      },
+      {
+        "step": 4,
+        "action": "finish",
+        "status": "partial",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "partial",
+    "answer": "Investigation partial: clarification or additional evidence required. Findings below are incomplete.\n\n[ev_01] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "conversion_rate_time",
+      "segment_device_conversion",
+      "segment_device_country_conversion"
+    ],
+    "metrics": {
+      "tool_relevance": 0.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.0,
+      "answer_coverage": 0.0,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 0,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 20.625,
+      "tool_seconds": 0.06437290017493069,
+      "model_seconds": 20.469825900159776,
+      "input_tokens": 17660,
+      "output_tokens": 313,
+      "estimated_cost": null
+    }
+  },
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:device_country:3",
+    "scenario_id": "device_country",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop",
+      "unexpected_status"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "conversion",
+          "aggregation": "rate",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "rejected_finish",
+        "error_type": "insufficient_evidence"
+      },
+      {
+        "step": 4,
+        "action": "rejected_finish",
+        "error_type": "insufficient_evidence"
+      },
+      {
+        "step": 5,
+        "action": "finish",
+        "status": "partial",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "partial",
+    "answer": "Investigation partial: clarification or additional evidence required. Findings below are incomplete.\n\n[ev_01] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] rate of \"conversion\": 0.75 \u2192 0.625; change -0.125; -12.5 percentage points. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -0.125 to the observed aggregate change. Group rate: 0.75 \u2192 0.5. Contribution: -12.5 percentage points. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group rate: 0.75 \u2192 0.75. Contribution: 0 percentage points. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "conversion_rate_time",
+      "segment_device_conversion",
+      "segment_device_country_conversion"
+    ],
+    "metrics": {
+      "tool_relevance": 0.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.0,
+      "answer_coverage": 0.0,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 0,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 25.532,
+      "tool_seconds": 0.09717369987629354,
+      "model_seconds": 25.381556400097907,
+      "input_tokens": 22933,
+      "output_tokens": 344,
+      "estimated_cost": null
+    }
+  },
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:count_vs_aov:1",
+    "scenario_id": "count_vs_aov",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T23:59:59+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T23:59:59+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "sum"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T23:59:59+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T23:59:59+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "sum",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "rejected_finish",
+        "error_type": "insufficient_evidence"
+      },
+      {
+        "step": 4,
+        "action": "finish",
+        "status": "completed",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "completed",
+    "answer": "[ev_01] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -200 to the observed aggregate change. Group sum: 600 \u2192 400. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group sum: 600 \u2192 600. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "revenue_count_time",
+      "revenue_mean_time",
+      "revenue_sum_time",
+      "segment_device_revenue"
+    ],
+    "metrics": {
+      "tool_relevance": 0.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.0,
+      "answer_coverage": 0.0,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 0,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 20.047,
+      "tool_seconds": 0.04672770015895367,
+      "model_seconds": 19.976873600156978,
+      "input_tokens": 17595,
+      "output_tokens": 314,
+      "estimated_cost": null
+    }
+  },
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:count_vs_aov:2",
+    "scenario_id": "count_vs_aov",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T23:59:59+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T23:59:59+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "sum"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T23:59:59+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T23:59:59+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "sum",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "finish",
+        "status": "completed",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "completed",
+    "answer": "[ev_01] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] Segment [\"mobile\"] contributes -200 to the observed aggregate change. Group sum: 600 \u2192 400. Share of net observed change: 100%. Largest individual contribution in the direction of the aggregate change among the analyzed groups. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group sum: 600 \u2192 600. Share of net observed change: -0%. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "revenue_count_time",
+      "revenue_mean_time",
+      "revenue_sum_time",
+      "segment_device_revenue"
+    ],
+    "metrics": {
+      "tool_relevance": 0.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.0,
+      "answer_coverage": 0.0,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 0,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 15.078,
+      "tool_seconds": 0.07072299998253584,
+      "model_seconds": 14.986034899950027,
+      "input_tokens": 12382,
+      "output_tokens": 282,
+      "estimated_cost": null
+    }
+  },
+  {
+    "run_id": "d8d71c1d3a1c49f693aac8471f3bd1d7:count_vs_aov:3",
+    "scenario_id": "count_vs_aov",
+    "success": false,
+    "failures": [
+      "incomplete_answer",
+      "missing_required_evidence",
+      "premature_stop",
+      "unexpected_status"
+    ],
+    "trajectory": [
+      {
+        "step": 0,
+        "action": "tool_call",
+        "tool": "inspect_schema",
+        "status": "ok",
+        "args": {
+          "filters": [],
+          "periods": null
+        },
+        "tool_class": "schema",
+        "origin": "bootstrap"
+      },
+      {
+        "step": 1,
+        "action": "tool_call",
+        "tool": "compare_time_periods",
+        "status": "ok",
+        "evidence_id": "ev_01",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "sum"
+        },
+        "tool_class": "time",
+        "origin": "model"
+      },
+      {
+        "step": 2,
+        "action": "tool_call",
+        "tool": "compare_segments",
+        "status": "ok",
+        "evidence_id": "ev_02",
+        "args": {
+          "periods": {
+            "time_column": "date",
+            "baseline_start": "2024-02-01T00:00:00+00:00",
+            "baseline_end": "2024-02-29T00:00:00+00:00",
+            "current_start": "2024-03-01T00:00:00+00:00",
+            "current_end": "2024-03-31T00:00:00+00:00"
+          },
+          "filters": [],
+          "metric_column": "revenue",
+          "aggregation": "count",
+          "segment_columns": [
+            "device"
+          ]
+        },
+        "tool_class": "segment",
+        "origin": "model"
+      },
+      {
+        "step": 3,
+        "action": "rejected_finish",
+        "error_type": "insufficient_evidence"
+      },
+      {
+        "step": 4,
+        "action": "finish",
+        "status": "partial",
+        "evidence_ids": [
+          "ev_01",
+          "ev_02"
+        ]
+      }
+    ],
+    "tool_path": [
+      "schema",
+      "time",
+      "segment"
+    ],
+    "evidence_ids": [
+      "ev_01",
+      "ev_02"
+    ],
+    "status": "partial",
+    "answer": "Investigation partial: clarification or additional evidence required. Findings below are incomplete.\n\n[ev_01] sum of \"revenue\": 1200 \u2192 1000; change -200. Valid counts 160 \u2192 160. Directional premise: supported.\n\n[ev_02] count of \"revenue\": 160 \u2192 160; change 0. Valid counts 160 \u2192 160. Directional premise: contradicted. The observed data do not support the stated directional premise.\n\n[ev_02] Segment [\"desktop\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.\n\n[ev_02] Segment [\"mobile\"] contributes 0 to the observed aggregate change. Group count: 80 \u2192 80. This is an arithmetic contribution, not a cause.\n\nThese are observed associations and arithmetic comparisons, not proof of causality or statistical significance.\n\nThe model selected tools and evidence; the factual statements above were rendered by code. Review the interpreted columns, scope and aggregation.",
+    "claims": [
+      {
+        "claim_id": "ev_01:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c1",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c2",
+        "classification": "supported"
+      },
+      {
+        "claim_id": "ev_02:c3",
+        "classification": "supported"
+      }
+    ],
+    "missing_evidence": [
+      "revenue_count_time",
+      "revenue_mean_time",
+      "revenue_sum_time",
+      "segment_device_revenue"
+    ],
+    "metrics": {
+      "tool_relevance": 0.0,
+      "tool_selection_accuracy": 1.0,
+      "tool_argument_validity": 1.0,
+      "required_step_coverage": 1.0,
+      "evidence_coverage": 0.0,
+      "answer_coverage": 0.0,
+      "evidence_grounding": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "contradicted_claim_rate": 0.0,
+      "recovery_rate": null,
+      "premature_stop": 1,
+      "over_investigation": 0,
+      "redundant_tool_rate": 0.0,
+      "path_efficiency": 1,
+      "stop_accuracy": 0,
+      "completeness": 0,
+      "tool_calls": 3,
+      "successful_tool_calls": 3,
+      "elapsed_seconds": 20.14,
+      "tool_seconds": 0.03482960001565516,
+      "model_seconds": 20.053482899907976,
+      "input_tokens": 17129,
+      "output_tokens": 258,
+      "estimated_cost": null
+    }
+  }
+]
