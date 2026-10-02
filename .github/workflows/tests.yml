@@ -22,3 +22,4 @@ jobs:
       - run: python evals/behavioral.py
       - run: python evals/stress.py
       - run: python evals/comparison.py
+      - run: python evals/investigation.py

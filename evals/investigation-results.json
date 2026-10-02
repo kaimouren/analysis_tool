@@ -1,0 +1,589 @@
+{
+  "passed": true,
+  "scenarios": 36,
+  "methodology": "Authored scripted planner regression, not live model planning accuracy; actual controller and tools.",
+  "metrics": {
+    "Task Success": 1.0,
+    "Tool Selection Accuracy": 1.0,
+    "Tool Argument Validity": 0.9702970297029703,
+    "Evidence Grounding": 1.0,
+    "Unsupported Claim Rate": 0.0,
+    "Recovery Rate": 1.0,
+    "Efficiency": 1.0,
+    "Stop Accuracy": 1.0
+  },
+  "counts": {
+    "successful": 36,
+    "tool_attempts": 101,
+    "valid_arguments": 98,
+    "grounded_claims": 102,
+    "claims": 102,
+    "recovered": 8,
+    "recovery_cases": 8,
+    "mean_tool_calls": 2.8055555555555554
+  },
+  "records": [
+    {
+      "scenario": "revenue_by_country",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "conversion_by_device",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "missingness_spike",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "segment_disappears",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "composition_shift",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "device_then_country",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "count_vs_average",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 5,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "retention_cohort",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "metric_then_quality",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "date_truncation_count",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "gender_premise_false",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "revenue_increase_false",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "missingness_spike_false",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "mobile_premise_false",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "new_category_false",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "recover_missing_column",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "missing_column"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "recover_date_column",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "invalid_dates"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "recover_aggregation",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "invalid_arguments"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "recover_many_categories",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "too_many_groups"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "recover_empty_period",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "empty_period"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "tiny_sample",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "all_null_metric",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "nan_infinity",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "huge_integer_guard",
+      "passed": true,
+      "status": "failed",
+      "stop_reason": "dataset is outside the supported investigation input boundaries",
+      "tool_calls": 0,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "mixed_object_metric",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 2,
+      "errors": [
+        "wrong_dtype"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "malformed_dates",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 2,
+      "errors": [
+        "invalid_dates"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "constant_metric",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "duplicate_rows",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "extreme_cardinality",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "competing_segments",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "ambiguous_year",
+      "passed": true,
+      "status": "partial",
+      "stop_reason": "clarification or additional evidence required",
+      "tool_calls": 2,
+      "errors": [
+        "ambiguous_year"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "unregistered_tool",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "unknown_tool"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "executable_extra_argument",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "invalid_arguments"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "repeated_call_guard",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 4,
+      "errors": [
+        "repeated_call"
+      ],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "cell_prompt_injection",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 3,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    },
+    {
+      "scenario": "numeric_distribution",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "evidence selected",
+      "tool_calls": 2,
+      "errors": [],
+      "checks": {
+        "selection": true,
+        "findings": true,
+        "grounding": true,
+        "stop": true,
+        "recovery": true
+      }
+    }
+  ]
+}
