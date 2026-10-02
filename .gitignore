@@ -28,3 +28,7 @@ htmlcov/
 .validation-v1-1/
 .linux-runtime/
 .release/
+.qa-history/
+*.sqlite3
+*.sqlite3-*
+*.sqlite3.corrupt-*

@@ -2,7 +2,7 @@
 from dataclasses import asdict, dataclass, field
 import math
 
-APP_VERSION = "1.2.0"
+APP_VERSION = "2.0.0"
 PROFILE_VERSION = "1.4"
 SCORE_POLICY_VERSION = "1.0"
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3}

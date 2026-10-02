@@ -52,6 +52,12 @@ with st.sidebar:
     st.caption("AI explanations send aggregate statistics and anonymous column aliases to the configured provider. No raw rows or column names are sent.")
     st.caption("Suggestions only. No cleaning is applied; CSV parsing can normalize types and missing tokens.")
 
+mode = st.radio("Analysis mode", ["Single Dataset QA", "Compare Against Baseline"], horizontal=True)
+if mode == "Compare Against Baseline":
+    from comparison_ui import render_comparison
+    render_comparison(api_key.strip(), model.strip(), base_url.strip())
+    st.stop()
+
 st.caption("EXPLORATORY DATA QA / BEFORE YOU MODEL")
 st.title("What deserves a closer look?")
 st.write("A first-pass health check for common structural and statistical dataset risks.")
