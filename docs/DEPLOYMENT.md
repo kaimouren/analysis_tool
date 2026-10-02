@@ -1,6 +1,6 @@
 # Deployment readiness and limits
 
-Status: source is published at [kaimouren/analysis_tool](https://github.com/kaimouren/analysis_tool), and [remote GitHub Actions passed](https://github.com/kaimouren/analysis_tool/actions/runs/36290414830) for `6c6c5d2`. Public Streamlit deployment remains **Not verified**. See `VALIDATION.md` for evidence. The original publication-status notes below are historical; the repository creation/upload steps have now been completed.
+Status: V2 source is published at [kaimouren/analysis_tool](https://github.com/kaimouren/analysis_tool), and [remote GitHub Actions passed](https://github.com/kaimouren/analysis_tool/actions/runs/36990489925) for `02c82ae`, including comparison evaluations. Public Streamlit deployment remains **Not verified**. See `VALIDATION.md` for evidence. The original publication-status notes below are historical; the repository creation/upload steps have now been completed.
 
 ## Local setup
 

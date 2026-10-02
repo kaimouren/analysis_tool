@@ -105,6 +105,7 @@ def test_comparison_ui_and_local_history(monkeypatch, tmp_path):
     next(b for b in app.button if b.label == 'Compare').click().run()
     assert not app.exception
     assert app.session_state['comparison_result']['summary']['status'] == 'high'
+    assert any('Numeric distributions: 1' in caption.value and 'Missingness shifts: 1' in caption.value for caption in app.caption)
     assert app.get('download_button')
     assert next(b for b in app.button if b.label == 'Explain comparison with AI').disabled
     next(b for b in app.button if b.label == 'Save run to local history').click().run()

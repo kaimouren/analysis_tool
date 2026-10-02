@@ -14,6 +14,7 @@ Baseline: existing local V1.2 snapshot matched the published `d565180` tree. Bef
 | Real Chrome smoke | Passed V1 and V2 uploads, no-key mode, charts (V1), baseline/current direction, comparison drift, Markdown downloads, malformed-input recovery and stale-download clearing |
 | Provider boundary | Mocked valid/rejected/failing calls passed; **V2 live provider: Not verified**, no paid V2 call made |
 | Public Streamlit deployment | **Not verified**; no tested public URL |
+| V2 remote GitHub Actions | **Verified successful** for `02c82ae`: [run 36990489925](https://github.com/kaimouren/analysis_tool/actions/runs/36990489925), including new V2 eval step |
 | Deliverable credential/private-path scan | **94 files; zero matches**, using common credential patterns plus configured-key matches and machine home-path patterns |
 
 The browser's first load attempts timed out because the fixed test/debug connection resolved to another local application. The harness now allocates an independent debug port and verifies its exact target; the app was explicitly bound to loopback port 18517. The full browser smoke then passed. No other application was terminated. Screenshots are `docs/demo.png` and `docs/comparison.png`.

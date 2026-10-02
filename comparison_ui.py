@@ -102,6 +102,9 @@ def render_comparison(api_key, model, base_url):
     result = st.session_state.get('comparison_result')
     if result:
         st.subheader(STATUS_LABELS[result['summary']['status']])
+        counts = result['summary']['finding_counts']
+        schema_count = sum(len(result['schema'][k]) for k in ('added', 'removed', 'type_changes'))
+        st.caption(f"Schema changes: {schema_count} · Missingness shifts: {counts.get('missingness', 0)} · Numeric distributions: {counts.get('numeric_distribution', 0)} · Categorical distributions: {counts.get('categorical_distribution', 0)} · Datetime findings: {sum(v for k, v in counts.items() if k.startswith('datetime_'))}")
         st.caption('Heuristic summary: any high finding or at least three moderate findings gives High; any remaining moderate gives Moderate. Informational changes alone give Low. Empty/no-overlap inputs are not comparable.')
         st.caption('Low observed drift does not mean healthy data. Small samples, all-null values and high cardinality can leave distributions unassessed; missingness decreases also count as change.')
         with st.expander('Distribution assessment coverage'):
