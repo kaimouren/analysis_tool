@@ -112,6 +112,13 @@ def test_empty_all_null_tiny_and_nonfinite():
     r = ToolRunner(bad, Q).execute('compare_time_periods', metric())
     assert r['values']['baseline']['excluded_count'] == 1
     json.dumps(r, allow_nan=False)
+    # Missing cells must not impersonate a literal category named "None".
+    labels = pd.Series(([None]*140 + ['None']*20)*2, dtype=object)
+    categorical = ToolRunner(frame.assign(country=labels), Q)
+    r = categorical.execute('compare_distribution', dict(column='country', kind='categorical', category='None', periods=PERIODS))
+    assert r['values']['category_presence'] == {'baseline_count': 20, 'current_count': 20}
+    r = categorical.execute('compare_time_periods', metric(filters=[dict(column='country', value='None')]))
+    assert r['values']['scope']['scope_rows'] == 40
 
 
 def test_extreme_values_and_duplicate_labels():

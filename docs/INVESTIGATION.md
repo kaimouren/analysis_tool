@@ -78,7 +78,8 @@ faithfully interpret an arbitrary question. Those arguments remain visible.
 All arguments forbid extra fields and implicit type coercion. Column arguments
 must exist exactly. Missing columns produce up to three suggested names, never
 automatic substitution. Filters are at most two exact string equalities; they
-are not expressions or query code. Periods are optional only where noted below.
+are not expressions or query code. Missing cells never match literal strings
+such as `"None"` or `"nan"`. Periods are optional only where noted below.
 
 | Tool | Arguments / purpose |
 |---|---|

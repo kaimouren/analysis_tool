@@ -16,6 +16,7 @@ an estimate of all prompt-injection attacks against a provider.
 | Group records and claims used different sort orders | Both use relevance order; explicit consistency assertion |
 | Binary rates were labeled with count units | Proportion units and percentage-point deltas made explicit |
 | Integer `1` and string `"1"` could become indistinguishable group labels | Reject ambiguous typed groups; no silent merge or duplicate displayed identity |
+| String conversion could make missing cells impersonate a literal `"None"` category | Filter/category-presence comparisons explicitly exclude missing cells before string equality; regression asserts both counts and filtered scope |
 | Giant labels/cardinality/context/results | Predeclared bounds and structured failures; output-limit recovery tested |
 | Zero net change, missing groups, different populations and tail collapse | Explicit additive formula, null undefined shares and reconciliation; analytical fixtures |
 | Empty periods, invalid ISO strings, timezone boundary, all-null/tiny/non-finite/extreme metrics | Explicit errors or ineligible evidence; no invented denominator/sample; tests and evals |

@@ -89,7 +89,7 @@ class ToolRunner:
         frame = self.frame
         for f in args.filters:
             self._column(f.column)
-            frame = frame[frame[f.column].astype(str).eq(f.value)]
+            frame = frame[frame[f.column].notna() & frame[f.column].astype(str).eq(f.value)]
         if not len(frame):
             raise ToolError('empty_scope', 'No rows remain in this scope. Inspect the filter or dataset.')
         if args.periods is None:
@@ -234,7 +234,8 @@ class ToolRunner:
             if args.category is not None:
                 if args.kind != 'categorical':
                     raise ToolError('invalid_arguments', 'Category presence requires categorical comparison.')
-                counts = {'baseline_count': int(a[args.column].astype(str).eq(args.category).sum()), 'current_count': int(b[args.column].astype(str).eq(args.category).sum())}
+                counts = {'baseline_count': int((a[args.column].notna() & a[args.column].astype(str).eq(args.category)).sum()),
+                          'current_count': int((b[args.column].notna() & b[args.column].astype(str).eq(args.category)).sum())}
                 claims.append(claim('category_presence', f"Category {_name(args.category)} in {_name(args.column)}: {counts['baseline_count']} baseline rows, {counts['current_count']} current rows. " + ('The current period has no observed rows in this category; a claim of current presence is unsupported.' if not counts['current_count'] else 'Presence alone does not establish a cause.'), counts))
             return {'scope': scope, 'distribution': data, 'category_presence': counts}, claims, eligible
         if tool == 'group_metric':

@@ -9,8 +9,8 @@ were retained.
 
 | Check | Observed result |
 |---|---|
-| Windows / Python 3.11.3 | **224 passed in 26.64s**, 158 existing + **66 V2.1** |
-| Debian / WSL / Python 3.11.2 | **224 passed in 24.15s** |
+| Windows / Python 3.11.3 | **224 passed in 23.06s**, 158 existing + **66 V2.1** |
+| Debian / WSL / Python 3.11.2 | **224 passed in 21.36s** |
 | Ruff / pip consistency | Passed on Windows and Linux |
 | Existing eval suites | **8/8 synthetic, 5/5 behavioral, 10/10 stress, 24/24 comparison** |
 | Investigation regression | **36/36 scenarios**, actual controller/tools with scripted planners |
@@ -19,13 +19,22 @@ were retained.
 | Synthetic real provider, short budget | **Partial**, 4 steps, 3 calls, 2 validation errors, 30.203s; precise error types not retained |
 | Synthetic real provider, default budget | **Completed**, 3 planning steps, 3 calls including schema, 0 errors, 22.031s |
 | Public deployment | **Not verified**; no public app URL claimed |
-| V2.1 remote Actions | Pending publication at this local acceptance snapshot; see subsequent publication evidence |
+| V2.1 remote Actions | **Verified successful** for `bf05abe`: [run 36995675897](https://github.com/kaimouren/analysis_tool/actions/runs/36995675897), including investigation evals |
 | Deliverable credential/private-path scan | **107 files, zero matches**, common patterns plus exact configured credentials; heuristic, not proof of absence |
 
 The first Linux command used an incorrect distro alias and did not run; querying
 installed distributions identified `Debian`, where the checks above passed. The
 isolated interpreter/packages run against the Windows-mounted source, so this is
 not a case-sensitive-filesystem or Community Cloud image test.
+
+V2.1 was published as four logical commits on the existing public `main` history:
+`758258f` engine/tools, `c50c980` UI, `5de54e5` tests/evals/CI, and `bf05abe`
+documentation. No force push or old-commit rewrite. The publication tree matched
+the local validated source tree exactly. GitHub-hosted Ubuntu/Python 3.11 ran
+pytest, lint, dependency consistency and all five eval scripts successfully.
+The missing-category follow-up fixes literal `"None"` matching and reran the
+full Windows/Linux checks recorded above; subsequent commits have separate runs
+in [Actions](https://github.com/kaimouren/analysis_tool/actions).
 
 ### Agent behavior metrics
 
