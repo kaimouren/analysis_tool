@@ -1,5 +1,13 @@
 # LLM failure modes
 
+V2.1 investigation has a different boundary: the model emits tool actions and
+evidence selections, while code renders all factual claims. It rejects free-form
+answers instead of extending the V1/V2 lexical prose filter. This prevents prose
+fabrication but cannot prove that selected metrics/scopes answer the intended
+question. The historical optional-prose limitations below remain unchanged for
+QA/comparison. See [V2.1 red-team record](V2_1_RED_TEAM.md), including one partial
+and one successful synthetic live investigation.
+
 V1.1 tests the explanation trust boundary with mocked responses, not a live-model quality study. Findings, severities, ranking and score remain code-owned and are checked unchanged for every prose attack. The prompt is an instruction, not proof of compliance.
 
 | Attack | V1 behavior | V1.1 behavior / remaining gap |

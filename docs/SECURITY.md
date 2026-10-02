@@ -1,5 +1,30 @@
 # Security and privacy
 
+## V2.1 investigation additions
+
+Investigation requires explicit UI consent before sending the question, real
+column names/types, chosen periods/filters and bounded group aggregates to the
+configured model. Group labels, numeric extrema and small-group statistics can
+be sensitive. This differs from anonymized V1/V2 explanation payloads. There is
+no raw-row tool; parser samples and DataFrame attributes are excluded. No
+investigation is automatically persisted to the comparison history.
+
+Only allowlisted tools with strict non-executable arguments are callable. No
+filesystem, shell, secret-reading, external connector or DataFrame mutation
+capability exists in the planner context. Questions, schema and labels are
+untrusted data; copied contexts prevent mutation of authoritative evidence.
+Unknown tools, repeated calls and invalid columns fail with bounded structured
+errors. Final prose is not accepted from the model: selected code-authored claims
+must cite existing evidence. Primary/contradictory results cannot be omitted.
+The UI renders answer text without interpreting dataset labels as HTML/Markdown.
+
+The model can still choose a valid but irrelevant analysis. Limits bound steps,
+attempts, errors and accepted context/result size; the elapsed deadline is soft,
+not worker preemption. No per-user cost quota, hard response-byte cap, differential
+privacy or new multi-tenant isolation is provided. Trace/export retains observable
+actions and aggregates, never hidden reasoning. Review downloads before sharing.
+See [contracts and limits](INVESTIGATION.md) and [red-team evidence](V2_1_RED_TEAM.md).
+
 ## V2 comparison additions
 
 Both uploads remain in server memory. Comparison results can contain bounded local category examples; the provider payload and Markdown export exclude them. Provider payloads also exclude names, timestamps and extrema. Generated text remains unverified prose with schema/lexical guardrails.

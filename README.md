@@ -4,6 +4,14 @@
 
 V2 adds **baseline comparison and data drift analysis**. Keep the existing health check, or compare a previous CSV with a current CSV. Python computes all evidence, metrics, ordering and severity; optional generated text only explains that evidence.
 
+## Investigate a question (V2.1)
+
+Select **Investigate Dataset**, upload a CSV or enable its built-in sample, and ask a question such as **"Why did conversion drop in March 2024 compared with February 2024?"** Configure a model, consent to sending your question, schema names and bounded group aggregates, then run. The model chooses registered tools, inspects evidence, recovers from structured errors and selects citations. Python computes every statistic and authors the factual answer. The UI shows observable actions, exact arguments, limitations and an evidence download.
+
+The sample's US mobile group accounts for all of the observed 12.5 percentage-point conversion decline. That arithmetic association does not establish a cause. Unsupported directional premises are challenged; unclear years, insufficient samples or exhausted budgets produce qualified/partial results. No key means investigation is disabled; QA and comparison remain usable.
+
+Eight narrow tools cover schema, profiles, quality, period metrics, segmentation, group contrasts and numeric/categorical distributions. Default bounds are eight planning steps, eight tool attempts, three errors, top ten groups plus a tail, and a soft 120-second budget. There is no arbitrary Python/SQL execution, raw-row tool, cleaning, external connector or persistent chat memory. See [architecture, tool contracts, math and evaluation definitions](docs/INVESTIGATION.md) and [V2.1 red-team findings](docs/V2_1_RED_TEAM.md).
+
 ## Compare against a baseline (V2)
 
 Select **Compare Against Baseline**, upload **Baseline dataset** and **Current dataset**, then click **Compare**. A built-in example works without files or a provider key. Results include schema, row/column counts, missingness/duplicates, cardinality, numeric/categorical distributions and conservative datetime coverage, with shared-column details and Markdown download.
@@ -52,11 +60,11 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-No API key is needed. Upload a comma-delimited CSV with a header or try the bundled sample. Paths resolve relative to the application file, not a particular operating-system username or working directory.
+No API key is needed for QA or comparison; investigation requires one. Upload a comma-delimited CSV with a header or try the bundled sample. Paths resolve relative to the application file, not a particular operating-system username or working directory.
 
 ## Architecture
 
-**Code calculates. The LLM explains.**
+**Code calculates. The model can explain results or select bounded analyses.**
 
 ```mermaid
 flowchart LR
@@ -76,6 +84,12 @@ flowchart LR
     Comparison --> DriftUI[Drift UI and report]
     Comparison --> DriftLLM[Optional grounded explanation]
     Comparison --> History[Opt-in local metadata history]
+    CSV --> AgentTools[Deterministic investigation tools]
+    Question[Question and schema] --> Agent[Bounded model controller]
+    Agent --> AgentTools
+    AgentTools --> Ledger[Evidence ledger]
+    Ledger --> Agent
+    Ledger --> Cited[Validated selection and code-authored cited answer]
 ```
 
 `ingestion.py` validates input and retains bounded pre-inference examples. `qa_core.py` computes statistics, findings, severity and score using `policy.py`; `analysis.py` adds run metadata and safe errors. `llm.py` contains optional prose and authored fallback. `app.py`, `presentation.py` and `report.py` present results. Effective thresholds and profile/score versions accompany the report; timestamps do not affect deterministic results.
@@ -127,9 +141,9 @@ It does not establish semantic correctness, target leakage, fairness, causality,
 2. **Heuristic detection rules:** explicit policy thresholds and cautious interpretations of those observations.
 3. **Optional generated interpretation:** labeled prose with **Generated interpretation. Verify before acting.**
 
-The model cannot replace findings, severity, ranking or score. Requests contain allowlisted aggregate fields and anonymous column aliases, not raw values or real column names. Schema, issue-order and narrow lexical checks reject some invalid responses. **There is no semantic-verification guarantee for LLM prose.** Paraphrased invented facts, unsupported causes and contradictions can still pass. Rejected responses use authored guidance; deterministic cards and export remain available. See [LLM failure modes](docs/LLM_FAILURE_MODES.md).
+The model cannot replace findings, severity, ranking or score. In V1/V2 explanation mode, requests contain allowlisted aggregate fields and anonymous column aliases, not raw values or real column names. Schema, issue-order and narrow lexical checks reject some invalid responses. **There is no semantic-verification guarantee for LLM prose.** Paraphrased invented facts, unsupported causes and contradictions can still pass. Rejected responses use authored guidance; deterministic cards and export remain available. See [LLM failure modes](docs/LLM_FAILURE_MODES.md).
 
-Provider calls occur only on the explanation button, with a 25-second timeout, no SDK retries and a 2,000-token completion cap. No suggestions execute transformations.
+V1/V2 provider calls occur only on the explanation button, with a 25-second timeout, no SDK retries and a 2,000-token completion cap. V2.1 additionally calls the planner after **Run investigation** and explicit consent: up to eight requests, 15-second request timeout, no retries, 1,800 output tokens each. Investigation sends the question, real schema and bounded aggregate/group evidence. It accepts actions and evidence IDs only; final claims come from code, not generated prose. This prevents invented final prose but does not guarantee correct interpretation of the question. No suggestions execute transformations.
 
 ## CSV representation and privacy
 
@@ -179,11 +193,14 @@ python evals/run.py
 python evals/behavioral.py
 python evals/stress.py
 python evals/comparison.py
+python evals/investigation.py
 ```
 
 Tests cover numerical examples, boundary conditions, parser failures, raw-sample bounds/privacy, dual score/severity UI, provider fallback, reproducibility and concurrency restoration. Eight synthetic fixtures and five fictional export scenarios provide regression/behavioral coverage, not population accuracy. Ten scoring stress cases expose misleading aggregate interpretations. Five controlled mutations were caught by assertions; optional browser tests exercise real uploads, charts and report downloads.
 
 [VALIDATION.md](VALIDATION.md) records current counts, environments and exact results. CI is configured for tests, lint, dependency consistency and evaluations. Configured CI, locally executed checks and remotely successful GitHub Actions are distinct claims.
+
+V2.1 adds 66 tests and 36 authored behavioral scenarios. These exercise real tools/controller with scripted planners; their measured selection/grounding/recovery metrics are regression results, not a live model accuracy study. `python tests/live_investigation_smoke.py` optionally uses configured environment credentials for a bounded synthetic real-provider run (up to eight requests). See the validation record for both successful and partial observed live runs.
 
 ## Limitations
 
@@ -194,6 +211,7 @@ Tests cover numerical examples, boundary conditions, parser failures, raw-sample
 - The global lock protects application analysis entry points, not arbitrary third-party threads or multi-process hosts.
 - No identity, request quotas, bounded admission, cancellation policy, tenant-isolation guarantee or production browser-load validation exists.
 - LLM prose can be wrong even after validation; live-provider compatibility is not guaranteed.
+- Investigation question interpretation and stopping use narrow heuristics; valid evidence can still be irrelevant. It requires explicit years and binary data for rate aggregation; median decomposition is unsupported. Aggregates and labels can reveal sensitive facts.
 - Dependency ranges are constrained but not a complete transitive lockfile; rerun validation when upgrading.
 
 ## Roadmap

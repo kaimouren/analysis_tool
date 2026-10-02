@@ -1,5 +1,96 @@
 # Validation evidence
 
+## V2.1 Investigation Agent acceptance (2026-10-02)
+
+Baseline was the unchanged 158-test V2 tree, identical to published `8ab606f`.
+Application version is now 2.1.0; profile 1.4, score 1.0 and comparison 2.0 remain
+unchanged. No dependency was added. Existing architecture/tests/eval expectations
+were retained.
+
+| Check | Observed result |
+|---|---|
+| Windows / Python 3.11.3 | **224 passed in 26.64s**, 158 existing + **66 V2.1** |
+| Debian / WSL / Python 3.11.2 | **224 passed in 24.15s** |
+| Ruff / pip consistency | Passed on Windows and Linux |
+| Existing eval suites | **8/8 synthetic, 5/5 behavioral, 10/10 stress, 24/24 comparison** |
+| Investigation regression | **36/36 scenarios**, actual controller/tools with scripted planners |
+| Real Chrome | V1/V2 workflows and V2.1 upload/question/consent/no-key-disabled workflow passed |
+| Streamlit AppTest | Actual controller plus injected planner: consent, citations, trace, JSON export, input reset and generic failure checks passed |
+| Synthetic real provider, short budget | **Partial**, 4 steps, 3 calls, 2 validation errors, 30.203s; precise error types not retained |
+| Synthetic real provider, default budget | **Completed**, 3 planning steps, 3 calls including schema, 0 errors, 22.031s |
+| Public deployment | **Not verified**; no public app URL claimed |
+| V2.1 remote Actions | Pending publication at this local acceptance snapshot; see subsequent publication evidence |
+| Deliverable credential/private-path scan | **107 files, zero matches**, common patterns plus exact configured credentials; heuristic, not proof of absence |
+
+The first Linux command used an incorrect distro alias and did not run; querying
+installed distributions identified `Debian`, where the checks above passed. The
+isolated interpreter/packages run against the Windows-mounted source, so this is
+not a case-sensitive-filesystem or Community Cloud image test.
+
+### Agent behavior metrics
+
+Recorded artifact: [evals/investigation-results.json](evals/investigation-results.json).
+This is an authored regression corpus, **not an independent live-planner accuracy
+study**. The two real-provider runs above are separate, small observations.
+
+| Metric | Measured value |
+|---|---:|
+| Task Success | 36/36 = 100% |
+| Tool Selection Accuracy | 36/36 = 100% (scripted analysis-class coverage) |
+| Tool Argument Validity | 98/101 = 97.03% |
+| Evidence Grounding | 102/102 = 100% |
+| Unsupported Claim Rate | 0/102 = 0% |
+| Recovery Rate | 8/8 = 100% |
+| Efficiency | 36/36 within scenario budgets; mean 2.81 calls |
+| Stop Accuracy | 36/36 = 100% |
+
+Typed argument validity includes deliberate malformed/unknown calls; existence
+and dtype checks are separate runtime validations. Grounding is exact claim-to-
+ledger provenance, not natural-language semantic correctness. Expected guarded
+partial/failed outcomes count as successful test cases. Tests separately reject
+invented output/citations, forged evidence, hidden reasoning, unsupported
+causality/significance, premature finish, conflicting-evidence omission, repeated
+tools and unsafe executable arguments. Every scenario must pass CI, with a 96%
+minimum typed-argument validity threshold; answer wording is not compared.
+
+### Tool trust model and limits
+
+The model selects typed tools and evidence IDs; it cannot author accepted final
+prose, access the DataFrame, execute expressions, inspect secrets or write files.
+Each claim comes from deterministic evidence, with named columns and group values
+grounded by actual data. Primary findings are automatically included even if the
+model omits them. Directional premises use narrow sign/keyword checks, and why
+questions require a decomposition matching the first eligible period comparison
+unless that anchor's premise is contradicted. These checks do not prove arbitrary
+question interpretation or business semantics.
+
+Bootstrap schema, attempts, steps, errors, groups, output and context are bounded.
+Exact repeated calls do not reexecute. Per-request timeout is 15 seconds with no
+SDK retries; the overall 120-second deadline is soft. Result status honestly
+distinguishes completed/partial/failed. No-key mode has no fabricated agent.
+
+Untrusted cells are not forwarded as rows. Explicit UI consent covers real schema,
+question and bounded group aggregates; those may still reveal sensitive facts.
+The controller deep-copies planner context, discards free-form model prose and
+records observable actions only. No long-term investigation history or hidden
+reasoning logs. Valid but irrelevant analyses, model distraction by labels,
+ambiguous questions, rate semantics, tiny groups, sampled population bias and
+floating-point approximations remain limitations.
+
+Read [tool contracts, evidence schema, formulas and exact metric definitions](docs/INVESTIGATION.md)
+and [red-team findings/fixes](docs/V2_1_RED_TEAM.md). Run all checks with the Testing
+commands in README; new targeted commands are:
+
+```bash
+python -m pytest tests/test_investigation.py tests/test_investigation_ui.py -q
+python evals/investigation.py --output evals/investigation-results.json
+# Optional real-provider requests using environment credentials:
+python tests/live_investigation_smoke.py
+```
+
+CI adds `python evals/investigation.py` after existing suites. Local, configured
+and remotely observed CI results are reported separately.
+
 ## V2 baseline comparison acceptance (2026-10-02)
 
 Baseline: existing local V1.2 snapshot matched the published `d565180` tree. Before V2, **92 tests passed in 18.92s**, Ruff passed, and the remote branch was inspected without rewriting history. Application 2.0.0 adds comparison schema 2.0; V1 profile 1.4 and score policy 1.0 remain unchanged. No package dependency was added.
