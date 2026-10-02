@@ -177,7 +177,7 @@ Browser-selected provider endpoints must match the administrator allowlist (defa
 
 Input guards: **10 MiB, 200,000 rows, 200 columns, 2 million cells, 256 MiB deep frame memory, 65,536 characters per text cell**. These are conservative per-input limits, not measured hosted capacity or a process-memory ceiling. Native finite magnitudes over 1e150 are rejected with rescaling guidance. Data is analyzed in memory; oversized input is rejected rather than silently sampled.
 
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for exact GitHub publication, remote Actions verification, Community Cloud setup, secrets and post-deployment checks. V2.1 remote GitHub Actions: **verified successful** for published source `bf05abe` ([run evidence](https://github.com/kaimouren/analysis_tool/actions/runs/36995675897)), including all existing checks and investigation evaluations. Subsequent commits have their own runs in Actions. Public Streamlit deployment: **Not verified**.
+See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for exact GitHub publication, remote Actions verification, Community Cloud setup, secrets and post-deployment checks. V2.2 remote GitHub Actions: **verified successful** for published source `af42718` ([run evidence](https://github.com/kaimouren/analysis_tool/actions/runs/37000303082)), including all existing checks and offline real-trajectory regression analysis. Subsequent commits have their own runs in Actions. Public Streamlit deployment: **Not verified**.
 
 ## Performance
 

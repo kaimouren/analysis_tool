@@ -16,9 +16,17 @@ No analytics tool or dependency was added. Production prompt remains planner-v2.
 | Budget experiment | **12/12 terminal captures**, 2 scenarios × 3 repeats × 2 budgets |
 | Offline baseline replay | Windows and Linux passed, without API calls |
 | Credential/private-path scan | **143 files, zero matches**; heuristic patterns plus configured-key matching |
-| Remote V2.2 Actions | Pending publication at this local acceptance snapshot; follow-up records the actual run |
+| Remote V2.2 Actions | **Verified successful** for `af42718`: [run 37000303082](https://github.com/kaimouren/analysis_tool/actions/runs/37000303082), including saved-baseline replay |
 | Optional paid GitHub workflow | Implemented; not manually executed on GitHub in this pass |
 | Public app deployment | Not verified |
+
+Published on existing `main` history without force push: `d8904bd` prompt/telemetry,
+`afad134` benchmark/evaluator/tests, `af4fb52` measured artifacts and CI,
+`af42718` release documentation. Publication and locally validated file trees
+matched exactly. GitHub-hosted Ubuntu/Python 3.11 passed all tests, lint,
+dependency checks, five existing eval suites and `evals.benchmark_ci`, including
+replay of four experiment artifacts and detection of the known candidate
+critical regression. Subsequent documentation commits have their own Actions runs.
 
 All **156 new real investigations** used synthetic fixtures, requested
 `gpt-4o-mini` at `api.openai.com`, three concurrent workers, temperature omitted
