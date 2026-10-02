@@ -48,11 +48,15 @@ with st.sidebar:
         api_key = ""
         st.warning("This endpoint is not enabled by the deployment administrator. Use the configured provider or an approved endpoint.")
     st.divider()
-    st.info("Statistics and score are deterministic; the LLM only explains results.")
-    st.caption("AI explanations send aggregate statistics and anonymous column aliases to the configured provider. No raw rows or column names are sent.")
+    st.info("Code computes statistics and score. The model can select bounded analyses or explain results.")
+    st.caption("QA/comparison explanations use aggregates and anonymous column aliases. Investigation additionally sends your question, schema names and bounded group aggregates after explicit consent. No raw-row tools are available.")
     st.caption("Suggestions only. No cleaning is applied; CSV parsing can normalize types and missing tokens.")
 
-mode = st.radio("Analysis mode", ["Single Dataset QA", "Compare Against Baseline"], horizontal=True)
+mode = st.radio("Analysis mode", ["Single Dataset QA", "Compare Against Baseline", "Investigate Dataset"], horizontal=True)
+if mode == "Investigate Dataset":
+    from investigation_ui import render_investigation
+    render_investigation(api_key.strip(), model.strip(), base_url.strip())
+    st.stop()
 if mode == "Compare Against Baseline":
     from comparison_ui import render_comparison
     render_comparison(api_key.strip(), model.strip(), base_url.strip())
