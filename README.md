@@ -253,4 +253,6 @@ The current portfolio scope is complete through V2.2. The [validation record](VA
 | [QA checks](docs/CHECKS.md) | Detection rules, severity, and false-positive risks |
 | [Validation evidence](VALIDATION.md) | Recorded tests, environments, and release checks |
 
+Portfolio materials: [project summary](docs/PORTFOLIO_SUMMARY.md), [resume bullets](docs/RESUME_BULLETS.md), [interview story](docs/INTERVIEW_STORY.md), and [technical Q&A](docs/INTERVIEW_QA.md).
+
 Licensed under [MIT](LICENSE).

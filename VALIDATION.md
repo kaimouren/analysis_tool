@@ -1,5 +1,28 @@
 # Validation evidence
 
+## Portfolio finalization (2026-10-02)
+
+Documentation-only finalization; product code, prompts, benchmark captures and
+evaluation criteria are unchanged. No paid model benchmark was rerun.
+
+- Windows / Python 3.11: **272 passed in 29.64s**; Ruff and `pip check` passed.
+- Existing evals: **8/8 synthetic, 5/5 behavioral, 10/10 stress, 24/24 comparison,
+  36/36 scripted investigation**; offline full-baseline and four experiment
+  replays passed and detected the known candidate critical regression.
+- Actual local Chrome: no-key startup, CSV uploads, charts, QA/comparison report
+  downloads, malformed-input recovery, and investigation guidance/disabled run
+  control passed. The first sandboxed browser attempt timed out establishing its
+  debugging connection; the same smoke test passed outside that restriction.
+- GitHub README `4f8582c`: opened in isolated Chrome; Mermaid rendered as a graph,
+  tables/code blocks rendered, and scoped benchmark findings remained visible.
+- Deployment configuration reviewed: `main`, `app.py`, Python 3.11, root
+  `requirements.txt`; omit server credentials and leave `QA_HISTORY_PATH` unset.
+  Uploaded data uses session state rather than shared dataset caching; this is
+  code inspection and local smoke evidence, not a tenant-isolation certification.
+- **Public Streamlit deployment remains unverified.** No deployment connector or
+  authorized Community Cloud session was available; see the exact manual steps
+  in [DEPLOYMENT.md](docs/DEPLOYMENT.md). No demo URL was added.
+
 ## V2.2 agent evaluation acceptance (2026-10-02)
 
 Baseline: published `27a58f6`, tree-equivalent local `465d83c`, 224 existing tests.

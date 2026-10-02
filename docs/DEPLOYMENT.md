@@ -1,10 +1,10 @@
 # Deployment readiness and limits
 
-Status: V2 source is published at [kaimouren/analysis_tool](https://github.com/kaimouren/analysis_tool), and [remote GitHub Actions passed](https://github.com/kaimouren/analysis_tool/actions/runs/36990489925) for `02c82ae`, including comparison evaluations. Public Streamlit deployment remains **Not verified**. See `VALIDATION.md` for evidence. The original publication-status notes below are historical; the repository creation/upload steps have now been completed.
+Status: V2.2 source and the portfolio README are published at [kaimouren/analysis_tool](https://github.com/kaimouren/analysis_tool). The README's local commit `84b7624` was applied to the existing publication history as `4f8582c`, with identical tracked file trees. No history was rewritten. Public Streamlit deployment remains **Not verified**. See [validation evidence](../VALIDATION.md); the original publication notes below are historical.
 
 ## Local setup
 
-V2 uses the same Python 3.11 entrypoint and dependencies. Both single-dataset and comparison modes are available in `app.py`. Leave `QA_HISTORY_PATH` unset on public Streamlit deployments; setting it enables shared server-local metadata history without user isolation. For a trusted local installation, set it to `.qa-history/comparisons.sqlite3` before starting Streamlit. The variable is environment-only; no visitor can select a filesystem path. Cloud-local files are not a durable storage guarantee.
+V2.2 uses the same Python 3.11 entrypoint and dependencies. All three modes are available in `app.py`. Without a model key, investigation displays configuration guidance and disables execution; QA and comparison remain usable. Leave `QA_HISTORY_PATH` unset on public Streamlit deployments; setting it enables shared server-local metadata history without user isolation. For a trusted local installation, set it to `.qa-history/comparisons.sqlite3` before starting Streamlit. The variable is environment-only; no visitor can select a filesystem path. Cloud-local files are not a durable storage guarantee.
 
 V2 acceptance additionally runs `python evals/comparison.py`. Smoke-test baseline/current uploads, direction, no-key guidance, comparison report download and stale-result removal after changing inputs. Two uploads and their intermediates coexist, so do not infer hosting capacity from V1's single-frame measurements.
 
@@ -19,7 +19,7 @@ Keep optional `OPENAI_API_KEY`, `OPENAI_BASE_URL` and `OPENAI_MODEL` in the host
 ## What to disclose to users
 
 - The full CSV reaches the Python hosting server even without AI. Uploads/profiles remain in application session memory, not deliberately written to disk; host swap, telemetry and crash dumps are outside that guarantee.
-- Optional AI sends allowlisted aggregate metrics, penalty totals and anonymous top-five issue fields. Aggregates can still be sensitive. Provider retention depends on the provider/account.
+- Optional QA/comparison explanations send allowlisted aggregates and anonymous fields. Investigation additionally sends the question, real schema names/types, selected group labels, and bounded evidence after consent. Aggregates can still be sensitive. Provider retention depends on the provider/account.
 - CSV parsing can remove leading zeros and reinterpret NA/null/boolean/numeric tokens. This is exploratory screening, not a contract asserting source fidelity or business correctness.
 - Headline scores are rounded policy indicators. A critical finding can coexist with a score near 100.
 
@@ -61,4 +61,13 @@ The Community Cloud procedure and secret placement were checked against the [off
 
 ## Deploy the published repository
 
-In Streamlit Community Cloud, select `kaimouren/analysis_tool`, branch `main`, entrypoint `app.py`, and Python 3.11 in Advanced settings. Leave provider secrets empty for the first deployment. Then perform the public-URL acceptance checks above before claiming deployment success. GitHub publication does not itself deploy Streamlit.
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) with access to `kaimouren/analysis_tool`.
+2. Choose **Create app**, then **Yup, I have an app**. Enter repository `kaimouren/analysis_tool`, branch `main`, and file path `app.py`.
+3. In **Advanced settings**, explicitly select **Python 3.11**. Root `requirements.txt` supplies runtime dependencies.
+4. Leave **Secrets empty**. Do not configure a shared `OPENAI_API_KEY` or `QA_HISTORY_PATH`. `.env` is not loaded automatically. The committed `.streamlit/config.toml` sets the upload limit and disables usage statistics.
+5. Save settings and deploy. Inspect build/startup logs. Dependencies use bounded version ranges rather than a complete lockfile, so host installation is a separate check from local validation.
+6. Open the assigned URL in a fresh browser session. Test Single Dataset QA with the sample and a small CSV, a Markdown download, baseline/current comparison and its download, and investigation's no-key guidance/disabled button. Check malformed input for safe errors and absence of local paths or debug traces.
+7. Open a second independent session and confirm the first session's uploaded data is not visible. Keep history disabled. This smoke test does not establish a general tenant-isolation guarantee.
+8. Only after these checks succeed, record the actual public URL and add it to README. GitHub publication and successful Actions do not themselves deploy Streamlit.
+
+During portfolio finalization, no Streamlit deployment connector or authorized Community Cloud session was available. Local no-key Chrome smoke tests passed uploads, QA/comparison downloads, malformed-input recovery, and disabled investigation. Those results do not verify a public deployment. The current manual procedure was checked against the [official deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy).
