@@ -1,67 +1,161 @@
 # Data QA Agent
 
-**A deterministic-first CSV health check that surfaces common structural and statistical risks before modeling, with optional LLM explanations.**
+**A reliability-focused data investigation agent combining deterministic analysis tools, bounded LLM planning, evidence-grounded answers, and trajectory-level regression evaluation.**
 
-V2 adds **baseline comparison and data drift analysis**. Keep the existing health check, or compare a previous CSV with a current CSV. Python computes all evidence, metrics, ordering and severity; optional generated text only explains that evidence.
+Upload a CSV to inspect quality, compare it against a baseline, or investigate a question. Python performs the calculations; the LLM chooses bounded analyses. Investigation answers cite collected evidence, while an offline evaluator scores real model trajectories and detects regressions.
 
-## Agent Reliability Evaluation (V2.2)
+**272 tests passing · 36 real-model scenarios · 12 golden scenarios · 156 real investigations recorded during V2.2**
 
-V2.2 adds evaluation infrastructure rather than more analytics tools. **Layer 1** preserves the 36 scripted controller/tool scenarios. **Layer 2** benchmarks real-model trajectories on 36 synthetic tasks with repeated runs, explicit evidence requirements, a failure taxonomy, scenario stability and saved-baseline regression gates. A grounded answer can still omit required analyses or use the wrong time window.
+The central finding: **36/36 scripted investigation regressions passed, but repeated real-model evaluation achieved only 21/108 successful runs (19.44%)** with OpenAI `gpt-4o-mini` and `planner-v2.1`. Recorded claims had **100% evidence grounding and 0% unsupported claims**, yet investigations often stopped early or missed required evidence. Grounded answers did not guarantee completed tasks.
 
-Actual `gpt-4o-mini` / OpenAI / `planner-v2.1` observations: **21/108 successful runs (19.44%)**, **4/36 scenarios passing all three repeats**, and **100% provenance for 255 material claims**. Six tasks had mixed repeat outcomes. These are configuration-specific benchmark results, not universal agent accuracy or the scripted suite's score.
+[Measured baseline](benchmarks/baselines/investigation-v2.2/summary.md) · [Engineering case study](docs/AGENT_RELIABILITY_CASE_STUDY.md) · [Run locally](#demo--run-locally) · [Validation record](VALIDATION.md)
 
-The candidate prompt improved golden success from **8/36 to 11/36**, but critical `conversion_device` dropped from **2/3 to 1/3**. The regression gate rejected it; the production prompt remains unchanged. This is why evaluating only final-answer grounding or aggregate success is insufficient.
+## Why this project exists
 
-```bash
-python -m evals.agent_benchmark --suite golden --runs 3 --output benchmark-results/golden
-python -m evals.agent_benchmark --offline benchmarks/baselines/investigation-v2.2/runs.json --output benchmark-results/offline
-python -m evals.benchmark_ci
+A plausible final answer can conceal the wrong tool, an incorrect time window, missing evidence, or failed recovery. An aggregate score can also improve while a critical task regresses. Evaluating answer provenance alone cannot resolve these failures.
+
+This project separates deterministic computation, constrained planning, evidence validation, and trajectory evaluation. It makes tool choices, arguments, errors, stopping behavior, and task coverage inspectable. The engineering progression is explicit:
+
+```text
+Deterministic QA → drift detection → bounded investigation agent
+                → real-model trajectory evaluation → regression CI
 ```
 
-Live runs require environment credentials. Offline scoring and standard CI need no API access; a separate manual workflow optionally runs paid synthetic benchmarks. Reports include tool paths/usage, evidence coverage, failure examples, repeated-run variability and baseline diffs. Read the [technical case study](docs/AGENT_RELIABILITY_CASE_STUDY.md), [metric definitions and CLI](docs/AGENT_EVALUATION.md), and [full measured baseline](benchmarks/baselines/investigation-v2.2/summary.md).
+The implementation uses Python, pandas/NumPy, strict Pydantic contracts, Streamlit, an OpenAI SDK adapter, pytest, and GitHub Actions. Evaluation runs through the same controller and tool registry used by the application.
 
-## Investigate a question (V2.1)
+## What it does
 
-Select **Investigate Dataset**, upload a CSV or enable its built-in sample, and ask a question such as **"Why did conversion drop in March 2024 compared with February 2024?"** Configure a model, consent to sending your question, schema names and bounded group aggregates, then run. The model chooses registered tools, inspects evidence, recovers from structured errors and selects citations. Python computes every statistic and authors the factual answer. The UI shows observable actions, exact arguments, limitations and an evidence download.
+| Mode | User workflow | Deterministic analysis |
+|---|---|---|
+| **Single Dataset QA** | Upload one CSV or explore the sample | Schema, missingness, duplicates, mixed types, numeric outliers, and constant columns |
+| **Compare Against Baseline** | Compare previous and current CSVs | Schema, missingness, numeric/categorical distributions, cardinality, and datetime coverage changes |
+| **Investigate Dataset** | Ask a question about one CSV | Bounded period comparisons, segment contributions, quality checks, and group contrasts |
 
-The sample's US mobile group accounts for all of the observed 12.5 percentage-point conversion decline. That arithmetic association does not establish a cause. Unsupported directional premises are challenged; unclear years, insufficient samples or exhausted budgets produce qualified/partial results. No key means investigation is disabled; QA and comparison remain usable.
+Example questions include “Why did conversion drop in March 2024 compared with February 2024?” and “Which segment accounts for most of the revenue decline?” Questions need explicit years and clear metric semantics where applicable. Ambiguous or unsupported requests can produce clarification or partial results.
 
-Eight narrow tools cover schema, profiles, quality, period metrics, segmentation, group contrasts and numeric/categorical distributions. Default bounds are eight planning steps, eight tool attempts, three errors, top ten groups plus a tail, and a soft 120-second budget. There is no arbitrary Python/SQL execution, raw-row tool, cleaning, external connector or persistent chat memory. See [architecture, tool contracts, math and evaluation definitions](docs/INVESTIGATION.md) and [V2.1 red-team findings](docs/V2_1_RED_TEAM.md).
+Investigation exposes registered analytical tools, without unrestricted code execution. QA and comparison work without an API key. Their optional generated explanations are separate from investigation's stricter, code-authored answers. Quality scores and drift severity are heuristic review indicators, not certifications of data correctness.
 
-## Compare against a baseline (V2)
+## Architecture
 
-Select **Compare Against Baseline**, upload **Baseline dataset** and **Current dataset**, then click **Compare**. A built-in example works without files or a provider key. Results include schema, row/column counts, missingness/duplicates, cardinality, numeric/categorical distributions and conservative datetime coverage, with shared-column details and Markdown download.
-
-An illustrative review might compare 100k January customer records with 95k February records and reveal mobile share +18 percentage points, email missingness +12 percentage points, and a downward revenue distribution shift. These observations do not establish why changes happened or whether they are harmful.
-
-Numeric comparison uses KS distance; categorical comparison uses total variation distance. Missingness differences are **percentage points**. Zero denominators show N/A. Low/Moderate/High observed drift is a heuristic, not a calibrated probability or quality score. Low drift can coexist with unhealthy or unassessed data.
-
-![Baseline/current comparison](docs/comparison.png)
-
-The independent API is:
-
-```python
-from comparison import compare_datasets
-result = compare_datasets(baseline_df, current_df)
+```mermaid
+flowchart TD
+    Q[User question and schema] --> P[Bounded planner]
+    P --> V[Validated tool call]
+    V --> T[Deterministic analysis]
+    T --> E[Structured evidence]
+    E --> S{Stop or continue}
+    S -->|Continue| P
+    S -->|Stop| A[Validated code-authored answer]
+    V -.-> R[Observable trajectory]
+    E -.-> R
+    A -.-> R
+    R --> O[Offline tool replay and scoring]
+    O --> M[Trajectory metrics]
+    M --> G[Regression gate]
 ```
 
-All rows are analyzed. High-cardinality category details are suppressed; small-sample distances receive no distribution severity. Finite numeric magnitudes over 1e150 are rejected. Read [V2 methods, thresholds, schema and limitations](docs/V2_DRIFT.md).
+The controller in `agent.py` owns the loop. `agent_models.py` defines strict actions and arguments; `agent_tools.py` computes results; `agent_validator.py` checks evidence selection and sufficiency. `evals/trajectory.py` independently replays saved calls against fixed fixtures. No LLM judge is required.
 
-Optional **local run history** stores metadata only. On a trusted single-user installation, set `QA_HISTORY_PATH` to `.qa-history/comparisons.sqlite3`, restart, and use **Save run to local history**. Recent history retains 50 entries. Leave the variable unset on public deployments: server-local history is not isolated between visitors. Raw datasets, category values and generated prose are never stored. Derived baseline snapshots are deferred; direct file comparison is supported.
+## Reliability by design
 
-## Live Demo
+| Layer | Responsibility |
+|---|---|
+| Deterministic Python | Statistics, aggregation, drift metrics, and evidence claims |
+| LLM planner | Selects registered tools, arguments, evidence IDs, and a finish action |
+| Validation layer | Checks argument shapes, columns, evidence references, and supported completion conditions |
+| Controller | Enforces step, tool, error, context, and elapsed-time bounds |
+| Evaluation system | Verifies saved trajectories, measures coverage, and gates regressions |
 
-Public deployment: **Not verified**. No public URL is claimed. Run locally and select **Explore the messy sample**.
+The LLM does not calculate reported statistics or supply accepted final prose. Python renders numeric claims from the evidence ledger. Strict tool schemas reject extra fields and implicit type coercion; there is no arbitrary Python, SQL, shell, or external-connector tool.
 
-![Data QA Agent reviewing a synthetic CSV](docs/demo.png)
+Dataset text, column names, and group labels are untrusted inputs. They can still distract planning within the allowed tools. Code-authored findings constrain fabrication, but cannot guarantee that selected periods, columns, or filters correctly interpret the question.
 
-## Why it exists
+Default limits are **8 planning steps, 8 attempted tool calls, and 3 errors**, including the bootstrap schema call in the tool budget. A **120-second soft deadline** is checked between operations; provider requests have a 15-second timeout and no SDK retries. Repeated equivalent calls consume budget and are rejected. Exhausted limits produce explicit partial results. The interface displays observable actions, arguments, errors, and evidence, never hidden reasoning.
 
-A new CSV often needs a quick first review before deeper analysis: which observations deserve attention, what rule flagged them, and what to investigate next. This tool connects reproducible measurements, explicit review priorities and portable reports. It does not replace domain review or a declared validation contract.
+### Investigation tools
 
-## Quickstart
+| Tool | Purpose |
+|---|---|
+| `inspect_schema` | Inspect column names, parsed types, and row count |
+| `get_dataset_summary` | Summarize counts, missingness, and duplicates |
+| `profile_column` | Inspect one column's quality and numeric summaries |
+| `check_quality` | Check quality within a scope or across periods |
+| `compare_time_periods` | Compare an explicitly selected metric between periods |
+| `compare_segments` | Decompose observed change by one or two dimensions |
+| `group_metric` | Aggregate groups or compare selected group values |
+| `compare_distribution` | Compare numeric or categorical distributions over time |
 
-Clone the repository and use Python 3.11:
+## Real-model evaluation
+
+**Layer 1: scripted controller/tool regression.** The 36 authored investigation scenarios exercise the real controller and deterministic tools with scripted planners. Passing these tests establishes regression coverage, not live planner reliability.
+
+**Layer 2: repeated real-model benchmark.** Another 36 synthetic scenarios cover direct investigations, multi-step tasks, unsupported premises, ambiguity, recovery, and adversarial inputs. Twelve form the golden subset. Each declares required evidence, acceptable analysis classes, expected scope/status, prohibited claims, and call budgets. Exact action sequences need not match.
+
+The evaluator checks tool arguments and independently recomputes evidence. It separately scores citation grounding, evidence coverage, completeness, recovery, and stopping. A mutually consistent forged answer and ledger cannot establish their own correctness. Six recovery probes inject a disclosed failing call before real model decisions; those calls count toward recovery and budgets, but not model-selection or argument-validity denominators.
+
+### Recorded configuration and results
+
+| Setting | Full V2.2 baseline |
+|---|---|
+| Model / provider | Requested `gpt-4o-mini` / `api.openai.com` |
+| Planner prompt | `planner-v2.1` |
+| Scenarios / repeats / investigations | 36 / 3 / 108 |
+| Step / tool budget | 8 / 8 |
+| Temperature / concurrency | Provider default; 3 concurrent workers |
+| Capture start | 2026-10-02, 10:49:32 UTC |
+
+| Metric | Recorded result |
+|---|---:|
+| Run success | **21/108 (19.44%)** |
+| Scenarios passing every repeat | **4/36** |
+| Tool selection accuracy | 69.01% |
+| Tool argument validity | 93.32% |
+| Evidence grounding | 100% |
+| Evidence coverage | 43.67% |
+| Unsupported claims | 0% |
+| Recovery rate | 37.93% |
+| Premature stop rate | 54.63% |
+| Stop accuracy | 26.85% |
+| Average attempted tool calls | 2.81 |
+
+Rates are macro averages over eligible runs unless defined otherwise. Grounding covers **255 material claims across 88 claim-bearing runs**; claimless runs do not receive an invented perfect score. Recovery averages **29 runs with errors**. Six scenarios had mixed outcomes and 26 passed no repeats. See [metric definitions and denominators](docs/AGENT_EVALUATION.md).
+
+These results are specific to the tested model, prompt, provider configuration, synthetic scenario set, and run date. The model alias is not a pinned provider revision. **156 new investigations** comprise this 108-run baseline, 36 candidate-prompt runs, and 12 budget-probe runs. The golden baseline reuses full-suite captures; it adds no new investigations.
+
+## What the benchmark found
+
+**The dominant failures were incomplete investigations, rather than fabricated numeric claims.** Some runs used an incorrect calendar boundary; others returned a completed status without required count/mean comparisons or joint segment analysis. Correct arithmetic did not make the selected analysis sufficient.
+
+| Failure label | Runs |
+|---|---:|
+| `incomplete_answer` | 79 |
+| `missing_required_evidence` | 64 |
+| `premature_stop` | 59 |
+| `wrong_tool` | 42 |
+| `unrecovered_tool_error` | 18 |
+| `wrong_arguments` | 17 |
+| `repeated_tool_call` | 7 |
+| `timeout` | 5 |
+
+Counts overlap; the [full report](benchmarks/baselines/investigation-v2.2/summary.md) also records unexpected final statuses. Evaluating only final-answer grounding would miss these task and process failures. A separate two-task budget probe achieved 0/6 successful runs at both four and eight steps/calls; more available budget did not resolve those observed failures.
+
+### A prompt improvement rejected by the gate
+
+On identical golden tasks, `planner-v2.2` produced **11/36 successful runs**, versus **8/36** for `planner-v2.1`. But critical `conversion_device` success fell from **2/3 to 1/3**. **The regression gate rejected the candidate; the production default remains `planner-v2.1`.**
+
+Aggregate improvement must not hide a critical regression. These small, sequential experiments do not establish a causal prompt effect or a statistically superior prompt. The [saved comparison](benchmarks/results/v22-golden-v22/summary.md) preserves both outcomes.
+
+## Regression CI
+
+The [Tests workflow](.github/workflows/tests.yml) runs unit tests, deterministic evaluations, lint, dependency checks, and offline replay of saved real trajectories. It checks pinned baseline scores and verifies that the known candidate regression remains detectable. Normal CI needs no paid model or external model availability.
+
+Safety gates reject unsupported/contradicted claims, altered tool evidence, and grounding below 99%. Losing a successful repeat on a critical scenario fails regardless of aggregate gains. Other adverse changes use the larger of five percentage points or twice baseline standard error: an operational tolerance, not a significance test.
+
+The separate [Optional real-model agent benchmark workflow](.github/workflows/agent-benchmark.yml) is manually triggered with configured secrets. It captures repeated investigations, scores trajectories, and uploads artifacts. It was implemented but not remotely executed during V2.2 validation. Frozen replay detects evaluator/tool drift; new prompt or provider behavior requires fresh real-model runs.
+
+## Demo / Run locally
+
+**Public Streamlit deployment is not yet verified.** Use Python 3.11:
 
 ```bash
 git clone https://github.com/kaimouren/analysis_tool.git
@@ -69,174 +163,94 @@ cd analysis_tool
 python -m venv .venv
 ```
 
-Activate with `source .venv/bin/activate` on Linux/macOS or `.venv\Scripts\Activate.ps1` in PowerShell:
+Activate with `source .venv/bin/activate` on Linux/macOS, or `.venv\Scripts\Activate.ps1` in PowerShell, then:
 
 ```bash
 python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-No API key is needed for QA or comparison; investigation requires one. Upload a comma-delimited CSV with a header or try the bundled sample. Paths resolve relative to the application file, not a particular operating-system username or working directory.
+Try the built-in samples without uploading data. Investigation additionally requires `OPENAI_API_KEY`; optional settings are `OPENAI_MODEL` and `OPENAI_BASE_URL`. Configure them in the environment or through supported app configuration. `.env` is not loaded automatically. Select **Investigate Dataset**, enter a question, enable aggregate-sharing consent, and run.
 
-## Architecture
+Investigation sends the question, real schema names, selected group labels, and bounded aggregates to the configured provider. Those can be sensitive even without raw rows. Uploads are processed on the app server. See [security](docs/SECURITY.md) and [deployment](docs/DEPLOYMENT.md) before hosting.
 
-**Code calculates. The model can explain results or select bounded analyses.**
+### Example investigation
 
-```mermaid
-flowchart LR
-    CSV[CSV] --> Ingestion[Bounded ingestion]
-    Ingestion --> Profile[Deterministic profiling]
-    Profile --> Findings[Issue detection and severity]
-    Profile --> Score[Quality policy score]
-    Findings --> UI[Review UI]
-    Score --> UI
-    Findings --> Optional[Optional LLM interpretation]
-    Findings --> Report[Markdown report]
-    Score --> Report
-    Optional --> Report
-    Optional --> UI
-    Baseline[Baseline CSV] --> Comparison[Deterministic comparison]
-    Current[Current CSV] --> Comparison
-    Comparison --> DriftUI[Drift UI and report]
-    Comparison --> DriftLLM[Optional grounded explanation]
-    Comparison --> History[Opt-in local metadata history]
-    CSV --> AgentTools[Deterministic investigation tools]
-    Question[Question and schema] --> Agent[Bounded model controller]
-    Agent --> AgentTools
-    AgentTools --> Ledger[Evidence ledger]
-    Ledger --> Agent
-    Ledger --> Cited[Validated selection and code-authored cited answer]
-```
+On the included synthetic fixture:
 
-`ingestion.py` validates input and retains bounded pre-inference examples. `qa_core.py` computes statistics, findings, severity and score using `policy.py`; `analysis.py` adds run metadata and safe errors. `llm.py` contains optional prose and authored fallback. `app.py`, `presentation.py` and `report.py` present results. Effective thresholds and profile/score versions accompany the report; timestamps do not affect deterministic results.
+> Why did conversion drop in March 2024 compared with February 2024?
 
-V2 reuses ingestion and adds `comparison.py` for structured comparison, `drift.py` for metrics/policy, `comparison_llm.py` for optional interpretation, `comparison_ui.py` for presentation/export, and `history.py` for explicit metadata saves. No dependency was added.
+An illustrative supported path is schema inspection → February/March rate comparison → segmentation by device and country → cited findings. Actual model paths and completion vary.
 
-## What the score means
+The verified tool result is **75% → 62.5% conversion**, a **12.5 percentage-point decline**. US mobile users account for **100% of the net observed decline** in this fixture. This is an arithmetic contribution, not a causal explanation. The [worked example](docs/INVESTIGATION.md) documents the data and contracts; this path is not a promise of a successful live run.
 
-The score is an **uncalibrated aggregate heuristic policy indicator**. Severity is a **local rule priority**, not inferred business importance. They answer different questions and are displayed separately: Quality Score, Critical Issues, High Issues, Medium Issues and Low Issues. Critical/high findings remain prominent regardless of the score. No reassuring score band hides them.
+### Benchmark commands
 
-One completely missing column among 200 can score **99.85** while producing a critical finding. Hundreds of advisory formatting warnings can score **100** because those checks are unscored. Neither result certifies correctness or full model readiness. The headline rounds to whole points; exact arithmetic stays in the report. The bundled sample computes **92.36**, displayed as **92**.
-
-Default score policy 1.0 starts at 100 and subtracts these category penalties:
-
-| Category | Penalty | Cap |
-|---|---|---:|
-| Missingness | `30 * missing_cells / all_cells` | 30 |
-| Exact duplicates | `20 * repeated_rows_after_first / rows` | 20 |
-| IQR outliers | `15 * min(1, 5 * eligible_outliers / all_finite_native_numeric_values)` | 15 |
-| Constant columns | `15 * constant_columns / columns` | 15 |
-| Near-constant columns | `5 * near_constant_columns / columns` | 5 |
-| Possible IDs | `3 * possible_id_columns / columns` | 3 |
-| Mixed parser results | `12 * mixed_columns / columns` | 12 |
-| Infinities | `10 * infinite_values / all_cells` | 10 |
-
-IQR score eligibility requires at least 1% flagged values in that numeric column. Zero denominators contribute zero. Category penalties round to six decimals; the final `max(0, 100 - penalties)` rounds to two. Empty datasets add a 100-point penalty. Constants and near-constants are exclusive; other signals overlap. Weights are engineering policy choices, not calibrated estimates. Width can dilute local defects; scores across unrelated datasets are not universal rankings.
-
-Worked example: six rows with `x=[0,1,2,3,100,missing]` and one constant group column incur 2.5 missingness + 15 outliers + 7.5 constant + 1.5 possible-ID penalties, giving **73.5**. See [scoring stress tests](docs/SCORING_STRESS_TEST.md), [threshold sensitivity](docs/THRESHOLD_SENSITIVITY.md) and [exact definitions](docs/profiling.md).
-
-## What the tool checks
-
-- pandas-null missingness, including completely empty columns
-- exact repeated rows after the first occurrence
-- mixed numeric/date parseability in text columns
-- IQR-flagged finite numeric values and explicit infinities
-- constant, near-constant and high-cardinality/possible-ID columns
-- blank strings, surrounding whitespace and potential casing variants (advisory, unscored)
-- empty datasets and bounded input preconditions
-
-Every finding includes its observed statistic, evidence, detection/severity rule and category: structural validation failure, statistical anomaly or heuristic warning. Severity boundaries, rationale and false-positive risks are documented in [CHECKS.md](docs/CHECKS.md). Ranking is severity, issue type, then column name. No cleaning is applied.
-
-## What the tool does NOT prove
-
-It does not establish semantic correctness, target leakage, fairness, causality, production readiness, domain validity, model fitness or absence of all data issues. Repeated events, negative accounting adjustments, constant metadata and future test dates can be legitimate. Suggestions require context.
-
-## LLM trust boundary
-
-1. **Deterministic evidence:** code-derived counts, rates, observed examples and score arithmetic.
-2. **Heuristic detection rules:** explicit policy thresholds and cautious interpretations of those observations.
-3. **Optional generated interpretation:** labeled prose with **Generated interpretation. Verify before acting.**
-
-The model cannot replace findings, severity, ranking or score. In V1/V2 explanation mode, requests contain allowlisted aggregate fields and anonymous column aliases, not raw values or real column names. Schema, issue-order and narrow lexical checks reject some invalid responses. **There is no semantic-verification guarantee for LLM prose.** Paraphrased invented facts, unsupported causes and contradictions can still pass. Rejected responses use authored guidance; deterministic cards and export remain available. See [LLM failure modes](docs/LLM_FAILURE_MODES.md).
-
-V1/V2 provider calls occur only on the explanation button, with a 25-second timeout, no SDK retries and a 2,000-token completion cap. V2.1 additionally calls the planner after **Run investigation** and explicit consent: up to eight requests, 15-second request timeout, no retries, 1,800 output tokens each. Investigation sends the question, real schema and bounded aggregate/group evidence. It accepts actions and evidence IDs only; final claims come from code, not generated prose. This prevents invented final prose but does not guarantee correct interpretation of the question. No suggestions execute transformations.
-
-## CSV representation and privacy
-
-CSV parsing itself can normalize values: `00123` may become `123`, `NA`/`null` may become missing, and numerical precision depends on inferred dtype. Date-looking strings are not automatically converted by this loader; the separate semantic date heuristic can still interpret ambiguous dates incorrectly. Currency/percentage strings may remain text.
-
-For suspicious or mixed columns, the explorer shows up to **three distinct decoded tokens, 80 characters each, from the first 100 logical records**, prioritizing recognized lexical risks within that window. These are pre-pandas field values, not original quote syntax or lossless bytes; they can miss later anomalies and are not row-aligned with parsed statistics. They do not change score or detection. Samples remain in server-session memory and are excluded from LLM requests, logs and Markdown exports. See [CSV inference](docs/CSV_INFERENCE.md).
-
-Hosted uploads reach the hosting server even without AI. This application does not deliberately persist uploads, but host swap, crash dumps and telemetry are outside that guarantee. Reports retain column names. Aggregates can still be sensitive. Read [SECURITY.md](docs/SECURITY.md).
-
-## Configuration and deployment
-
-Nonblank sidebar input takes precedence over environment variables, then Streamlit secrets; unavailable credentials select authored guidance. Supported settings are `OPENAI_API_KEY`, `OPENAI_BASE_URL` and `OPENAI_MODEL` (default `gpt-4o-mini`). `.env.example` is a reference; `.env` is not auto-loaded. Never commit `.env` or `.streamlit/secrets.toml`.
-
-Browser-selected provider endpoints must match the administrator allowlist (default OpenAI endpoint, configured server endpoint, or environment-only `QA_ALLOWED_LLM_BASE_URLS`). A different endpoint also requires a visitor's own key. A shared server key exposes its owner's API budget; no per-user quotas exist.
-
-Input guards: **10 MiB, 200,000 rows, 200 columns, 2 million cells, 256 MiB deep frame memory, 65,536 characters per text cell**. These are conservative per-input limits, not measured hosted capacity or a process-memory ceiling. Native finite magnitudes over 1e150 are rejected with rescaling guidance. Data is analyzed in memory; oversized input is rejected rather than silently sampled.
-
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for exact GitHub publication, remote Actions verification, Community Cloud setup, secrets and post-deployment checks. V2.2 remote GitHub Actions: **verified successful** for published source `af42718` ([run evidence](https://github.com/kaimouren/analysis_tool/actions/runs/37000303082)), including all existing checks and offline real-trajectory regression analysis. Subsequent commits have their own runs in Actions. Public Streamlit deployment: **Not verified**.
-
-## Performance
-
-V1.2 measured snapshot: Windows, Python 3.11.3, pandas 2.3.3, NumPy 2.4.6, eight logical CPUs, eight mixed columns; one fresh process per size. RSS sampled every 5 ms includes imports/input and can miss brief peaks. Core timing excludes CSV ingestion, charts and LLM calls. Background dependency setup was active; these are single observations, not an isolated performance comparison.
-
-| Rows | Core runtime | Sampled peak RSS |
-|---|---:|---:|
-| 500 | 0.0446 s | 76.80 MiB |
-| 10,000 | 0.1865 s | 82.22 MiB |
-| 100,000 | 1.5487 s | 126.20 MiB |
-
-Machine-specific observations, not latency percentiles or hosted capacity guarantees. [Recorded snapshot](benchmarks/v1-2-results.json); other current-release checks are listed in [VALIDATION.md](VALIDATION.md).
-
-```bash
-python benchmarks/benchmark.py
-python benchmarks/adversarial.py
-```
-
-Public ingestion/profiling entry points serialize within one process. Python 3.11 warning filters are global, and pandas/NumPy modify them inside common operations; narrowing only CSV/date locks previously leaked filters. Queueing trades throughput for predictable state. Retained/queued session data can still exhaust memory. The evidence and decision are in [CONCURRENCY.md](docs/CONCURRENCY.md).
-
-## Testing
+Install development dependencies first:
 
 ```bash
 python -m pip install -r requirements-dev.txt
-python -m pip check
+```
+
+Golden and full benchmarks make paid requests using environment credentials:
+
+```bash
+python -m evals.agent_benchmark --suite golden --runs 3 --output benchmark-results/golden
+python -m evals.agent_benchmark --suite full --runs 3 --output benchmark-results/full
+```
+
+Replay the shipped baseline offline, or compare a newly captured full run:
+
+```bash
+python -m evals.agent_benchmark --offline benchmarks/baselines/investigation-v2.2/runs.json --output benchmark-results/offline
+python -m evals.agent_benchmark --offline benchmark-results/full/runs.json --baseline benchmarks/baselines/investigation-v2.2/runs.json --output benchmark-results/comparison
+```
+
+Comparisons require matching scenario/repetition manifests and evaluator versions. Use a fresh output directory for each live capture. Reports include canonical `runs.json`, summaries, scored trajectories, failures, and regression decisions where requested.
+
+Run local regression checks:
+
+```bash
 python -m pytest -q
-python -m ruff check .
-python evals/run.py
-python evals/behavioral.py
-python evals/stress.py
-python evals/comparison.py
 python evals/investigation.py
 python -m evals.benchmark_ci
 ```
 
-Tests cover numerical examples, boundary conditions, parser failures, raw-sample bounds/privacy, dual score/severity UI, provider fallback, reproducibility and concurrency restoration. Eight synthetic fixtures and five fictional export scenarios provide regression/behavioral coverage, not population accuracy. Ten scoring stress cases expose misleading aggregate interpretations. Five controlled mutations were caught by assertions; optional browser tests exercise real uploads, charts and report downloads.
+## Version evolution
 
-[VALIDATION.md](VALIDATION.md) records current counts, environments and exact results. CI is configured for tests, lint, dependency consistency and evaluations. Configured CI, locally executed checks and remotely successful GitHub Actions are distinct claims.
+| Version | Focus |
+|---|---|
+| V1 | Deterministic single-dataset QA |
+| V1.1 | Robustness and red-team hardening |
+| V1.2 | Release engineering and CI |
+| V2 | Baseline comparison and drift |
+| V2.1 | Bounded investigation agent |
+| V2.2 | Real-model evaluation and regression CI |
 
-V2.1 adds 66 tests and 36 authored behavioral scenarios. These exercise real tools/controller with scripted planners; their measured selection/grounding/recovery metrics are regression results, not a live model accuracy study. `python tests/live_investigation_smoke.py` optionally uses configured environment credentials for a bounded synthetic real-provider run (up to eight requests). See the validation record for both successful and partial observed live runs.
+The current portfolio scope is complete through V2.2. The [validation record](VALIDATION.md) documents **272 passing tests on Windows and Linux**, plus deterministic and scripted evaluation results, separately from live-model performance.
 
 ## Limitations
 
-- Heuristic rules and weights are uncalibrated and can overlap or dilute local defects.
-- CSV inference is lossy; bounded source examples cannot recover an entire file or establish intended types.
-- Latin-1 fallback cannot prove original encoding. Short records can be null-padded; missing conventions are pandas defaults.
-- Large-integer extrema retain parsed integers; means, quantiles and IQR workspace remain approximate float64 calculations.
-- The global lock protects application analysis entry points, not arbitrary third-party threads or multi-process hosts.
-- No identity, request quotas, bounded admission, cancellation policy, tenant-isolation guarantee or production browser-load validation exists.
-- LLM prose can be wrong even after validation; live-provider compatibility is not guaranteed.
-- Investigation question interpretation and stopping use narrow heuristics; valid evidence can still be irrelevant. It requires explicit years and binary data for rate aggregation; median decomposition is unsupported. Aggregates and labels can reveal sensitive facts.
-- Dependency ranges are constrained but not a complete transitive lockfile; rerun validation when upgrading.
+- Scenarios are synthetic and manually designed; three repeats per scenario do not establish population reliability.
+- Results depend on model, provider, prompt, and runtime configuration. Strict scope selectors and accepted tool classes may penalize alternative reasonable paths.
+- Evidence provenance does not guarantee relevance, completeness, universal semantic correctness, or causal inference.
+- Arbitrary Python execution is deliberately unavailable. Rates require binary data; period analysis requires explicit years; median decomposition is unsupported.
+- CSV type inference can lose representation details. Quality scores and drift thresholds are uncalibrated heuristics.
+- Optional QA/comparison prose has weaker validation than investigation answers and can still be wrong.
+- No verified public deployment, tenant-isolation guarantee, per-user quotas, or production load validation is claimed.
+- Estimated cost is unavailable; no cost benchmark or pricing-derived total is reported.
 
-## Roadmap
+## Technical docs
 
-The current portfolio scope is **feature-complete through V2.2**: deterministic QA, robustness, release engineering, drift comparison, bounded investigation and agent evaluation/regression CI. There is no automatic V3 work. Explicit domain data contracts remain a possible future direction, not an implemented feature or current commitment.
+| Document | Read for |
+|---|---|
+| [Agent evaluation](docs/AGENT_EVALUATION.md) | Metric definitions, artifact contracts, CLI, and gate policy |
+| [Reliability case study](docs/AGENT_RELIABILITY_CASE_STUDY.md) | Experiments, discovered failures, and engineering lessons |
+| [Investigation architecture](docs/INVESTIGATION.md) | Tool contracts, math, limits, privacy, and worked example |
+| [Investigation red team](docs/V2_1_RED_TEAM.md) | Controller and evidence-boundary probes |
+| [V2 red team](docs/V2_RED_TEAM.md) | Comparison robustness and adversarial findings |
+| [Drift methods](docs/V2_DRIFT.md) | Distribution metrics, thresholds, and interpretation limits |
+| [QA checks](docs/CHECKS.md) | Detection rules, severity, and false-positive risks |
+| [Validation evidence](VALIDATION.md) | Recorded tests, environments, and release checks |
 
-No automatic cleaning, model training, target selection, external database, background jobs, authentication or monitoring platform is included. V2 adds optional local SQLite metadata history. See [V2 methods](docs/V2_DRIFT.md), [historical V1.2 release notes](docs/RELEASE_V1_2.md) and [interview guide](docs/INTERVIEW_GUIDE.md).
-
-## License
-
-[MIT](LICENSE).
+Licensed under [MIT](LICENSE).
