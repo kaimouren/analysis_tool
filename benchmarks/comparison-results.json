@@ -1,0 +1,39 @@
+{
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.3",
+    "pandas": "2.3.3",
+    "numpy": "2.4.6",
+    "logical_cpus": 8
+  },
+  "method": "Fresh process per size; both input frames retained; 5ms sampled RSS; core only, no ingestion/UI/history/LLM. No sampling of input rows. Not a hosted-capacity estimate.",
+  "cases": [
+    {
+      "rows_per_frame": 1000,
+      "columns_per_frame": 4,
+      "seconds": 0.0788,
+      "baseline_rss_mib": 75.6,
+      "sampled_peak_rss_mib": 77.48,
+      "incremental_peak_mib": 1.88,
+      "findings": 2
+    },
+    {
+      "rows_per_frame": 10000,
+      "columns_per_frame": 4,
+      "seconds": 0.4855,
+      "baseline_rss_mib": 77.56,
+      "sampled_peak_rss_mib": 86.2,
+      "incremental_peak_mib": 8.64,
+      "findings": 2
+    },
+    {
+      "rows_per_frame": 100000,
+      "columns_per_frame": 4,
+      "seconds": 4.7726,
+      "baseline_rss_mib": 96.04,
+      "sampled_peak_rss_mib": 167.7,
+      "incremental_peak_mib": 71.66,
+      "findings": 2
+    }
+  ]
+}

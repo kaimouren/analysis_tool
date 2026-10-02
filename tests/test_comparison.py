@@ -203,3 +203,44 @@ def test_concurrent_comparisons_restore_warning_filters_and_match_sequential():
 def test_invalid_threshold_policies_rejected(changes):
     with pytest.raises(ValueError):
         replace(DEFAULT_DRIFT_POLICY, **changes)
+
+
+def test_datetime_representation_change_without_coverage_change_is_informational():
+    a = pd.date_range('2024-01-01', periods=30)
+    result = compare_datasets(frame(a.strftime('%Y-%m-%d')), frame(a.strftime('%Y-%m-%dT%H:%M:%SZ')))
+    assert kinds(result) == {'datetime_representation'}
+    assert result['summary']['status'] == 'low'
+    assert result['columns']['value']['datetime']['end_change_days'] == 0
+
+
+def test_row_permutation_does_not_change_floating_results():
+    a = frame(np.random.default_rng(19).normal(size=1000))
+    b = a + .3
+    assert compare_datasets(a, b) == compare_datasets(a.iloc[::-1], b.sample(frac=1, random_state=7))
+
+
+def test_irregular_baseline_does_not_imply_expected_cadence():
+    dates = pd.date_range('2024-01-01', periods=100).delete([10, 30])
+    result = compare_datasets(frame(dates), frame(dates.delete(slice(40, 50))))
+    assert result['columns']['value']['datetime']['current_gap_count'] is None
+    assert 'datetime_gaps' not in kinds(result)
+
+
+def test_infinity_sign_change_remains_visible_when_finite_metric_unavailable():
+    result = compare_datasets(frame([np.inf] * 30), frame([-np.inf] * 30))
+    assert 'non_finite_count' in kinds(result)
+    assert result['columns']['value']['numeric']['ks'] is None
+    json.dumps(result, allow_nan=False)
+
+
+def test_small_categorical_shift_is_explicitly_unassessed():
+    result = compare_datasets(frame(['a']), frame(['b']))
+    assert result['columns']['value']['categorical']['status'] == 'insufficient_non_null_samples'
+    assert 'categorical_distribution' not in kinds(result)
+
+
+@pytest.mark.parametrize('current_a,expected', [(41, None), (40, 'moderate'), (25, 'high')])
+def test_category_threshold_neighbors_do_not_miss_decimal_boundaries(current_a, expected):
+    result = compare_datasets(frame(['a'] * 50 + ['b'] * 50), frame(['a'] * current_a + ['b'] * (100-current_a)))
+    found = [f for f in result['findings'] if f['kind'] == 'categorical_distribution']
+    assert ([f['severity'] for f in found] == [expected]) if expected else not found

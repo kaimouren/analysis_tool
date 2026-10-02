@@ -1,0 +1,327 @@
+{
+  "comparison_version": "2.0",
+  "note": "24 constructed scenarios with authored findings/status expectations and negative controls; not a population accuracy estimate.",
+  "cases": [
+    {
+      "case": "identical",
+      "expected_kinds": [],
+      "observed_kinds": [],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.01
+    },
+    {
+      "case": "row_count_drop",
+      "expected_kinds": [
+        "dataset_rows"
+      ],
+      "observed_kinds": [
+        "dataset_rows",
+        "numeric_distribution",
+        "unique_count"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.006
+    },
+    {
+      "case": "missingness_spike",
+      "expected_kinds": [
+        "missingness"
+      ],
+      "observed_kinds": [
+        "dataset_duplicate_pct",
+        "dataset_missing_pct",
+        "missingness",
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.007
+    },
+    {
+      "case": "mean_shift",
+      "expected_kinds": [
+        "numeric_distribution"
+      ],
+      "observed_kinds": [
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0071
+    },
+    {
+      "case": "variance_shift_same_mean",
+      "expected_kinds": [
+        "numeric_distribution"
+      ],
+      "observed_kinds": [
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0051
+    },
+    {
+      "case": "new_category",
+      "expected_kinds": [
+        "category_membership"
+      ],
+      "observed_kinds": [
+        "categorical_distribution",
+        "category_membership"
+      ],
+      "status": "moderate",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0073
+    },
+    {
+      "case": "category_distribution_flip",
+      "expected_kinds": [
+        "categorical_distribution"
+      ],
+      "observed_kinds": [
+        "categorical_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0069
+    },
+    {
+      "case": "column_removed",
+      "expected_kinds": [
+        "column_removed"
+      ],
+      "observed_kinds": [
+        "column_removed"
+      ],
+      "status": "moderate",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0133
+    },
+    {
+      "case": "column_added",
+      "expected_kinds": [
+        "column_added"
+      ],
+      "observed_kinds": [
+        "column_added"
+      ],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0057
+    },
+    {
+      "case": "numeric_to_text",
+      "expected_kinds": [
+        "type_change"
+      ],
+      "observed_kinds": [
+        "dataset_duplicate_pct",
+        "type_change",
+        "unique_count",
+        "uniqueness"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.007
+    },
+    {
+      "case": "datetime_truncated",
+      "expected_kinds": [
+        "datetime_coverage",
+        "datetime_end_regression"
+      ],
+      "observed_kinds": [
+        "dataset_rows",
+        "datetime_coverage",
+        "datetime_end_regression",
+        "unique_count"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0056
+    },
+    {
+      "case": "id_uniqueness_loss",
+      "expected_kinds": [
+        "uniqueness"
+      ],
+      "observed_kinds": [
+        "dataset_duplicate_pct",
+        "unique_count",
+        "uniqueness"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0053
+    },
+    {
+      "case": "small_harmless_shift",
+      "expected_kinds": [],
+      "observed_kinds": [],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0076
+    },
+    {
+      "case": "several_moderate_shifts",
+      "expected_kinds": [
+        "numeric_distribution"
+      ],
+      "observed_kinds": [
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0157
+    },
+    {
+      "case": "one_severe_shift",
+      "expected_kinds": [
+        "numeric_distribution"
+      ],
+      "observed_kinds": [
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0147
+    },
+    {
+      "case": "malformed_dates",
+      "expected_kinds": [
+        "datetime_parseability"
+      ],
+      "observed_kinds": [
+        "dataset_duplicate_pct",
+        "datetime_parseability",
+        "datetime_representation",
+        "type_change",
+        "uniqueness"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0056
+    },
+    {
+      "case": "extreme_safe_numbers",
+      "expected_kinds": [],
+      "observed_kinds": [],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0048
+    },
+    {
+      "case": "all_null_column",
+      "expected_kinds": [],
+      "observed_kinds": [],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0058
+    },
+    {
+      "case": "tiny_sample",
+      "expected_kinds": [],
+      "observed_kinds": [],
+      "status": "low",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.005
+    },
+    {
+      "case": "completely_different_schema",
+      "expected_kinds": [
+        "no_shared_columns"
+      ],
+      "observed_kinds": [
+        "column_added",
+        "column_removed",
+        "dataset_duplicate_pct",
+        "no_shared_columns"
+      ],
+      "status": "not_comparable",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0021
+    },
+    {
+      "case": "zero_frequency_unseen_category",
+      "expected_kinds": [
+        "categorical_distribution",
+        "category_membership"
+      ],
+      "observed_kinds": [
+        "categorical_distribution",
+        "category_membership"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0053
+    },
+    {
+      "case": "constant_numeric_shift",
+      "expected_kinds": [
+        "numeric_distribution"
+      ],
+      "observed_kinds": [
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0068
+    },
+    {
+      "case": "missingness_improves",
+      "expected_kinds": [
+        "missingness"
+      ],
+      "observed_kinds": [
+        "dataset_duplicate_pct",
+        "dataset_missing_pct",
+        "missingness",
+        "numeric_distribution"
+      ],
+      "status": "high",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0047
+    },
+    {
+      "case": "empty_baseline",
+      "expected_kinds": [
+        "empty_dataset"
+      ],
+      "observed_kinds": [
+        "empty_dataset",
+        "type_change"
+      ],
+      "status": "not_comparable",
+      "failures": [],
+      "passed": true,
+      "seconds": 0.0043
+    }
+  ],
+  "passed": true
+}

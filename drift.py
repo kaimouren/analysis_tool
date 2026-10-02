@@ -6,6 +6,7 @@ import numpy as np
 
 
 COMPARISON_VERSION = "2.0"
+BOUNDARY_TOLERANCE = 1e-12
 
 
 @dataclass(frozen=True)
@@ -64,7 +65,11 @@ def change(baseline, current, unit="count"):
 
 
 def band(value, warn, high):
-    return "high" if abs(value) >= high else "moderate" if abs(value) >= warn else "info"
+    return "high" if meets(abs(value), high) else "moderate" if meets(abs(value), warn) else "info"
+
+
+def meets(value, threshold):
+    return value >= threshold or math.isclose(value, threshold, rel_tol=BOUNDARY_TOLERANCE, abs_tol=BOUNDARY_TOLERANCE)
 
 
 def ks_distance(baseline, current):
@@ -92,7 +97,8 @@ def numeric_stats(values):
     n = len(values)
     if not n:
         return {k: None for k in ('mean', 'median', 'std', 'min', 'max', 'q05', 'q25', 'q75', 'q95')} | {"count": 0}
-    array = np.asarray(values, dtype=float)
+    # Canonical ordering also makes floating aggregation invariant to row order.
+    array = np.asarray(sorted(values), dtype=float)
     scale = float(np.max(np.abs(array))) or 1.0
     scaled = array / scale
     quantiles = np.quantile(scaled, [.05, .25, .5, .75, .95]) * scale

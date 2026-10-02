@@ -7,7 +7,7 @@ import warnings
 import numpy as np
 import pandas as pd
 
-from drift import COMPARISON_VERSION, DEFAULT_DRIFT_POLICY, band, change, ks_distance, numeric_stats
+from drift import COMPARISON_VERSION, DEFAULT_DRIFT_POLICY, band, change, ks_distance, numeric_stats, meets
 from ingestion import InputValidationError, serialized_analysis, validate_frame
 from policy import DEFAULT_THRESHOLDS
 
@@ -39,7 +39,9 @@ def _describe(series, policy):
                    "missing_pct": _pct(len(series) - len(present), len(series)), "unique_count": unique,
                    "uniqueness_ratio": unique_ratio, "numeric_parseable_pct": 100 * fraction if len(present) else None,
                    "datetime_parseable_pct": 100 * date_fraction if len(present) else None,
-                   "infinite_count": len(present) - len(finite) if numeric else 0}
+                   "infinite_count": len(present) - len(finite) if numeric else 0,
+                   "positive_infinity_count": int(present.eq(np.inf).sum()) if numeric else 0,
+                   "negative_infinity_count": int(present.eq(-np.inf).sum()) if numeric else 0}
     description['datetime_representation'] = (
         {"native_datetime": 1.0} if native_date and len(present) else
         {"date_only": float(text.str.fullmatch(r'\d{4}-\d{2}-\d{2}').sum()) / len(present),
@@ -165,14 +167,14 @@ def compare_datasets(baseline_df, current_df, *, policy=DEFAULT_DRIFT_POLICY):
             schema['type_changes'].append({"column": name, **evidence})
             add('type_change', name, 'moderate' if risky else 'info', evidence)
         missing = entry['missingness']['absolute_change']
-        if missing is not None and abs(missing) >= policy.missing_warn_pp:
+        if missing is not None and meets(abs(missing), policy.missing_warn_pp):
             add('missingness', name, band(missing, policy.missing_warn_pp, policy.missing_high_pp), entry['missingness'])
         unique = entry['cardinality']['uniqueness_ratio']['absolute_change']
         enough = min(a['non_null_count'], b['non_null_count']) >= policy.min_distribution_count
-        if enough and unique is not None and abs(unique * 100) >= policy.unique_warn_pp:
+        if enough and unique is not None and meets(abs(unique * 100), policy.unique_warn_pp):
             add('uniqueness', name, band(unique * 100, policy.unique_warn_pp, policy.unique_high_pp), entry['cardinality']['uniqueness_ratio'])
         count_change = entry['cardinality']['unique_count']['relative_change_pct']
-        if enough and count_change is not None and abs(count_change) >= policy.unique_count_warn_pct:
+        if enough and count_change is not None and meets(abs(count_change), policy.unique_count_warn_pct):
             add('unique_count', name, 'info', entry['cardinality']['unique_count'])
         if a['family'] == b['family'] == 'numeric':
             distance = ks_distance(av, bv)
@@ -180,15 +182,15 @@ def compare_datasets(baseline_df, current_df, *, policy=DEFAULT_DRIFT_POLICY):
             entry['numeric'] = {"baseline": numeric_stats(av), "current": numeric_stats(bv), "ks": distance,
                                 "assessment": 'available' if eligible else 'insufficient_finite_samples',
                                 "precision": 'Moments/quantiles use float64; extrema and KS retain integer ordering.'}
-            if eligible and distance >= policy.ks_warn:
+            if eligible and meets(distance, policy.ks_warn):
                 add('numeric_distribution', name, band(distance, policy.ks_warn, policy.ks_high), {"ks": distance, "baseline_count": len(av), "current_count": len(bv)})
-            infinity_delta = b['infinite_count'] - a['infinite_count']
-            if infinity_delta:
-                add('non_finite_count', name, 'info', change(a['infinite_count'], b['infinite_count']))
+            if any(a[k] != b[k] for k in ('positive_infinity_count', 'negative_infinity_count')):
+                add('non_finite_count', name, 'info',
+                    {k: change(a[k], b[k]) for k in ('positive_infinity_count', 'negative_infinity_count')})
         elif a['family'] in ('text', 'numeric-like text', 'empty') and b['family'] in ('text', 'numeric-like text', 'empty'):
             cat = _categorical(ap, bp, policy)
             entry['categorical'] = cat
-            if enough and cat['tvd'] is not None and cat['tvd'] >= policy.tvd_warn:
+            if enough and cat['tvd'] is not None and meets(cat['tvd'], policy.tvd_warn):
                 add('categorical_distribution', name, band(cat['tvd'], policy.tvd_warn, policy.tvd_high), {"tvd": cat['tvd'], "baseline_count": len(ap), "current_count": len(bp)})
             if cat['status'] != 'suppressed_high_cardinality' and (cat['new_count'] or cat['disappeared_count']):
                 add('category_membership', name, 'info', {"new_count": cat['new_count'], "disappeared_count": cat['disappeared_count']})
@@ -202,7 +204,7 @@ def compare_datasets(baseline_df, current_df, *, policy=DEFAULT_DRIFT_POLICY):
             if a['datetime_representation'] != b['datetime_representation']:
                 add('datetime_representation', name, 'info', {"baseline": a['datetime_representation'], "current": b['datetime_representation']})
             parse_delta = change(a['datetime_parseable_pct'], b['datetime_parseable_pct'], 'percentage_points')
-            if parse_delta['absolute_change'] is not None and abs(parse_delta['absolute_change']) >= policy.missing_warn_pp:
+            if parse_delta['absolute_change'] is not None and meets(abs(parse_delta['absolute_change']), policy.missing_warn_pp):
                 add('datetime_parseability', name, band(parse_delta['absolute_change'], policy.missing_warn_pp, policy.missing_high_pp), parse_delta)
             if min(len(ao), len(bo)) >= policy.min_distribution_count:
                 if ac['span_days'] > 0 and bc['span_days'] / ac['span_days'] <= policy.datetime_span_ratio:

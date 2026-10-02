@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import subprocess
 import shutil
+import socket
 import tempfile
 import time
 from urllib.request import urlopen
@@ -36,15 +37,19 @@ def wait_for(check, timeout=40):
 
 
 with tempfile.TemporaryDirectory(prefix="qa-browser-") as temporary:
+    with socket.socket() as port_probe:
+        port_probe.bind(('127.0.0.1', 0))
+        debug_port = port_probe.getsockname()[1]
+    app_url = "http://127.0.0.1:" + os.getenv("QA_BROWSER_PORT", "8501")
     process = subprocess.Popen([chrome, "--headless=new", "--disable-gpu", "--no-first-run",
-                                "--remote-debugging-port=9223", "--remote-allow-origins=*",
+                                f"--remote-debugging-port={debug_port}", "--remote-allow-origins=*",
                                 f"--user-data-dir={temporary}", "--window-size=1440,1100",
-                                "http://127.0.0.1:8501"], stdout=subprocess.DEVNULL,
+                                app_url], stdout=subprocess.DEVNULL,
                                stderr=subprocess.DEVNULL,
                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     try:
-        tabs = wait_for(lambda: json.load(urlopen("http://127.0.0.1:9223/json", timeout=2)))
-        page = next(tab for tab in tabs if tab["type"] == "page")
+        page = wait_for(lambda: next((tab for tab in json.load(urlopen(f"http://127.0.0.1:{debug_port}/json", timeout=2))
+                                     if tab['type'] == 'page' and tab['url'].rstrip('/') == app_url), None))
         with connect(page["webSocketDebuggerUrl"], max_size=20_000_000) as ws:
             sequence = 0
 
@@ -62,12 +67,16 @@ with tempfile.TemporaryDirectory(prefix="qa-browser-") as temporary:
             def evaluate(expression):
                 return command("Runtime.evaluate", {"expression": expression, "returnByValue": True})["result"].get("value")
 
-            wait_for(lambda: evaluate("!!document.querySelector('input[type=file]')"))
+            try:
+                wait_for(lambda: evaluate("!!document.querySelector('input[type=file]')"))
+            except AssertionError:
+                print('Browser startup diagnostic:', evaluate("JSON.stringify({url: location.href, title: document.title, state: document.readyState})"))
+                raise
             assert evaluate("document.querySelector('input[type=password]').value.length === 0"), "Start the app without an API key"
-            def upload(path):
+            def upload(path, index=0):
                 document = command("DOM.getDocument")
-                node = command("DOM.querySelector", {"nodeId": document["root"]["nodeId"], "selector": "input[type=file]"})
-                command("DOM.setFileInputFiles", {"nodeId": node["nodeId"], "files": [str(path)]})
+                nodes = command("DOM.querySelectorAll", {"nodeId": document["root"]["nodeId"], "selector": "input[type=file]"})
+                command("DOM.setFileInputFiles", {"nodeId": nodes["nodeIds"][index], "files": [str(path)]})
 
             upload(ROOT / "examples/messy_sample.csv")
             wait_for(lambda: evaluate("document.body.innerText.includes('500') && document.body.innerText.includes('Quality Score')"))
@@ -94,7 +103,28 @@ with tempfile.TemporaryDirectory(prefix="qa-browser-") as temporary:
             wait_for(lambda: evaluate("document.body.innerText.includes('Could not parse CSV')"))
             assert not evaluate("document.body.innerText.includes('Traceback')")
             assert not evaluate("Array.from(document.querySelectorAll('button')).some(b => b.innerText.includes('Download Markdown report'))")
-            print("PASS: problematic and clean CSV uploads, malformed-input recovery, offline results, Plotly chart, Markdown download, screenshot")
+            assert evaluate("Array.from(document.querySelectorAll('label')).some(e => {if(e.innerText.trim() === 'Compare Against Baseline') {e.click(); return true;} return false;})")
+            wait_for(lambda: evaluate("document.querySelectorAll('input[type=file]').length === 2"))
+            shifted = Path(temporary) / 'current.csv'
+            shifted.write_text('signal\n' + '\n'.join(str(50.01 + n * .02) for n in range(100)), encoding='utf-8')
+            upload(clean, 0)
+            upload(shifted, 1)
+            wait_for(lambda: evaluate("Array.from(document.querySelectorAll('button')).some(b => b.innerText === 'Compare' && !b.disabled)"))
+            evaluate("Array.from(document.querySelectorAll('button')).find(b => b.innerText === 'Compare').click()")
+            wait_for(lambda: evaluate("document.body.innerText.includes('High observed drift')"))
+            assert evaluate("document.body.innerText.includes('Baseline: clean.csv') && document.body.innerText.includes('Current: current.csv')")
+            assert evaluate("Array.from(document.querySelectorAll('button')).some(b => b.innerText.includes('Explain comparison with AI') && b.disabled)")
+            evaluate("Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Download comparison report')).click()")
+            comparison_download = wait_for(lambda: next(Path(temporary).glob('comparison_report*.md'), None))
+            assert 'numeric' in comparison_download.read_text(encoding='utf-8')
+            capture = command('Page.captureScreenshot', {'format': 'png'})
+            (ROOT / 'docs/comparison.png').write_bytes(base64.b64decode(capture['data']))
+            upload(malformed, 1)
+            wait_for(lambda: evaluate("!Array.from(document.querySelectorAll('button')).some(b => b.innerText.includes('Download comparison report'))"))
+            evaluate("Array.from(document.querySelectorAll('button')).find(b => b.innerText === 'Compare').click()")
+            wait_for(lambda: evaluate("document.body.innerText.includes('Could not parse CSV')"))
+            assert not evaluate("document.body.innerText.includes('Traceback')")
+            print("PASS: V1 uploads/recovery/chart/export; V2 baseline/current uploads, no-key mode, direction, drift, export, stale-result clearing and malformed-input recovery; screenshots")
     finally:
         process.terminate()
         process.wait(timeout=15)
