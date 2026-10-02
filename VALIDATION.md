@@ -1,5 +1,111 @@
 # Validation evidence
 
+## V2.2 agent evaluation acceptance (2026-10-02)
+
+Baseline: published `27a58f6`, tree-equivalent local `465d83c`, 224 existing tests.
+No analytics tool or dependency was added. Production prompt remains planner-v2.1.
+
+| Check | Observed result |
+|---|---|
+| Windows / Python 3.11.3 | **272 passed in 26.02s**, including **48 V2.2 tests** |
+| Debian / Python 3.11.2 | **272 passed in 23.46s** |
+| Ruff / dependency consistency | Passed on both platforms |
+| Existing evals | **8/8, 5/5, 10/10, 24/24**, unchanged **36/36 scripted investigation scenarios** |
+| Full real-model capture | **108/108 terminal captures**, 36 scenarios × 3 repeats; **21 successful** |
+| Candidate prompt capture | **36/36 terminal captures**, 12 golden scenarios × 3 repeats |
+| Budget experiment | **12/12 terminal captures**, 2 scenarios × 3 repeats × 2 budgets |
+| Offline baseline replay | Windows and Linux passed, without API calls |
+| Credential/private-path scan | **143 files, zero matches**; heuristic patterns plus configured-key matching |
+| Remote V2.2 Actions | Pending publication at this local acceptance snapshot; follow-up records the actual run |
+| Optional paid GitHub workflow | Implemented; not manually executed on GitHub in this pass |
+| Public app deployment | Not verified |
+
+All **156 new real investigations** used synthetic fixtures, requested
+`gpt-4o-mini` at `api.openai.com`, three concurrent workers, temperature omitted
+(provider default), no SDK retries, 15-second request timeout and a soft
+120-second overall deadline. Normal limits were eight steps/eight calls/three
+errors. Full capture began **2026-10-02 10:49:32 UTC**. A completed capture is a
+recorded terminal outcome, not necessarily a successful task. The golden baseline
+reuses the corresponding full-suite runs; it is not another 36 paid runs.
+
+### Real-model observations
+
+| Full baseline metric | Value |
+|---|---:|
+| Scenario Success Rate | **4/36 = 11.11%**, all three repeats pass |
+| Run Success Rate | **21/108 = 19.44%** |
+| Tool Selection Accuracy / Argument Validity | **69.01% / 93.32%** |
+| Evidence Grounding / Coverage | **100% / 43.67%** |
+| Unsupported / Contradicted Claim Rate | **0% / 0%**, 255 supported claims |
+| Recovery Rate | **37.93%**, macro mean across 29 runs with errors |
+| Premature Stop / Redundant Tool Rate | **54.63% / 2.17%** |
+| Average calls / successful calls | **2.81 / 2.30** |
+| Stop Accuracy | **26.85%** |
+| Mean / median latency | **15.61s / 15.13s** |
+| Average input / output tokens | **12,107 / 201.03**, 103 runs with complete available usage |
+| Estimated cost | **Unavailable**; no pricing inferred |
+
+Four scenarios passed 3/3, six were mixed and 26 passed 0/3. Unstable scenarios:
+`conversion_device` 2/3, `missingness_increase` 1/3, `duplicate_increase` 2/3,
+`weak_names` 1/3, `missing_year` 2/3 and `recover_wrong_date` 1/3. Reports retain
+mean/min/max/population standard deviation, denominators and path variance.
+
+Golden prompt A/B: success **8/36 → 11/36** (+8.33 pp), but critical
+`conversion_device` regressed **2/3 → 1/3**. The gate **failed**; no prompt was
+promoted. Budget probe: **0/6 success at both four and eight steps**; calls
+2.83 → 3.00, latency 19.24s → 19.51s, premature stops 5/6 → 6/6; one four-step
+run timed out. These small experiments do not establish a causal prompt/budget effect.
+
+### Evaluation, taxonomy and regression policy
+
+Layer 1 remains scripted controller/tool regression and does not measure model
+accuracy. Layer 2 uses real repeated decisions and deterministic offline scoring,
+without an LLM judge. Each scenario specifies evidence, scope, accepted classes,
+status and budget. Six recovery probes inject one disclosed failure before real
+model decisions; forced calls are excluded from model-selection/argument
+denominators but included in recovery/call budgets. Independent tool replay catches
+forged answer/ledger pairs. Provenance and task coverage are scored separately.
+
+Overlapping failure counts: incomplete answer **79**, missing required evidence
+**64**, premature stop **59**, unexpected status **54**, wrong tool **42**,
+unrecovered error **18**, wrong arguments **17**, repeated call **7**, timeout **5**.
+Provider failures remain in success denominators. Empty-claim runs do not inflate
+grounding, and unknown final-request usage is excluded from token averages.
+
+The [saved baseline](benchmarks/baselines/investigation-v2.2/summary.md) preserves
+failures. Unsupported/contradicted claims, altered tool evidence and grounding
+below 99% fail safety gates. Any critical scenario losing a successful repeat
+fails. Other adverse changes use max(5 pp, twice measured baseline standard error):
+run success **7.62 pp**, scenario success **10.48 pp**, coverage **9.28 pp**,
+argument validity **5 pp**, recovery **18.02 pp**, premature stops **9.58 pp**.
+These are operational tolerances, not significance tests. Lesser changes and
+undefined denominators are warnings; configuration differences are informational.
+
+Standard CI replays saved artifacts against pinned scores and confirms the known
+candidate critical regression remains detectable, with no external model calls.
+A separate manual workflow accepts model, repeats, suite, prompt and subset and
+uploads synthetic artifacts. Frozen replay cannot measure a new planner's
+decisions; future prompt/provider changes need fresh real runs.
+
+### Red-team and limitations
+
+Tests cover malformed/missing/duplicate artifacts, impossible metrics, altered
+evidence, wrong scopes, equivalent repeated calls, premature stops, recovery,
+claim classification, partial capture, timeouts, incompatible versions, missing/
+stale baselines, and aggregate improvement hiding critical regression. Initial
+Linux replay exposed platform-dependent CSV fingerprint line endings; explicit
+canonical CRLF hashing fixed it without changing data or recorded actions.
+Ambiguous-task error limits now cannot count as clarification; injected test
+planners cannot be mislabeled as real execution. No reasoning or credentials are saved.
+
+Real-model benchmark results are model-, prompt-, provider-, and
+configuration-specific and should not be interpreted as universal agent accuracy.
+Three repeats, synthetic tasks, narrow scope selectors, accepted-class policy,
+an unpinned model alias and concurrent provider calls limit generalization.
+See [metric definitions and commands](docs/AGENT_EVALUATION.md) and the
+[case study](docs/AGENT_RELIABILITY_CASE_STUDY.md). V2.2 completes the current
+portfolio scope; no V3 work was started.
+
 ## V2.1 Investigation Agent acceptance (2026-10-02)
 
 Baseline was the unchanged 158-test V2 tree, identical to published `8ab606f`.

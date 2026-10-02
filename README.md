@@ -4,6 +4,22 @@
 
 V2 adds **baseline comparison and data drift analysis**. Keep the existing health check, or compare a previous CSV with a current CSV. Python computes all evidence, metrics, ordering and severity; optional generated text only explains that evidence.
 
+## Agent Reliability Evaluation (V2.2)
+
+V2.2 adds evaluation infrastructure rather than more analytics tools. **Layer 1** preserves the 36 scripted controller/tool scenarios. **Layer 2** benchmarks real-model trajectories on 36 synthetic tasks with repeated runs, explicit evidence requirements, a failure taxonomy, scenario stability and saved-baseline regression gates. A grounded answer can still omit required analyses or use the wrong time window.
+
+Actual `gpt-4o-mini` / OpenAI / `planner-v2.1` observations: **21/108 successful runs (19.44%)**, **4/36 scenarios passing all three repeats**, and **100% provenance for 255 material claims**. Six tasks had mixed repeat outcomes. These are configuration-specific benchmark results, not universal agent accuracy or the scripted suite's score.
+
+The candidate prompt improved golden success from **8/36 to 11/36**, but critical `conversion_device` dropped from **2/3 to 1/3**. The regression gate rejected it; the production prompt remains unchanged. This is why evaluating only final-answer grounding or aggregate success is insufficient.
+
+```bash
+python -m evals.agent_benchmark --suite golden --runs 3 --output benchmark-results/golden
+python -m evals.agent_benchmark --offline benchmarks/baselines/investigation-v2.2/runs.json --output benchmark-results/offline
+python -m evals.benchmark_ci
+```
+
+Live runs require environment credentials. Offline scoring and standard CI need no API access; a separate manual workflow optionally runs paid synthetic benchmarks. Reports include tool paths/usage, evidence coverage, failure examples, repeated-run variability and baseline diffs. Read the [technical case study](docs/AGENT_RELIABILITY_CASE_STUDY.md), [metric definitions and CLI](docs/AGENT_EVALUATION.md), and [full measured baseline](benchmarks/baselines/investigation-v2.2/summary.md).
+
 ## Investigate a question (V2.1)
 
 Select **Investigate Dataset**, upload a CSV or enable its built-in sample, and ask a question such as **"Why did conversion drop in March 2024 compared with February 2024?"** Configure a model, consent to sending your question, schema names and bounded group aggregates, then run. The model chooses registered tools, inspects evidence, recovers from structured errors and selects citations. Python computes every statistic and authors the factual answer. The UI shows observable actions, exact arguments, limitations and an evidence download.
@@ -194,6 +210,7 @@ python evals/behavioral.py
 python evals/stress.py
 python evals/comparison.py
 python evals/investigation.py
+python -m evals.benchmark_ci
 ```
 
 Tests cover numerical examples, boundary conditions, parser failures, raw-sample bounds/privacy, dual score/severity UI, provider fallback, reproducibility and concurrency restoration. Eight synthetic fixtures and five fictional export scenarios provide regression/behavioral coverage, not population accuracy. Ten scoring stress cases expose misleading aggregate interpretations. Five controlled mutations were caught by assertions; optional browser tests exercise real uploads, charts and report downloads.
@@ -216,7 +233,7 @@ V2.1 adds 66 tests and 36 authored behavioral scenarios. These exercise real too
 
 ## Roadmap
 
-The next candidate is **explicit data contracts**: declared types, missing-value conventions, uniqueness/key rules and business constraints. This would make intent explicit rather than adding more guesses. It is not implemented in V1.2.
+The current portfolio scope is **feature-complete through V2.2**: deterministic QA, robustness, release engineering, drift comparison, bounded investigation and agent evaluation/regression CI. There is no automatic V3 work. Explicit domain data contracts remain a possible future direction, not an implemented feature or current commitment.
 
 No automatic cleaning, model training, target selection, external database, background jobs, authentication or monitoring platform is included. V2 adds optional local SQLite metadata history. See [V2 methods](docs/V2_DRIFT.md), [historical V1.2 release notes](docs/RELEASE_V1_2.md) and [interview guide](docs/INTERVIEW_GUIDE.md).
 
