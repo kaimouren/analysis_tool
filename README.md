@@ -2,6 +2,29 @@
 
 **A deterministic-first CSV health check that surfaces common structural and statistical risks before modeling, with optional LLM explanations.**
 
+V2 adds **baseline comparison and data drift analysis**. Keep the existing health check, or compare a previous CSV with a current CSV. Python computes all evidence, metrics, ordering and severity; optional generated text only explains that evidence.
+
+## Compare against a baseline (V2)
+
+Select **Compare Against Baseline**, upload **Baseline dataset** and **Current dataset**, then click **Compare**. A built-in example works without files or a provider key. Results include schema, row/column counts, missingness/duplicates, cardinality, numeric/categorical distributions and conservative datetime coverage, with shared-column details and Markdown download.
+
+An illustrative review might compare 100k January customer records with 95k February records and reveal mobile share +18 percentage points, email missingness +12 percentage points, and a downward revenue distribution shift. These observations do not establish why changes happened or whether they are harmful.
+
+Numeric comparison uses KS distance; categorical comparison uses total variation distance. Missingness differences are **percentage points**. Zero denominators show N/A. Low/Moderate/High observed drift is a heuristic, not a calibrated probability or quality score. Low drift can coexist with unhealthy or unassessed data.
+
+![Baseline/current comparison](docs/comparison.png)
+
+The independent API is:
+
+```python
+from comparison import compare_datasets
+result = compare_datasets(baseline_df, current_df)
+```
+
+All rows are analyzed. High-cardinality category details are suppressed; small-sample distances receive no distribution severity. Finite numeric magnitudes over 1e150 are rejected. Read [V2 methods, thresholds, schema and limitations](docs/V2_DRIFT.md).
+
+Optional **local run history** stores metadata only. On a trusted single-user installation, set `QA_HISTORY_PATH` to `.qa-history/comparisons.sqlite3`, restart, and use **Save run to local history**. Recent history retains 50 entries. Leave the variable unset on public deployments: server-local history is not isolated between visitors. Raw datasets, category values and generated prose are never stored. Derived baseline snapshots are deferred; direct file comparison is supported.
+
 ## Live Demo
 
 Public deployment: **Not verified**. No public URL is claimed. Run locally and select **Explore the messy sample**.
@@ -48,9 +71,16 @@ flowchart LR
     Score --> Report
     Optional --> Report
     Optional --> UI
+    Baseline[Baseline CSV] --> Comparison[Deterministic comparison]
+    Current[Current CSV] --> Comparison
+    Comparison --> DriftUI[Drift UI and report]
+    Comparison --> DriftLLM[Optional grounded explanation]
+    Comparison --> History[Opt-in local metadata history]
 ```
 
 `ingestion.py` validates input and retains bounded pre-inference examples. `qa_core.py` computes statistics, findings, severity and score using `policy.py`; `analysis.py` adds run metadata and safe errors. `llm.py` contains optional prose and authored fallback. `app.py`, `presentation.py` and `report.py` present results. Effective thresholds and profile/score versions accompany the report; timestamps do not affect deterministic results.
+
+V2 reuses ingestion and adds `comparison.py` for structured comparison, `drift.py` for metrics/policy, `comparison_llm.py` for optional interpretation, `comparison_ui.py` for presentation/export, and `history.py` for explicit metadata saves. No dependency was added.
 
 ## What the score means
 
@@ -148,6 +178,7 @@ python -m ruff check .
 python evals/run.py
 python evals/behavioral.py
 python evals/stress.py
+python evals/comparison.py
 ```
 
 Tests cover numerical examples, boundary conditions, parser failures, raw-sample bounds/privacy, dual score/severity UI, provider fallback, reproducibility and concurrency restoration. Eight synthetic fixtures and five fictional export scenarios provide regression/behavioral coverage, not population accuracy. Ten scoring stress cases expose misleading aggregate interpretations. Five controlled mutations were caught by assertions; optional browser tests exercise real uploads, charts and report downloads.
@@ -169,7 +200,7 @@ Tests cover numerical examples, boundary conditions, parser failures, raw-sample
 
 The next candidate is **explicit data contracts**: declared types, missing-value conventions, uniqueness/key rules and business constraints. This would make intent explicit rather than adding more guesses. It is not implemented in V1.2.
 
-No automatic cleaning, model training, target selection, database, background jobs, authentication or monitoring platform is included. See [release notes](docs/RELEASE_V1_2.md) and [interview guide](docs/INTERVIEW_GUIDE.md).
+No automatic cleaning, model training, target selection, external database, background jobs, authentication or monitoring platform is included. V2 adds optional local SQLite metadata history. See [V2 methods](docs/V2_DRIFT.md), [historical V1.2 release notes](docs/RELEASE_V1_2.md) and [interview guide](docs/INTERVIEW_GUIDE.md).
 
 ## License
 

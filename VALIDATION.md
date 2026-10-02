@@ -1,5 +1,65 @@
 # Validation evidence
 
+## V2 baseline comparison acceptance (2026-10-02)
+
+Baseline: existing local V1.2 snapshot matched the published `d565180` tree. Before V2, **92 tests passed in 18.92s**, Ruff passed, and the remote branch was inspected without rewriting history. Application 2.0.0 adds comparison schema 2.0; V1 profile 1.4 and score policy 1.0 remain unchanged. No package dependency was added.
+
+| Check | Observed result |
+|---|---|
+| Windows 10 / Python 3.11.3 full suite | **158 passed in 18.54s**: 92 existing tests + 66 V2 cases |
+| Debian 12 / WSL / Python 3.11.2 full suite | **158 passed in 34.94s** |
+| Ruff and `pip check` | Passed on Windows and Linux |
+| Existing synthetic / behavioral / score evals | **8/8, 5/5, 10/10**, unchanged expectations |
+| New V2 structured evals | **24/24**, including negative controls and direction/JSON invariants |
+| Real Chrome smoke | Passed V1 and V2 uploads, no-key mode, charts (V1), baseline/current direction, comparison drift, Markdown downloads, malformed-input recovery and stale-download clearing |
+| Provider boundary | Mocked valid/rejected/failing calls passed; **V2 live provider: Not verified**, no paid V2 call made |
+| Public Streamlit deployment | **Not verified**; no tested public URL |
+| Deliverable credential/private-path scan | **94 files; zero matches**, using common credential patterns plus configured-key matches and machine home-path patterns |
+
+The browser's first load attempts timed out because the fixed test/debug connection resolved to another local application. The harness now allocates an independent debug port and verifies its exact target; the app was explicitly bound to loopback port 18517. The full browser smoke then passed. No other application was terminated. Screenshots are `docs/demo.png` and `docs/comparison.png`.
+
+### Commands and scope
+
+From the repository root with the existing Windows virtual environment:
+
+```powershell
+.venv-v1-1/Scripts/python -m pytest -q
+.venv-v1-1/Scripts/python -m ruff check .
+.venv-v1-1/Scripts/python -m pip check
+.venv-v1-1/Scripts/python evals/comparison.py --output evals/comparison-results.json
+.venv-v1-1/Scripts/python benchmarks/comparison.py --output benchmarks/comparison-results.json
+# Clear provider configuration and history in this test shell.
+$env:OPENAI_API_KEY=''
+$env:OPENAI_BASE_URL=''
+$env:QA_HISTORY_PATH=''
+.venv-v1-1/Scripts/python -m streamlit run app.py --server.headless true --server.address 127.0.0.1 --server.port 18517
+# In another shell, set CHROME_PATH to your Chromium executable and:
+$env:QA_BROWSER_PORT='18517'
+.venv-v1-1/Scripts/python tests/browser_smoke.py
+```
+
+All four evaluation `run()` functions were also invoked together with assertions on every `passed` flag. Linux reused the isolated Debian interpreter and Linux packages described in the V1.2 section, running pytest, Ruff, pip consistency and all four evaluation suites. Source is on a Windows-mounted filesystem: this verifies Linux execution, not case-sensitive filesystem behavior or a Community Cloud image.
+
+### Methods and edge cases
+
+KS uses full finite empirical support; TVD uses full non-null category support unless high cardinality is explicitly suppressed. No sampling, random bins, p-values or significance claims. Centralized policy defaults: missing/rate changes 5/20 pp, rows 20/50%, KS and TVD .10/.25, uniqueness 10/30 pp, minimum 20 observations for distribution severity. Effective policy is embedded in results. See [methods](docs/V2_DRIFT.md) for formulas, zero denominators, datetime cadence rules and the 1e-12 boundary tolerance.
+
+Tests cover empty/one-row/disjoint schemas, nullable types, missingness both directions, constant distributions, non-finite values, huge integers, supported extreme floats and safely rejected magnitudes, malformed dates, high cardinality, category ordering, unseen categories/zero probabilities, duplicate headers, row permutations and concurrent warning restoration. Local history tests cover save/reload, pruning/idempotence, preserved corruption recovery, wrong JSON types and locked-database safety. Mocked UI tests verify generated labels and rejected-output fallback. See [red-team findings](docs/V2_RED_TEAM.md).
+
+### V2 resource snapshot
+
+Windows/Python 3.11.3, pandas 2.3.3, NumPy 2.4.6, eight logical CPUs. Two four-column frames per case; fresh process per size; input construction excluded; sampled RSS every 5ms includes retained inputs and imports. Core only: no CSV parsing, Streamlit, history, LLM or concurrent-user cost.
+
+| Rows per input | Seconds | Sampled peak RSS |
+|---|---:|---:|
+| 1,000 | 0.0788 | 77.48 MiB |
+| 10,000 | 0.4855 | 86.20 MiB |
+| 100,000 | 4.7726 | 167.70 MiB |
+
+These are single local observations, not latency percentiles or hosted capacity. Both uploads/frames can coexist with a retained single-dataset session. Per-input limits and serialized analysis do not bound total host memory.
+
+Remaining uncertainty: uncalibrated severity, overlapping findings, lossy CSV inference, skipped/tiny distributions, approximate float64 moments, no business calendar or causal inference, lexical-only explanation guards, local history without tenant isolation, no persistent baseline snapshot, no verified public V2 deployment. Earlier sections below retain historical V1 evidence and remote run links.
+
 ## GitHub publication follow-up (2026-09-27 UTC)
 
 The user supplied `https://github.com/kaimouren/analysis_tool.git`; it had no remote refs. GitHub credentials were available at this follow-up. The reviewed 80-file source archive was committed without the old local history and pushed as `6c6c5d24610cbc0830c0819eba5eb7ca137315f1` on `main`. No existing repository content was overwritten.

@@ -4,6 +4,10 @@ Status: source is published at [kaimouren/analysis_tool](https://github.com/kaim
 
 ## Local setup
 
+V2 uses the same Python 3.11 entrypoint and dependencies. Both single-dataset and comparison modes are available in `app.py`. Leave `QA_HISTORY_PATH` unset on public Streamlit deployments; setting it enables shared server-local metadata history without user isolation. For a trusted local installation, set it to `.qa-history/comparisons.sqlite3` before starting Streamlit. The variable is environment-only; no visitor can select a filesystem path. Cloud-local files are not a durable storage guarantee.
+
+V2 acceptance additionally runs `python evals/comparison.py`. Smoke-test baseline/current uploads, direction, no-key guidance, comparison report download and stale-result removal after changing inputs. Two uploads and their intermediates coexist, so do not infer hosting capacity from V1's single-frame measurements.
+
 Use Python 3.11 and a virtual environment, then install `requirements.txt` and run `python -m streamlit run app.py`. Development verification uses `requirements-dev.txt`, which includes runtime dependencies. No global package installation or API credential is required. `.env.example` is a reference; the application does not load it automatically.
 
 ## Streamlit Community Cloud

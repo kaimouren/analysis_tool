@@ -1,5 +1,11 @@
 # Security and privacy
 
+## V2 comparison additions
+
+Both uploads remain in server memory. Comparison results can contain bounded local category examples; the provider payload and Markdown export exclude them. Provider payloads also exclude names, timestamps and extrema. Generated text remains unverified prose with schema/lexical guardrails.
+
+`QA_HISTORY_PATH` explicitly enables local SQLite metadata persistence and is intended for trusted single-user installations only. A Save action stores basename filenames, time, counts, summary and finding-type counts; no rows, categories, column names or generated prose. The latest 50 runs remain. Filenames may be sensitive. Corrupt-file backups remain until manually removed. This history has no per-user isolation: leave the variable unset on public demos. Source-control ignore rules exclude history files. Cloud-local files may be ephemeral.
+
 ## Threat assumptions
 
 CSV uploads, filenames, headers, and provider prose are untrusted content. The server administrator, installed dependencies and explicitly approved provider endpoints are trusted. V1 is a bounded, single-process exploration tool; it is not an authenticated multi-tenant service or hardened sandbox. Use synthetic data for public demos. No authentication was added.
